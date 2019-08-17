@@ -1,0 +1,11 @@
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\bin\Debug\Idex.exe.config
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\bin\Debug\Idex.exe
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\bin\Debug\Idex.pdb
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\bin\Debug\Newtonsoft.Json.dll
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\bin\Debug\Newtonsoft.Json.xml
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\obj\Debug\Idex.csprojResolveAssemblyReference.cache
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\obj\Debug\Idex.Form1.resources
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\obj\Debug\Idex.Properties.Resources.resources
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\obj\Debug\Idex.csproj.GenerateResource.Cache
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\obj\Debug\Idex.exe
+C:\Users\vinozavr\Documents\Visual Studio 2015\Projects\Idex\obj\Debug\Idex.pdb
