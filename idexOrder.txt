@@ -1,0 +1,107 @@
+if(walletNum == -1)
+                AddMessage("ApiCreateOrder: Failed: wallet num was not given");
+
+            try
+            {
+                AddMessage("Attempt to create an order on wallet #" + (walletNum + 1));
+
+                if (_minAmount[pairNum] == 0 || precETH == 0 || precToken == 0)
+                    ApiGetTokenInfo();
+
+                double price = Convert.ToDouble(_price.Replace(",", "."), CultureInfo.InvariantCulture);
+                double amtToken = Convert.ToDouble(_amount.Replace(".", ","));
+                double amtETH = amtToken * price;
+
+                int precSell = type == "sell" ? precToken : precETH;
+                int precBuy = type == "sell" ? precETH : precToken;
+
+                string amountSell = (type == "sell" ? amtToken : amtETH).ToString();
+                string amountBuy = (type == "sell" ? amtETH : amtToken).ToString();
+
+                amountSell += amountSell.IndexOf(",") == -1 ? "," : "";
+                amountBuy += amountBuy.IndexOf(",") == -1 ? "," : "";
+
+                amountSell += new string('0', precSell - (amountSell.Length - amountSell.IndexOf(",") - 1));
+                amountBuy += new string('0', precBuy - (amountBuy.Length - amountBuy.IndexOf(",") - 1));
+
+                amountSell = LeadingZeros.Replace(amountSell, "").Replace(",", "");
+                amountBuy = LeadingZeros.Replace(amountBuy, "").Replace(",", "");
+
+                string tokenSell = type == "sell" ? TokenHash : ETHHash;
+                string tokenBuy = type == "sell" ? ETHHash : TokenHash;
+
+                string contractAddress = ApiGetContractAddressIdex();
+                int nonce = Convert.ToInt32(ApiGetNextNonceIdex(walletNum));
+                int expires = 0;
+
+                string hash1 = SoliditySha3(
+                    new ToBeHashed(HashType.Address, contractAddress),
+                    new ToBeHashed(HashType.Address, tokenBuy),
+                    new ToBeHashed(HashType.UInt256, amountBuy),
+                    new ToBeHashed(HashType.Address, tokenSell),
+                    new ToBeHashed(HashType.UInt256, amountSell),
+                    new ToBeHashed(HashType.UInt256, expires.ToString()),
+                    new ToBeHashed(HashType.UInt256, nonce.ToString()),
+                    new ToBeHashed(HashType.Address, _apiKey[walletNum])
+                );
+
+                string prefixHex = BitConverter.ToString(UTF8.GetBytes(prefixEcsign)).Replace("-", "").ToLower();
+                string hash2 = keccack256.CalculateHashFromHex("0x" + prefixHex + hash1);
+
+                byte[] hashBytes = new byte[32];
+                for (int i = 0; i < 32; i++)
+                    hashBytes[i] = byte.Parse(hash2.Substring(i * 2, 2).ToUpper(), NumberStyles.HexNumber);
+
+                EthECDSASignature sign = Ecsign(hashBytes, _secretKey[walletNum]);
+
+                string queryText = "{ \"tokenBuy\" : \"" + tokenBuy + "\", \"amountBuy\" : \"" + amountBuy + "\", " +
+                                     "\"tokenSell\" : \"" + tokenSell + "\", \"amountSell\" : \"" + amountSell + "\", " +
+                                     "\"address\" : \"" + _apiKey[walletNum] + "\", \"nonce\" : \"" + nonce + "\", " +
+                                     "\"expires\" : " + expires.ToString() + ", \"v\" : " + sign.V[0] + ", " +
+                                     "\"r\" : \"0x" + BitConverter.ToString(sign.R).Replace("-", "").ToLower() + "\", " + 
+                                     "\"s\" : \"0x" + BitConverter.ToString(sign.S).Replace("-", "").ToLower() + "\" }";
+                byte[] queryData = ASCII.GetBytes(queryText);
+
+                string PutOrderPath = "/order";
+
+                HttpWebRequest request = WebRequest.Create(IdexApiUrl + PutOrderPath) as HttpWebRequest;
+                request.Method = WebRequestMethods.Http.Post;
+                request.ContentType = "application/json";
+                request.ContentLength = queryData.Length;
+                request.Headers.Add("Payload", Convert.ToBase64String(queryData));
+
+                request.GetRequestStream().Write(queryData, 0, queryData.Length);
+
+                dynamic m;
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                using (StreamReader str = new StreamReader(response.GetResponseStream()))
+                    m = JsonConvert.DeserializeObject(str.ReadToEnd());
+
+                if (m.error != null)
+                    throw new Exception(m.error);
+
+                AddMessage("Order (hash=" + m.orderHash + ") created (price=" + _price + ") on wallet #" + (walletNum + 1));
+                return new Order { OrderHash = m.orderHash, Pair = _pairNames[pairNum], Amount = _amount, Price = _price, Type = type, WalletID = walletNum };
+            }
+            catch (WebException ex)
+            {
+                try
+                {
+                    string h;
+                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                        h = sr.ReadToEnd();
+                    AddMessage("ApiCreateOrder: " + h);
+                    return null;
+                }
+                catch
+                {
+                    MessageBox.Show("No Internet connection");
+                    this.Close();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                AddMessage("ApiCreateOrder: " + ex.Message);
+                return null;
+            }
