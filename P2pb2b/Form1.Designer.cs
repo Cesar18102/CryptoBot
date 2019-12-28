@@ -38,6 +38,8 @@
             this.label68 = new System.Windows.Forms.Label();
             this.Creds = new System.Windows.Forms.TabControl();
             this.Cred1 = new System.Windows.Forms.TabPage();
+            this.MemoLabel = new System.Windows.Forms.Label();
+            this.MemoInput = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
             this.textBox50 = new System.Windows.Forms.TextBox();
             this.textBox49 = new System.Windows.Forms.TextBox();
@@ -282,6 +284,8 @@
             this.IdexChecker = new System.Windows.Forms.RadioButton();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.ChangeToken = new System.Windows.Forms.Button();
+            this.BitmartChecker = new System.Windows.Forms.RadioButton();
+            this.ChangeBaseToken = new System.Windows.Forms.Button();
             this.StopPercent2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.Creds.SuspendLayout();
@@ -409,6 +413,8 @@
             // 
             // Cred1
             // 
+            this.Cred1.Controls.Add(this.MemoLabel);
+            this.Cred1.Controls.Add(this.MemoInput);
             this.Cred1.Controls.Add(this.label51);
             this.Cred1.Controls.Add(this.textBox50);
             this.Cred1.Controls.Add(this.textBox49);
@@ -421,6 +427,25 @@
             this.Cred1.TabIndex = 0;
             this.Cred1.Text = "Credentails 1";
             this.Cred1.UseVisualStyleBackColor = true;
+            // 
+            // MemoLabel
+            // 
+            this.MemoLabel.AutoSize = true;
+            this.MemoLabel.Location = new System.Drawing.Point(7, 120);
+            this.MemoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.MemoLabel.Name = "MemoLabel";
+            this.MemoLabel.Size = new System.Drawing.Size(50, 17);
+            this.MemoLabel.TabIndex = 6;
+            this.MemoLabel.Text = "Memo:";
+            // 
+            // MemoInput
+            // 
+            this.MemoInput.Location = new System.Drawing.Point(7, 139);
+            this.MemoInput.Margin = new System.Windows.Forms.Padding(4);
+            this.MemoInput.Name = "MemoInput";
+            this.MemoInput.Size = new System.Drawing.Size(453, 22);
+            this.MemoInput.TabIndex = 5;
+            this.MemoInput.Text = "Test";
             // 
             // label51
             // 
@@ -466,7 +491,7 @@
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label49.Location = new System.Drawing.Point(146, 130);
+            this.label49.Location = new System.Drawing.Point(142, 167);
             this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(154, 25);
@@ -3001,7 +3026,7 @@
             // IdexChecker
             // 
             this.IdexChecker.AutoSize = true;
-            this.IdexChecker.Location = new System.Drawing.Point(312, 691);
+            this.IdexChecker.Location = new System.Drawing.Point(174, 720);
             this.IdexChecker.Name = "IdexChecker";
             this.IdexChecker.Size = new System.Drawing.Size(120, 21);
             this.IdexChecker.TabIndex = 59;
@@ -3014,19 +3039,41 @@
             // 
             // ChangeToken
             // 
-            this.ChangeToken.Location = new System.Drawing.Point(469, 690);
+            this.ChangeToken.Location = new System.Drawing.Point(323, 690);
             this.ChangeToken.Name = "ChangeToken";
-            this.ChangeToken.Size = new System.Drawing.Size(130, 23);
+            this.ChangeToken.Size = new System.Drawing.Size(192, 23);
             this.ChangeToken.TabIndex = 60;
             this.ChangeToken.Text = "Сменить токен";
             this.ChangeToken.UseVisualStyleBackColor = true;
             this.ChangeToken.Click += new System.EventHandler(this.ChangeToken_Click);
             // 
+            // BitmartChecker
+            // 
+            this.BitmartChecker.AutoSize = true;
+            this.BitmartChecker.Location = new System.Drawing.Point(12, 720);
+            this.BitmartChecker.Name = "BitmartChecker";
+            this.BitmartChecker.Size = new System.Drawing.Size(139, 21);
+            this.BitmartChecker.TabIndex = 61;
+            this.BitmartChecker.Text = "Bitmart Exchange";
+            this.BitmartChecker.UseVisualStyleBackColor = true;
+            // 
+            // ChangeBaseToken
+            // 
+            this.ChangeBaseToken.Location = new System.Drawing.Point(323, 718);
+            this.ChangeBaseToken.Name = "ChangeBaseToken";
+            this.ChangeBaseToken.Size = new System.Drawing.Size(192, 23);
+            this.ChangeBaseToken.TabIndex = 62;
+            this.ChangeBaseToken.Text = "Сменить базовый токен";
+            this.ChangeBaseToken.UseVisualStyleBackColor = true;
+            this.ChangeBaseToken.Click += new System.EventHandler(this.ChangeBaseToken_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 722);
+            this.ClientSize = new System.Drawing.Size(976, 753);
+            this.Controls.Add(this.ChangeBaseToken);
+            this.Controls.Add(this.BitmartChecker);
             this.Controls.Add(this.ChangeToken);
             this.Controls.Add(this.IdexChecker);
             this.Controls.Add(this.StopPercent);
@@ -3039,6 +3086,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "P2pb2b";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.StopPercent2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -3339,6 +3387,10 @@
         private System.Windows.Forms.Label label96;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Button ChangeToken;
+        private System.Windows.Forms.RadioButton BitmartChecker;
+        private System.Windows.Forms.Button ChangeBaseToken;
+        private System.Windows.Forms.Label MemoLabel;
+        private System.Windows.Forms.TextBox MemoInput;
     }
 }
 

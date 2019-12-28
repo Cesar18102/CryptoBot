@@ -1,48 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Mail;
-using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
+using System.Numerics;
+using System.Net.Mail;
 using System.Threading;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+
+using Newtonsoft.Json;
+
 using IniParser;
 using IniParser.Model;
-using Newtonsoft.Json;
-using HashLib;
-using Nethereum.Signer.Crypto;
-using System.Text.RegularExpressions;
-using Nethereum.Signer;
-using Nethereum.Util;
-using SHA3.Net;
-using Nethereum.Web3;
-using System.Buffers.Binary;
-using System.Numerics;
 
-// ReSharper disable AssignNullToNotNullAttribute
-// ReSharper disable FieldCanBeMadeReadOnly.Local
+using Nethereum.Util;
+using Nethereum.Signer;
+
+using P2pb2b.Server.Access;
+using P2pb2b.Server.Input;
+using P2pb2b.Server.Output;
+using P2pb2b.ResponseParser;
 
 namespace P2pb2b
 {
     public partial class Form1 : Form
     {
-        private const string HotbitApiUrl = "https://api.hotbit.io";
-        private const string IdexApiUrl = "https://api.idex.market";
+        private const string HOTBIT_API_URL = "https://api.hotbit.io";
+        private const string IDEX_API_URL = "https://api.idex.market";
+        private const string BITMART_API_URL = "https://openapi.bitmart.com/v2/";
 
-        private const string OldApiUrl = "https://p2pb2b.io";
-        private const string NewApiUrl = "https://api.p2pb2b.io";
+        private const string OLD_API_URL = "https://p2pb2b.io";
+        private const string NEW_API_URL = "https://api.p2pb2b.io";
+
+        private static readonly IServerCommunicator BITMART_SERVER = new ServerCommunicator(BITMART_API_URL);
+
+        private static readonly IResponseParser JSON_RESPONSE_PARSER = new JsonResponseParser();
 
         private const string prefixEcsign = "\u0019Ethereum Signed Message:\n32";
 
         private string[] _apiKey = new string[5];
         private string[] _secretKey = new string[5];
+
         private static string MainName = "XLM"; // ваш токен.
+        private static string CustomBaseName = "USD";
+
         private string TokenHash = "";
         private const string ETHHash = "0x0000000000000000000000000000000000000000";
-        private string[] _pairNames = { MainName + "_ETH", MainName + "_BTC", MainName + "_USD" };
+        private string[] _pairNames = { MainName + "_ETH", MainName + "_BTC", MainName + "_" + CustomBaseName };
         private readonly double[] _balances = { 0, 0, 0, 0 }; // ETH, BTC, USD, MainName
         private List<Order> _orders = new List<Order>();
         private double[] _lowPrice = { Double.MaxValue, Double.MaxValue, Double.MaxValue }; // ETH, BTC - наименьшие цены по ask.
@@ -66,9 +75,12 @@ namespace P2pb2b
         private readonly string[,] _minPercent = new string[3, 2];
         private readonly string[,] _maxPercent = new string[3, 2];
         private readonly double[] _relyPrice = new double[3];
-        private readonly double[] _minAmount = new double[2];
+        private readonly double[] _minAmount = new double[3];
         private int precETH;
         private int precToken;
+
+        private string BITMART_MEMO => MemoInput.Text;
+        private string BITMART_SESSION_TOKEN { get; set; }
 
         private int cWallet = -1;
         private int CurWallet { get { cWallet++; cWallet %= _apiKey.Length; return cWallet; } }
@@ -84,6 +96,17 @@ namespace P2pb2b
         private UTF8Encoding UTF8 = new UTF8Encoding();
 
         private Regex LeadingZeros = new Regex("^0+");
+
+        private string ToHmacSha256(string str, string key)
+        {
+            using (HMACSHA256 sha256 = new HMACSHA256(UTF8.GetBytes(key)))
+            {
+                byte[] data = UTF8.GetBytes(str);
+                byte[] hash = sha256.ComputeHash(data);
+                return BitConverter.ToString(hash).Replace("-", "");
+            }
+        }
+
 
         private string ToMD5(string str)
         {
@@ -139,8 +162,8 @@ namespace P2pb2b
         {
             InitializeComponent();
 
-            IdexChecker.CheckedChanged += IdexChecker_CheckedChanged;
             IdexChecker.CheckedChanged += ExchangeChecker_CheckedChanged;
+            BitmartChecker.CheckedChanged += BitmartChecker_CheckedChanged;
 
             mD5.Initialize();
 
@@ -149,7 +172,7 @@ namespace P2pb2b
             Balances = new Label[] { label1, label68, label69, label70, label71 };
         }
 
-        private class Order // : IEquatable<Order>
+        private class Order
         {
             public int ID;
             public string Pair;
@@ -597,7 +620,7 @@ namespace P2pb2b
                     textBox70.Text = items[0].Split('|')[0];
                     textBox66.Text = items[0].Split('|')[1];
                     textBox82.Text = items[1].Split('|')[0];
-                    textBox87.Text = items[1].Split('|')[1];
+                    textBox78.Text = items[1].Split('|')[1];
                 }
                 if (_iniData["Settings"]["VolumeHighUsd"] != null)
                 {
@@ -660,7 +683,7 @@ namespace P2pb2b
                         else
                             dataGridView4.Rows.Add(t.Pair, t.Price, t.Amount);
                     }
-                    else if (t.Pair == MainName + "_USD")
+                    else if (t.Pair == MainName + "_" + CustomBaseName)
                     {
                         if (t.Type == "sell")
                             dataGridView5.Rows.Add(t.Pair, t.Price, t.Amount);
@@ -675,7 +698,9 @@ namespace P2pb2b
             }
         }
 
-        private void ApiGetBalances()
+    #region GetBalances
+
+        private async Task ApiGetBalances()
         {
             if (P2P2B2BChecker.Checked)
                 ApiGetBalancesP2P2B2B();
@@ -683,6 +708,51 @@ namespace P2pb2b
                 ApiGetBalancesHotbit();
             else if (IdexChecker.Checked)
                 ApiGetBalancesIdex();
+            else if (BitmartChecker.Checked)
+                await ApiGetBalancesBitmart();
+        }
+
+        private async Task ApiGetBalancesBitmart()
+        {
+            string getBalancesEndpoint = "wallet";
+
+            try
+            {
+                IQuery getBalancesQuery = new Query(QueryMethod.GET, getBalancesEndpoint, headers: new Dictionary<string, string>()
+                {
+                    { "X-BM-TIMESTAMP", ((long)DateTime.Now.Subtract(DateTime.FromBinary(0)).TotalMilliseconds).ToString() },
+                    { "X-BM-AUTHORIZATION", "Bearer " + BITMART_SESSION_TOKEN }
+                });
+
+                List<dynamic> balances = JSON_RESPONSE_PARSER.ParseCollection<ResponseException>(await BITMART_SERVER.SendQuery(getBalancesQuery)).ToList();
+                AddMessage("ApiGetBalances success");
+
+                foreach (dynamic pair in balances)
+                {
+                    string currency = pair.id;
+                    double balance = Convert.ToDouble(pair.available);
+
+                    if (currency == "ETH")
+                        _balances[0] = balance;
+                    else if (currency == "BTC")
+                        _balances[1] = balance;
+                    else if (currency == CustomBaseName)
+                        _balances[2] = balance;
+                    else if (currency == MainName)
+                        _balances[3] = balance;
+                }
+                label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine +
+                              _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine +
+                              _balances[2].ToString("0.########") + @" " + CustomBaseName + Environment.NewLine +
+                              _balances[3].ToString("0.########") + @" " + MainName;
+                label2.Text = label1.Text;
+                label96.Text = label1.Text;
+
+            }
+            catch(ResponseException ex)
+            {
+                AddMessage("ApiGetBalances failed: " + ex.message);
+            }
         }
 
         private void ApiGetBalancesIdex()
@@ -695,7 +765,7 @@ namespace P2pb2b
                     string requestText = "{ \"address\" : \"" + Apis[i].Text + "\" }";
                     byte[] data = UTF8.GetBytes(requestText);
 
-                    HttpWebRequest request = WebRequest.Create(IdexApiUrl + GetBalancePath) as HttpWebRequest;
+                    HttpWebRequest request = WebRequest.Create(IDEX_API_URL + GetBalancePath) as HttpWebRequest;
                     request.Headers.Add("Payload", Convert.ToBase64String(data));
                     request.Method = WebRequestMethods.Http.Post;
                     request.ContentType = "application/json";
@@ -748,7 +818,7 @@ namespace P2pb2b
                 var unixTimestamp = Convert.ToInt64((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalMilliseconds).ToString();
                 const string query = "/api/v1/account/balances";
 
-                var request = (HttpWebRequest)WebRequest.Create(OldApiUrl + query);
+                var request = (HttpWebRequest)WebRequest.Create(OLD_API_URL + query);
                 var jsonData = "{\"request\":\"" + query + "\",\"nonce\":" + unixTimestamp + "}";
                 var data = Encoding.ASCII.GetBytes(jsonData);
 
@@ -777,14 +847,14 @@ namespace P2pb2b
                         _balances[0] = balance;
                     else if(currency == "BTC")
                         _balances[1] = balance;
-                    else if(currency == "USD")
+                    else if(currency == CustomBaseName)
                         _balances[2] = balance;
                     else if(currency == MainName)
                         _balances[3] = balance;
                 }
                 label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + 
                               _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + 
-                              _balances[2].ToString("0.########") + @" USD" + Environment.NewLine +
+                              _balances[2].ToString("0.########") + @" " + CustomBaseName + Environment.NewLine +
                               _balances[3].ToString("0.########") + @" " + MainName;
                 label2.Text = label1.Text;
                 label96.Text = label1.Text;
@@ -803,7 +873,7 @@ namespace P2pb2b
 
                     label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine +
                                   _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine +
-                                  _balances[2].ToString("0.########") + @" USD" + Environment.NewLine +
+                                  _balances[2].ToString("0.########") + @" " + CustomBaseName + Environment.NewLine +
                                   _balances[3].ToString("0.########") + @" " + MainName;
                     label2.Text = label1.Text;
                     label96.Text = label1.Text;
@@ -823,7 +893,7 @@ namespace P2pb2b
 
                 label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine +
                               _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine +
-                              _balances[2].ToString("0.########") + @" USD" + Environment.NewLine +
+                              _balances[2].ToString("0.########") + @" " + CustomBaseName + Environment.NewLine +
                               _balances[3].ToString("0.########") + @" " + MainName;
                 label2.Text = label1.Text;
                 label96.Text = label1.Text;
@@ -840,7 +910,7 @@ namespace P2pb2b
                 string requestBody = "api_key=" + _apiKey + "&assets=[\"ETH\",\"BTC\",\"" + MainName + "\"]&sign=" + ToMD5(preRequestText).ToUpper();
 
                 WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HotbitApiUrl + GetBalancePath + "?" + requestBody));
+                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + GetBalancePath + "?" + requestBody));
 
                 AddMessage("ApiGetBalances: " + (m.error == null ? "success" : "failure"));
                 foreach (var pair in m.result)
@@ -885,7 +955,10 @@ namespace P2pb2b
             }
         }
 
-        private void ApiGetMinAmount()
+    #endregion
+
+    #region GetMinAmount
+        private async Task ApiGetMinAmount()
         {
             if (P2P2B2BChecker.Checked)
                 ApiGetMinAmountP2P2B2B();
@@ -893,6 +966,8 @@ namespace P2pb2b
                 ApiGetMinAmountHotbit();
             else if (IdexChecker.Checked)
                 ApiGetMinAmountIdex();
+            else if (BitmartChecker.Checked)
+                await ApiGetMinAmountBitmart();
         }
 
         private void ApiGetMinAmountHotbit()
@@ -902,12 +977,12 @@ namespace P2pb2b
                 const string GetBalancePath = "/api/v1/market.list";
 
                 WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HotbitApiUrl + GetBalancePath));
+                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + GetBalancePath));
 
                 if (m.error != null)
                     AddMessage("ApiGetMinAmount: Failed: " + m.error);
                 else
-                    for (int i = 0; i < _pairNames.Length - 1; i++)
+                    for (int i = 0; i < _pairNames.Length; i++)
                         foreach (var pair in m.result)
                             if (pair.name == _pairNames[i].Replace("_", ""))
                                 _minAmount[i] = Convert.ToDouble(pair.min_amount, CultureInfo.InvariantCulture);
@@ -940,7 +1015,36 @@ namespace P2pb2b
         private void ApiGetMinAmountIdex() { }
         private void ApiGetMinAmountP2P2B2B() { }
 
-        private void ApiGetAllOrders()
+        private async Task ApiGetMinAmountBitmart()
+        {
+            try
+            {
+                string getSymbolsDetails = "symbols_details";
+
+                IQuery getSymbolsDetailsQuery = new Query(QueryMethod.GET, getSymbolsDetails);
+                List<dynamic> m = JSON_RESPONSE_PARSER.ParseCollection<ResponseException>(await BITMART_SERVER.SendQuery(getSymbolsDetailsQuery)).ToList();
+
+                for (int i = 0; i < _pairNames.Length; i++)
+                    foreach (var info in m)
+                        if (info.id == _pairNames[i])
+                            _minAmount[i] = Math.Min(Convert.ToDouble(info.min_buy_amount, CultureInfo.InvariantCulture),
+                                                     Convert.ToDouble(info.min_sell_amount, CultureInfo.InvariantCulture));
+                AddMessage("Get min amounts succeed");
+            }
+            catch (ResponseException ex)
+            {
+                AddMessage("Get min amounts failed: " + ex.message);
+                _minAmount[0] = 0;
+                _minAmount[1] = 0;
+                _minAmount[2] = 0;
+            }
+        }
+
+        #endregion
+
+    #region GetAllOrders
+
+        private async Task ApiGetAllOrders()
         {
             if (P2P2B2BChecker.Checked)
                 ApiGetAllOrdersP2P2B2B();
@@ -948,6 +1052,66 @@ namespace P2pb2b
                 ApiGetAllOrdersHotbit();
             else if (IdexChecker.Checked)
                 ApiGetAllOrdersIdex();
+            else if (BitmartChecker.Checked)
+                await ApiGetAllOrdersBitmart();
+        }
+
+        private async Task ApiGetAllOrdersBitmart()
+        {
+            string symbolsEndpoint = "symbols";
+
+            _orders.Clear();
+            for (int i = 0; i < _pairNames.Length; i++)
+            {
+                _lowPrice[i] = Double.MaxValue;
+                _upperPrice[i] = 0;
+            }
+
+            for (int i = 0; i < _pairNames.Length; i++)
+            {
+                try
+                {
+                    IQuery getOrdersQuery = new Query(QueryMethod.GET, $"{symbolsEndpoint}/{_pairNames[i]}/orders");
+                    dynamic m = JSON_RESPONSE_PARSER.Parse<ResponseException>(await BITMART_SERVER.SendQuery(getOrdersQuery));
+
+                    foreach (var sell in m.sells)
+                    {
+                        double price = Convert.ToDouble(sell.price, CultureInfo.InvariantCulture);
+                        _orders.Add(new Order
+                        {
+                            Pair = _pairNames[i],
+                            Type = "sell",
+                            Price = price.ToString(),
+                            Amount = sell.amount
+                        });
+
+
+                        if (_lowPrice[i] > price)
+                            _lowPrice[i] = price;
+                    }
+
+                    foreach (var buy in m.buys)
+                    {
+                        double price = Convert.ToDouble(buy.price, CultureInfo.InvariantCulture);
+                        _orders.Add(new Order
+                        {
+                            Pair = _pairNames[i],
+                            Type = "buy",
+                            Price = price.ToString(),
+                            Amount = buy.amount
+                        });
+
+                        if (_upperPrice[i] < price)
+                            _upperPrice[i] = price;
+                    }
+
+                    AddMessage($"ApiGetOrders({_pairNames[i]}) success");
+                }
+                catch (ResponseException ex)
+                {
+                    AddMessage($"ApiGetOrders({_pairNames[i]}) failed: " + ex.message);
+                }
+            }
         }
 
         private void ApiGetAllOrdersIdex()
@@ -969,7 +1133,7 @@ namespace P2pb2b
                     string requestText = "{ \"market\" : \"" + pair[1] + "_" + pair[0] + "\", \"count\" : 100 }";
                     byte[] data = UTF8.GetBytes(requestText);
 
-                    HttpWebRequest request = WebRequest.Create(IdexApiUrl + GetOrdersPath) as HttpWebRequest;
+                    HttpWebRequest request = WebRequest.Create(IDEX_API_URL + GetOrdersPath) as HttpWebRequest;
                     request.Method = WebRequestMethods.Http.Post;
                     request.ContentType = "application/json";
                     request.ContentLength = data.Length;
@@ -1053,7 +1217,7 @@ namespace P2pb2b
                 for(int i = 0; i < _pairNames.Length - 1; i++)
                 {
                     string requestText = "market=" + _pairNames[i].Replace("_", "/") + "&limit=100&interval=0.0000000001";
-                    HttpWebRequest request = WebRequest.Create(HotbitApiUrl + GetOrdersPath + "?" + requestText) as HttpWebRequest;
+                    HttpWebRequest request = WebRequest.Create(HOTBIT_API_URL + GetOrdersPath + "?" + requestText) as HttpWebRequest;
                     request.Method = WebRequestMethods.Http.Get;
                     request.ContentType = "application/x-www-form-urlencoded";
 
@@ -1129,7 +1293,7 @@ namespace P2pb2b
                 for (int i = 0; i < _pairNames.Length; i++)
                 {
                     var query = "/api/v1/public/depth/result?market=" + _pairNames[i] + "&limit=100";
-                    var request = (HttpWebRequest)WebRequest.Create(NewApiUrl + query);
+                    var request = (HttpWebRequest)WebRequest.Create(NEW_API_URL + query);
                     request.Method = WebRequestMethods.Http.Get;
                     request.ContentType = "application/x-www-form-urlencoded";
 
@@ -1183,12 +1347,15 @@ namespace P2pb2b
             }            
         }
 
+        #endregion
+
+    #region IdexSpecific
         private void ApiGetTokenInfo()
         {
             string GetTokenInfoPath = "/returnCurrencies";
             try
             {
-                HttpWebRequest request = HttpWebRequest.CreateHttp(IdexApiUrl + GetTokenInfoPath);
+                HttpWebRequest request = HttpWebRequest.CreateHttp(IDEX_API_URL + GetTokenInfoPath);
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "application/json";
 
@@ -1231,7 +1398,7 @@ namespace P2pb2b
             string GetContractAddressPath = "/returnContractAddress";
             try
             {
-                HttpWebRequest request = HttpWebRequest.CreateHttp(IdexApiUrl + GetContractAddressPath);
+                HttpWebRequest request = HttpWebRequest.CreateHttp(IDEX_API_URL + GetContractAddressPath);
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "application/json";
 
@@ -1277,7 +1444,7 @@ namespace P2pb2b
                 string requestBody = "{ \"address\" : \"" + _apiKey[walletNum] + "\" }";
                 byte[] data = ASCII.GetBytes(requestBody);
 
-                HttpWebRequest request = HttpWebRequest.CreateHttp(IdexApiUrl + GetNextNoncePath);
+                HttpWebRequest request = HttpWebRequest.CreateHttp(IDEX_API_URL + GetNextNoncePath);
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "application/json";
                 request.ContentLength = data.Length;
@@ -1317,29 +1484,183 @@ namespace P2pb2b
                 return null;
             }
         }
+        #endregion
 
-        private Order ApiCreateOrder(int pairNum, string amount, string price, string type, int walletNum = -1)
+    #region CreateOrder
+        private async Task<Order> ApiCreateOrder(int pairNum, string amount, string price, string type, int walletNum = -1)
         {
             if (P2P2B2BChecker.Checked)
                 return ApiCreateOrderP2P2B2B(_pairNames[pairNum], amount, price, type);
             else if (HotbitChecker.Checked)
-                return ApiCreateOrderHotbit(pairNum, amount, price, type);
+                return await ApiCreateOrderHotbit(pairNum, amount, price, type);
             else if (IdexChecker.Checked)
                 return ApiCreateOrderIdex(pairNum, amount, price, type, walletNum);
+            else if (BitmartChecker.Checked)
+                return await ApiCreateOrderBitmart(pairNum, amount, price, type);
             return null;
         }
 
-        private Order ApiCreateOrderIdex(int pairNum, string _amount, string _price, string type, int walletNum = -1)
-        {
-            return null;
-        }
-
-        private Order ApiCreateOrderHotbit(int pairNum, string _amount, string _price, string type)
+        private async Task<Order> ApiCreateOrderBitmart(int pairNum, string _amount, string _price, string type)
         {
             try
             {
                 if (_minAmount[pairNum] == 0)
-                    ApiGetMinAmount();
+                    await ApiGetMinAmount();
+
+                double amount = Convert.ToDouble(_amount.Replace(".", ","));
+                double price = Convert.ToDouble(_price.Replace(".", ","));
+
+                if (amount * price < _minAmount[pairNum])
+                    _amount = (_minAmount[pairNum] * 1.1 / price).ToString().Replace(",", ".");
+
+                string createOrderEndpoint = "orders";
+                var data = new
+                {
+                    amount = _amount,
+                    price = _price,
+                    side = type,
+                    symbol = _pairNames[pairNum]
+                };
+
+                string dataUrlencoded = $"amount={_amount}&price={_price}&side={type}&symbol={_pairNames[pairNum]}";
+
+                Dictionary<string, string> headers = new Dictionary<string, string>()
+                {
+                    { "X-BM-TIMESTAMP", ((long)DateTime.Now.Subtract(DateTime.FromBinary(0)).TotalMilliseconds).ToString() },
+                    { "X-BM-AUTHORIZATION", "Bearer " + BITMART_SESSION_TOKEN },
+                    { "X-BM-SIGNATURE", ToHmacSha256(dataUrlencoded, _secretKey[0]).ToLower() }
+                };
+
+                IQuery createOrderQuery = new Query(QueryMethod.POST, createOrderEndpoint, JsonConvert.SerializeObject(data), headers: headers);
+                dynamic response = JSON_RESPONSE_PARSER.Parse<ResponseException>(await BITMART_SERVER.SendQuery(createOrderQuery));
+                AddMessage("Created " + type + " order(" + response.entrust_id + ") price: " + _price + "; amount = " + _amount);
+                return await GetOrderBitmart(Convert.ToInt32(response.entrust_id));
+            }
+            catch (ResponseException ex)
+            {
+                AddMessage("ApiCreateOrder: " + ex.message);
+                return null;
+            }
+        }
+
+        private Order ApiCreateOrderIdex(int pairNum, string _amount, string _price, string type, int walletNum = -1)
+        {
+            if (walletNum == -1)
+                AddMessage("ApiCreateOrder: Failed: wallet num was not given");
+
+            try
+            {
+                AddMessage("Attempt to create an order on wallet #" + (walletNum + 1));
+
+                if (_minAmount[pairNum] == 0 || precETH == 0 || precToken == 0)
+                    ApiGetTokenInfo();
+
+                double price = Convert.ToDouble(_price.Replace(",", "."), CultureInfo.InvariantCulture);
+                double amtToken = Convert.ToDouble(_amount.Replace(".", ","));
+                double amtETH = amtToken * price;
+
+                int precSell = type == "sell" ? precToken : precETH;
+                int precBuy = type == "sell" ? precETH : precToken;
+
+                string amountSell = (type == "sell" ? amtToken : amtETH).ToString();
+                string amountBuy = (type == "sell" ? amtETH : amtToken).ToString();
+
+                amountSell += amountSell.IndexOf(",") == -1 ? "," : "";
+                amountBuy += amountBuy.IndexOf(",") == -1 ? "," : "";
+
+                amountSell += new string('0', precSell - (amountSell.Length - amountSell.IndexOf(",") - 1));
+                amountBuy += new string('0', precBuy - (amountBuy.Length - amountBuy.IndexOf(",") - 1));
+
+                amountSell = LeadingZeros.Replace(amountSell, "").Replace(",", "");
+                amountBuy = LeadingZeros.Replace(amountBuy, "").Replace(",", "");
+
+                string tokenSell = type == "sell" ? TokenHash : ETHHash;
+                string tokenBuy = type == "sell" ? ETHHash : TokenHash;
+
+                string contractAddress = ApiGetContractAddressIdex();
+                int nonce = Convert.ToInt32(ApiGetNextNonceIdex(walletNum));
+                int expires = 0;
+
+                string hash1 = SoliditySha3(
+                    new ToBeHashed(HashType.Address, contractAddress),
+                    new ToBeHashed(HashType.Address, tokenBuy),
+                    new ToBeHashed(HashType.UInt256, amountBuy),
+                    new ToBeHashed(HashType.Address, tokenSell),
+                    new ToBeHashed(HashType.UInt256, amountSell),
+                    new ToBeHashed(HashType.UInt256, expires.ToString()),
+                    new ToBeHashed(HashType.UInt256, nonce.ToString()),
+                    new ToBeHashed(HashType.Address, _apiKey[walletNum])
+                );
+
+                string prefixHex = BitConverter.ToString(UTF8.GetBytes(prefixEcsign)).Replace("-", "").ToLower();
+                string hash2 = keccack256.CalculateHashFromHex("0x" + prefixHex + hash1);
+
+                byte[] hashBytes = new byte[32];
+                for (int i = 0; i < 32; i++)
+                    hashBytes[i] = byte.Parse(hash2.Substring(i * 2, 2).ToUpper(), NumberStyles.HexNumber);
+
+                EthECDSASignature sign = Ecsign(hashBytes, _secretKey[walletNum]);
+
+                string queryText = "{ \"tokenBuy\" : \"" + tokenBuy + "\", \"amountBuy\" : \"" + amountBuy + "\", " +
+                                     "\"tokenSell\" : \"" + tokenSell + "\", \"amountSell\" : \"" + amountSell + "\", " +
+                                     "\"address\" : \"" + _apiKey[walletNum] + "\", \"nonce\" : \"" + nonce + "\", " +
+                                     "\"expires\" : " + expires.ToString() + ", \"v\" : " + sign.V[0] + ", " +
+                                     "\"r\" : \"0x" + BitConverter.ToString(sign.R).Replace("-", "").ToLower() + "\", " +
+                                     "\"s\" : \"0x" + BitConverter.ToString(sign.S).Replace("-", "").ToLower() + "\" }";
+                byte[] queryData = ASCII.GetBytes(queryText);
+
+                string PutOrderPath = "/order";
+
+                HttpWebRequest request = WebRequest.Create(IDEX_API_URL + PutOrderPath) as HttpWebRequest;
+                request.Method = WebRequestMethods.Http.Post;
+                request.ContentType = "application/json";
+                request.ContentLength = queryData.Length;
+                request.Headers.Add("Payload", Convert.ToBase64String(queryData));
+
+                request.GetRequestStream().Write(queryData, 0, queryData.Length);
+
+                dynamic m;
+                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                using (StreamReader str = new StreamReader(response.GetResponseStream()))
+                    m = JsonConvert.DeserializeObject(str.ReadToEnd());
+
+                if (m.error != null)
+                    throw new Exception(m.error);
+
+                AddMessage("Order (hash=" + m.orderHash + ") created (price=" + _price + ") on wallet #" + (walletNum + 1));
+                return new Order { OrderHash = m.orderHash, Pair = _pairNames[pairNum], Amount = _amount, Price = _price, Type = type, WalletID = walletNum };
+            }
+            catch (WebException ex)
+            {
+
+                try
+                {
+                    string h;
+                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                        h = sr.ReadToEnd();
+                    AddMessage("ApiCreateOrder: " + h);
+                    return null;
+                }
+                catch
+                {
+                    MessageBox.Show("No Internet connection");
+                    this.Close();
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                AddMessage("ApiCreateOrder: " + ex.Message);
+                return null;
+            }
+        }
+
+        private async Task<Order> ApiCreateOrderHotbit(int pairNum, string _amount, string _price, string type)
+        {
+            try
+            {
+                if (_minAmount[pairNum] == 0)
+                    await ApiGetMinAmount();
 
                 string price = String.Format("{0:e}", Convert.ToDouble(_price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
                 string amount = (Math.Ceiling(Convert.ToDouble(_amount.Replace(".", ",")) / _minAmount[pairNum]) * _minAmount[pairNum]).ToString().Replace(",", ".");
@@ -1351,7 +1672,7 @@ namespace P2pb2b
                 string requestBody = requestTextPrefix + "&sign=" + ToMD5(preRequestText).ToUpper();
 
                 WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HotbitApiUrl + CreateOrderPath + "?" + requestBody));
+                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + CreateOrderPath + "?" + requestBody));
 
                 Thread.Sleep(200);
                 if (m.error != null)
@@ -1391,7 +1712,7 @@ namespace P2pb2b
                 var unixTimestamp = Convert.ToInt64((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalMilliseconds).ToString();
                 const string query = "/api/v1/order/new";
 
-                var request = (HttpWebRequest)WebRequest.Create(OldApiUrl + query);
+                var request = (HttpWebRequest)WebRequest.Create(OLD_API_URL + query);
                 var jsonData = 
                     "{\"market\":\"" + pair + "\",\"side\":\"" + type + "\"," +
                     "\"amount\":\"" + amount + "\",\"price\":\"" + price + "\"," +
@@ -1443,7 +1764,11 @@ namespace P2pb2b
             }
         }
 
-        private bool ApiCancelOrder(string pair, int id, string hash = "", int walletNum = -1) //API
+        #endregion
+
+    #region CancelOrder
+
+        private async Task<bool> ApiCancelOrder(string pair, int id, string hash = "", int walletNum = -1) //API
         {
             if (P2P2B2BChecker.Checked)
                 return ApiCancelOrderP2P2B2B(pair, id);
@@ -1451,7 +1776,38 @@ namespace P2pb2b
                 return ApiCancelOrderHotbit(pair, id);
             else if (IdexChecker.Checked)
                 return ApiCancelOrderIdex(hash, walletNum);
+            else if(BitmartChecker.Checked)
+                return await ApiCancelOrderBitmart(pair, id);
             return false;
+        }
+
+        private async Task<bool> ApiCancelOrderBitmart(string pair, int id)
+        {
+            try
+            {
+                string cancelOrderEndpoint = "orders/" + id.ToString();
+
+                string dataUrlencoded = $"entrust_id={id}";
+
+                Dictionary<string, string> headers = new Dictionary<string, string>()
+                {
+                    { "X-BM-TIMESTAMP", ((long)DateTime.Now.Subtract(DateTime.FromBinary(0)).TotalMilliseconds).ToString() },
+                    { "X-BM-AUTHORIZATION", "Bearer " + BITMART_SESSION_TOKEN },
+                    { "X-BM-SIGNATURE", ToHmacSha256(dataUrlencoded, _secretKey[0]).ToLower() }
+                };
+
+                IQuery cancelOrderQuery = new Query(QueryMethod.DELETE, cancelOrderEndpoint, headers: headers);
+                IServerResponse response = await BITMART_SERVER.SendQuery(cancelOrderQuery);
+                JSON_RESPONSE_PARSER.Parse<ResponseException>(response);
+
+                AddMessage("Order (" + id + ") of pair " + pair + " cancelled");
+                return true;
+            }
+            catch (ResponseException ex)
+            {
+                AddMessage("ApiCancelOrder failed: " + ex.message);
+                return false;
+            }
         }
 
         private bool ApiCancelOrderIdex(string hash, int walletNum = -1)
@@ -1486,7 +1842,7 @@ namespace P2pb2b
 
                 string CancelOrderPath = "/cancel";
 
-                HttpWebRequest request = WebRequest.Create(IdexApiUrl + CancelOrderPath) as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create(IDEX_API_URL + CancelOrderPath) as HttpWebRequest;
                 request.Method = WebRequestMethods.Http.Post;
                 request.ContentType = "application/json";
                 request.ContentLength = queryData.Length;
@@ -1540,7 +1896,7 @@ namespace P2pb2b
                 string requestBody = requestTextPrefix + "&sign=" + ToMD5(preRequestText).ToUpper();
 
                 WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HotbitApiUrl + CancelOrderPath + "?" + requestBody));
+                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + CancelOrderPath + "?" + requestBody));
 
                 if(m.error == null)
                     AddMessage("Order (" + id + ") of pair " + pair + " cancelled");//
@@ -1563,7 +1919,7 @@ namespace P2pb2b
                 var unixTimestamp = Convert.ToInt64((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalMilliseconds).ToString();
                 const string query = "/api/v1/order/cancel";
 
-                var request = (HttpWebRequest)WebRequest.Create(OldApiUrl + query);
+                var request = (HttpWebRequest)WebRequest.Create(OLD_API_URL + query);
                 var jsonData = 
                     "{\"market\":\"" + pair + "\",\"orderId\":" + id + "," +
                     "\"request\":\"" + query + "\",\"nonce\":" + unixTimestamp + "}";
@@ -1600,7 +1956,74 @@ namespace P2pb2b
             }
         }
 
-        private void ApiBot(byte pairNum) //API
+        #endregion
+
+    #region BitmartSpecific
+
+        private async Task<string> LogInBitmart(string publicKey, string privateKey, string memo)
+        {
+            string logInEndpoint = "authentication";
+
+            try
+            {
+                IQuery logInQuery = new Query(QueryMethod.POST_URLENCODED, logInEndpoint,
+                    parameters: new Dictionary<string, string>() {
+                        { "grant_type", "client_credentials" },
+                        { "client_id", publicKey },
+                        { "client_secret", ToHmacSha256($"{publicKey}:{privateKey}:{memo}", privateKey).ToLower() }
+                });
+
+                IServerResponse response = await BITMART_SERVER.SendQuery(logInQuery);
+                string session_token = JSON_RESPONSE_PARSER.Parse<ResponseException>(response).access_token;
+
+                AddMessage("Bitmart authorization succeed");
+                return session_token;
+            }
+            catch(ResponseException ex)
+            {
+                AddMessage("Bitmart authorization failed: " + ex.message);
+                return "";
+            }
+        }
+
+        private async Task<Order> GetOrderBitmart(int id)
+        {
+            try
+            {
+                string getOrderEndpoint = "orders/" + id.ToString();
+                string dataUrlencoded = $"entrust_id={id}";
+
+                Dictionary<string, string> headers = new Dictionary<string, string>()
+                {
+                    { "X-BM-TIMESTAMP", ((long)DateTime.Now.Subtract(DateTime.FromBinary(0)).TotalMilliseconds).ToString() },
+                    { "X-BM-AUTHORIZATION", "Bearer " + BITMART_SESSION_TOKEN }
+                };
+
+                IQuery cancelOrderQuery = new Query(QueryMethod.GET, getOrderEndpoint, headers: headers);
+                IServerResponse response = await BITMART_SERVER.SendQuery(cancelOrderQuery);
+                dynamic order = JSON_RESPONSE_PARSER.Parse<ResponseException>(response);
+                AddMessage("Get order success");
+
+                return new Order()
+                {
+                    ID = order.entrust_id,
+                    Pair = order.symbol,
+                    Type = order.side,
+                    Price = order.price,
+                    Amount = order.original_amount
+                };
+            }
+            catch (ResponseException ex)
+            {
+                AddMessage("Get order info failed: " + ex.message);
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Logic
+        private async void ApiBot(byte pairNum) //API
         {
             if (stopped[pairNum])
                 return;
@@ -1608,11 +2031,12 @@ namespace P2pb2b
             try
             {
                 Thread.Sleep((new Random().Next(Convert.ToInt32(_timerMainRandom[pairNum, _timeZone])) + 1)*1000);
-                ApiGetAllOrders();
+                await ApiGetAllOrders();
 
                 // работа с зазором.
                 if (_gap[pairNum, 0] == "1" && _lowPrice[pairNum] - _upperPrice[pairNum] < Convert.ToDouble(_gap[pairNum, 1].Replace('.', ',')))
                 {
+                    //Application.Exit();
                     // сообщаем, что обнаружили зазор и будем продавать токен.
                     AddMessage($"Operation missed due to: ({_pairNames[pairNum]})lowPrice - upperPrice = " + (_lowPrice[pairNum] - _upperPrice[pairNum]).ToString("0.##########"));
                     foreach (var order in _orders)
@@ -1668,17 +2092,18 @@ namespace P2pb2b
                             return;
                         }
                         
-                        Order O = ApiCreateOrder(pairNum, rAmount, price[typeNow].ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
+                        Order O = await ApiCreateOrder(pairNum, rAmount, price[typeNow].ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
+
                         if (O != null && (O.ID != -1 || O.OrderHash != ""))
                         {
                             AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ") created");
                             Thread.Sleep((new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1)) * 1000);
-                            ApiGetAllOrders();
+                            await ApiGetAllOrders();
                             // существует ли созданный ордер на бирже.
 
                             if (_orders.First(o => o.Pair == O.Pair && o.Type == O.Type).Equals(O)) //ордер лучший - выставляем встречный ордер
                             {
-                                Order CO = ApiCreateOrder(pairNum, O.Amount, O.Price, _typeOrder[typeNow + 1], CurWallet);
+                                Order CO = await ApiCreateOrder(pairNum, O.Amount, O.Price, _typeOrder[typeNow + 1], CurWallet);
                                 if (CO != null && CO.ID != -1)
                                     AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + CO.OrderHash : "id=" + CO.ID) + 
                                                ") created (counter to the sell order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
@@ -1686,7 +2111,7 @@ namespace P2pb2b
                                     AddMessage("Failed to create counter order to (counter to the order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
                             }
                             else //удаляем ордер с id равным orderId
-                                ApiCancelOrder(_pairNames[pairNum], O.ID, O.OrderHash, O.WalletID);
+                                await ApiCancelOrder(_pairNames[pairNum], O.ID, O.OrderHash, O.WalletID);
                         }
                         Thread.Sleep((new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000);
                     }
@@ -1700,7 +2125,9 @@ namespace P2pb2b
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+    #endregion
+
+        private async void Form1_Load(object sender, EventArgs e)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             if (!File.Exists("config.ini")) using (File.Create("config.ini"));
@@ -1712,22 +2139,22 @@ namespace P2pb2b
             SetMySettings();
             button1.PerformClick();
 
-            ApiGetMinAmount();
+            await ApiGetMinAmount();
             ApiGetTokenInfo();
         }
 
-        private void IdexChecker_CheckedChanged(object sender, EventArgs e)
+        private async void BitmartChecker_CheckedChanged(object sender, EventArgs e)
         {
-            label68.Visible = IdexChecker.Checked;
-            label69.Visible = IdexChecker.Checked;
-            label70.Visible = IdexChecker.Checked;
-            label71.Visible = IdexChecker.Checked;
+            if (BitmartChecker.Checked)
+                BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
+
+            ExchangeChecker_CheckedChanged(sender, e);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            ApiGetBalances();
-            ApiGetAllOrders();
+            await ApiGetBalances();
+            await ApiGetAllOrders();
             FillTables();
         }
         
@@ -1742,9 +2169,9 @@ namespace P2pb2b
             catch { }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
-            ApiCreateOrder(0, textBox1.Text, textBox2.Text, comboBox1.SelectedItem.ToString());
+            await ApiCreateOrder(0, textBox1.Text, textBox2.Text, comboBox1.SelectedItem.ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1761,7 +2188,10 @@ namespace P2pb2b
             P2P2B2BChecker.Enabled = false;
             HotbitChecker.Enabled = false;
             IdexChecker.Enabled = false;
+            BitmartChecker.Enabled = false;
+
             ChangeToken.Enabled = false;
+            ChangeBaseToken.Enabled = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -1775,7 +2205,10 @@ namespace P2pb2b
             P2P2B2BChecker.Enabled = true;
             HotbitChecker.Enabled = true;
             IdexChecker.Enabled = true;
+            BitmartChecker.Enabled = true;
+
             ChangeToken.Enabled = true;
+            ChangeBaseToken.Enabled = true;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -1792,7 +2225,10 @@ namespace P2pb2b
             P2P2B2BChecker.Enabled = false;
             HotbitChecker.Enabled = false;
             IdexChecker.Enabled = false;
+            BitmartChecker.Enabled = false;
+
             ChangeToken.Enabled = false;
+            ChangeBaseToken.Enabled = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -1806,7 +2242,10 @@ namespace P2pb2b
             P2P2B2BChecker.Enabled = true;
             HotbitChecker.Enabled = true;
             IdexChecker.Enabled = true;
+            BitmartChecker.Enabled = true;
+
             ChangeToken.Enabled = true;
+            ChangeBaseToken.Enabled = true;
         }
 
         private void Button9_Click(object sender, EventArgs e)
@@ -1818,12 +2257,15 @@ namespace P2pb2b
             timer3.Enabled = true;
             StopPercent2.TabPages[0].Enabled = false;
             StopPercent2.TabPages[1].Enabled = false;
-            Text = @"P2pb2b (working pair USD)";
+            Text = $"P2pb2b (working pair {CustomBaseName})";
 
             P2P2B2BChecker.Enabled = false;
             HotbitChecker.Enabled = false;
-            IdexChecker.Enabled = false;
+            IdexChecker.Enabled = true;
+            BitmartChecker.Enabled = false;
+
             ChangeToken.Enabled = false;
+            ChangeBaseToken.Enabled = false;
         }
 
         private void Button8_Click(object sender, EventArgs e)
@@ -1837,7 +2279,10 @@ namespace P2pb2b
             P2P2B2BChecker.Enabled = true;
             HotbitChecker.Enabled = true;
             IdexChecker.Enabled = true;
+            BitmartChecker.Enabled = true;
+
             ChangeToken.Enabled = true;
+            ChangeBaseToken.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -1915,6 +2360,8 @@ namespace P2pb2b
                 _timeZone = 0;
             else
                 _timeZone = 1;
+
+            tabControl1.SelectedIndex = _timeZone;
             tabControl2.SelectedIndex = _timeZone;
             tabControl3.SelectedIndex = _timeZone;
         }
@@ -1980,17 +2427,25 @@ namespace P2pb2b
             IniParser.WriteFile("config.ini", _iniData);
         }
 
-        private void ExchangeChecker_CheckedChanged(object sender, EventArgs e)
+        private async void ExchangeChecker_CheckedChanged(object sender, EventArgs e)
         {
+            label68.Visible = IdexChecker.Checked;
+            label69.Visible = IdexChecker.Checked;
+            label70.Visible = IdexChecker.Checked;
+            label71.Visible = IdexChecker.Checked;
+
             button4.PerformClick();
             button5.PerformClick();
             button8.PerformClick();
 
             _orders = new List<Order>();
 
-            ApiGetBalances();
-            ApiGetAllOrders();
-            FillTables();
+            if ((sender as RadioButton).Checked)
+            {
+                await ApiGetBalances();
+                await ApiGetAllOrders();
+                FillTables();
+            }
         }
 
         private void ChangeToken_Click(object sender, EventArgs e)
@@ -1998,8 +2453,29 @@ namespace P2pb2b
             TokenChangeForm TCF = new TokenChangeForm();
             TCF.ShowDialog();
             MainName = TCF.Token;
-            _pairNames = new string[] { MainName + "_ETH", MainName + "_BTC", MainName + "_USD" };
+            _pairNames = new string[] { MainName + "_ETH", MainName + "_BTC", MainName + "_" + CustomBaseName };
+
             button1.PerformClick();
+            button6.PerformClick();
+            button10.PerformClick();
+        }
+
+        private void ChangeBaseToken_Click(object sender, EventArgs e)
+        {
+            TokenChangeForm TCF = new TokenChangeForm();
+            TCF.ShowDialog();
+            CustomBaseName = TCF.Token;
+            tabPage5.Text = CustomBaseName;
+            _pairNames = new string[] { MainName + "_ETH", MainName + "_BTC", MainName + "_" + CustomBaseName };
+
+            button1.PerformClick();
+            button6.PerformClick();
+            button10.PerformClick();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SetMySettings();
         }
     }
 }

@@ -102,6 +102,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -121,6 +124,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResponseParser\IResponseParser.cs" />
+    <Compile Include="ResponseParser\JsonResponseParser.cs" />
+    <Compile Include="Server\Access\IServerCommunicator.cs" />
+    <Compile Include="Server\Access\ServerCommunicator.cs" />
+    <Compile Include="Server\Input\IQuery.cs" />
+    <Compile Include="Server\Input\MultipartDataItem.cs" />
+    <Compile Include="Server\Input\Query.cs" />
+    <Compile Include="Server\Output\IServerResponse.cs" />
+    <Compile Include="Server\Output\ResponseException.cs" />
+    <Compile Include="Server\Output\ServerResponse.cs" />
     <Compile Include="TokenChangeForm.cs">
       <SubType>Form</SubType>
     </Compile>
