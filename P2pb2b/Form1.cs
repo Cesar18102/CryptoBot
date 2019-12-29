@@ -56,10 +56,10 @@ namespace P2pb2b
         private List<Order> _orders = new List<Order>();
         private double[] _lowPrice = { Double.MaxValue, Double.MaxValue, Double.MaxValue }; // ETH, BTC - наименьшие цены по ask.
         private double[] _upperPrice = { 0, 0, 0 }; // ETH, BTC - наивысшие цены по bid.
-        private Thread _thread1;
+        private Task[] tasks = new Task[3];
         private static readonly FileIniDataParser IniParser = new FileIniDataParser();
         private IniData _iniData;
-        private readonly string[] _typeOrder = {"sell", "buy", "sell" };
+        private readonly string[] _typeOrder = { "sell", "buy", "sell" };
         private byte _timeZone;
         private bool _reportSent = false;
         private bool[] stopped = new bool[3] { false, false, false };
@@ -190,7 +190,7 @@ namespace P2pb2b
                 Order O = obj as Order;
 
                 string pr1 = String.Format("{0:e}", Convert.ToDouble(Price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
-                string pr2 = String.Format("{0:e}", Convert.ToDouble(O.Price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");  
+                string pr2 = String.Format("{0:e}", Convert.ToDouble(O.Price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
 
                 string am1 = String.Format("{0:e}", Convert.ToDouble(Amount.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
                 string am2 = String.Format("{0:e}", Convert.ToDouble(O.Amount.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
@@ -258,7 +258,7 @@ namespace P2pb2b
         private static string GetRandomNumber(double minimum, double maximum, bool isPrice)
         {
             var random = new Random();
-            return (random.NextDouble()*(maximum - minimum) + minimum).ToString(isPrice ? "0.##########" : "0.##");
+            return (random.NextDouble() * (maximum - minimum) + minimum).ToString(isPrice ? "0.##########" : "0.##");
         }
 
         private void SetMySettings()
@@ -698,7 +698,7 @@ namespace P2pb2b
             }
         }
 
-    #region GetBalances
+        #region GetBalances
 
         private async Task ApiGetBalances()
         {
@@ -749,7 +749,13 @@ namespace P2pb2b
                 label96.Text = label1.Text;
 
             }
-            catch(ResponseException ex)
+            catch (ResponseException ex) when (ex.message == "Token expired")
+            {
+                AddMessage("Token expired, relogin");
+                BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
+                await ApiGetBalancesBitmart();
+            }
+            catch (ResponseException ex)
             {
                 AddMessage("ApiGetBalances failed: " + ex.message);
             }
@@ -785,7 +791,7 @@ namespace P2pb2b
                     _balances[2] = 0;
                     _balances[3] = Convert.ToDouble(m[MainName]);
 
-                    Balances[i].Text = "ETH " + (m["ETH"] != null ? m["ETH"] : "0")  + Environment.NewLine + MainName + " " + (m[MainName] != null ? m[MainName] : "0");
+                    Balances[i].Text = "ETH " + (m["ETH"] != null ? m["ETH"] : "0") + Environment.NewLine + MainName + " " + (m[MainName] != null ? m[MainName] : "0");
                 }
                 catch (WebException ex)
                 {
@@ -843,17 +849,17 @@ namespace P2pb2b
                     string currency = pair.Name;
                     double balance = Convert.ToDouble(pair.Value.available);
 
-                    if(currency == "ETH")
+                    if (currency == "ETH")
                         _balances[0] = balance;
-                    else if(currency == "BTC")
+                    else if (currency == "BTC")
                         _balances[1] = balance;
-                    else if(currency == CustomBaseName)
+                    else if (currency == CustomBaseName)
                         _balances[2] = balance;
-                    else if(currency == MainName)
+                    else if (currency == MainName)
                         _balances[3] = balance;
                 }
-                label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + 
-                              _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + 
+                label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine +
+                              _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine +
                               _balances[2].ToString("0.########") + @" " + CustomBaseName + Environment.NewLine +
                               _balances[3].ToString("0.########") + @" " + MainName;
                 label2.Text = label1.Text;
@@ -928,8 +934,11 @@ namespace P2pb2b
                 label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + _balances[3].ToString("0.########") + @" " + MainName;
                 label2.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + _balances[3].ToString("0.########") + @" " + MainName;
 
-            } catch (WebException ex) {
-                try {
+            }
+            catch (WebException ex)
+            {
+                try
+                {
                     string h;
                     using (var sr = new StreamReader(ex.Response.GetResponseStream()))
                         h = sr.ReadToEnd();
@@ -940,11 +949,15 @@ namespace P2pb2b
 
                     label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + _balances[3].ToString("0.########") + @" " + MainName;
                     label2.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + _balances[3].ToString("0.########") + @" " + MainName;
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("No Internet connection");
                     this.Close();
                 }
-            } catch(Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 AddMessage("ApiGetBalances: " + ex.Message);
 
                 for (int i = 0; i < 4; i++)
@@ -955,9 +968,9 @@ namespace P2pb2b
             }
         }
 
-    #endregion
+        #endregion
 
-    #region GetMinAmount
+        #region GetMinAmount
         private async Task ApiGetMinAmount()
         {
             if (P2P2B2BChecker.Checked)
@@ -1042,7 +1055,7 @@ namespace P2pb2b
 
         #endregion
 
-    #region GetAllOrders
+        #region GetAllOrders
 
         private async Task ApiGetAllOrders()
         {
@@ -1126,7 +1139,7 @@ namespace P2pb2b
                 }
 
                 const string GetOrdersPath = "/returnOrderBook";
-                
+
                 for (int i = 0; i < _pairNames.Length - 2; i++)
                 {
                     string[] pair = _pairNames[i].Split('_');
@@ -1213,8 +1226,8 @@ namespace P2pb2b
                 }
 
                 const string GetOrdersPath = "/api/v1/order.depth";
-                
-                for(int i = 0; i < _pairNames.Length - 1; i++)
+
+                for (int i = 0; i < _pairNames.Length - 1; i++)
                 {
                     string requestText = "market=" + _pairNames[i].Replace("_", "/") + "&limit=100&interval=0.0000000001";
                     HttpWebRequest request = WebRequest.Create(HOTBIT_API_URL + GetOrdersPath + "?" + requestText) as HttpWebRequest;
@@ -1229,7 +1242,7 @@ namespace P2pb2b
                     if (m.error != null)
                         continue;
 
-                    foreach(var ask in m.result.asks)
+                    foreach (var ask in m.result.asks)
                     {
                         double price = Convert.ToDouble(ask[0], CultureInfo.InvariantCulture);
                         _orders.Add(new Order
@@ -1240,7 +1253,7 @@ namespace P2pb2b
                             Amount = ask[1]
                         });
 
-                        
+
                         if (_lowPrice[i] > price)
                             _lowPrice[i] = price;
                     }
@@ -1263,12 +1276,15 @@ namespace P2pb2b
             }
             catch (WebException ex)
             {
-                try {
+                try
+                {
                     string h;
                     using (var sr = new StreamReader(ex.Response.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetAllOrders: " + h);
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("No Internet connection");
                     this.Close();
                 }
@@ -1284,7 +1300,7 @@ namespace P2pb2b
             try
             {
                 _orders.Clear();
-                for(int i = 0; i < _pairNames.Length; i++)
+                for (int i = 0; i < _pairNames.Length; i++)
                 {
                     _lowPrice[i] = Double.MaxValue;
                     _upperPrice[i] = 0;
@@ -1331,12 +1347,15 @@ namespace P2pb2b
             }
             catch (WebException ex)
             {
-                try {
+                try
+                {
                     string h;
                     using (var sr = new StreamReader(ex.Response.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetAllOrders: " + h);
-                } catch {
+                }
+                catch
+                {
                     MessageBox.Show("No Internet connection");
                     this.Close();
                 }
@@ -1344,12 +1363,12 @@ namespace P2pb2b
             catch (Exception ex)
             {
                 AddMessage("ApiGetAllOrders: " + ex.Message);
-            }            
+            }
         }
 
         #endregion
 
-    #region IdexSpecific
+        #region IdexSpecific
         private void ApiGetTokenInfo()
         {
             string GetTokenInfoPath = "/returnCurrencies";
@@ -1486,7 +1505,7 @@ namespace P2pb2b
         }
         #endregion
 
-    #region CreateOrder
+        #region CreateOrder
         private async Task<Order> ApiCreateOrder(int pairNum, string amount, string price, string type, int walletNum = -1)
         {
             if (P2P2B2BChecker.Checked)
@@ -1536,9 +1555,15 @@ namespace P2pb2b
                 AddMessage("Created " + type + " order(" + response.entrust_id + ") price: " + _price + "; amount = " + _amount);
                 return await GetOrderBitmart(Convert.ToInt32(response.entrust_id));
             }
+            catch (ResponseException ex) when (ex.message == "Token expired")
+            {
+                AddMessage("Token expired, relogin");
+                BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
+                return await ApiCreateOrderBitmart(pairNum, _amount, _price, type);
+            }
             catch (ResponseException ex)
             {
-                AddMessage("ApiCreateOrder: " + ex.message);
+                AddMessage("ApiCreateOrder failed: " + ex.message);
                 return null;
             }
         }
@@ -1713,7 +1738,7 @@ namespace P2pb2b
                 const string query = "/api/v1/order/new";
 
                 var request = (HttpWebRequest)WebRequest.Create(OLD_API_URL + query);
-                var jsonData = 
+                var jsonData =
                     "{\"market\":\"" + pair + "\",\"side\":\"" + type + "\"," +
                     "\"amount\":\"" + amount + "\",\"price\":\"" + price + "\"," +
                     "\"request\":\"" + query + "\",\"nonce\":" + unixTimestamp + "}";
@@ -1734,11 +1759,11 @@ namespace P2pb2b
                 var resStream = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 dynamic m = JsonConvert.DeserializeObject(resStream);
                 Thread.Sleep(200);
-                AddMessage("Created " + type + "(" + price  + "): amount = " + amount + "| " + m.success.Value);
+                AddMessage("Created " + type + "(" + price + "): amount = " + amount + "| " + m.success.Value);
                 if (!m.success.Value)
                     throw new Exception(JsonConvert.SerializeObject(m.message));
 
-                return new Order { ID = m.result.orderId, Pair = pair, Amount = m.result.amount, Price = m.result.price , Type = type };
+                return new Order { ID = m.result.orderId, Pair = pair, Amount = m.result.amount, Price = m.result.price, Type = type };
             }
             catch (WebException ex)
             {
@@ -1766,7 +1791,7 @@ namespace P2pb2b
 
         #endregion
 
-    #region CancelOrder
+        #region CancelOrder
 
         private async Task<bool> ApiCancelOrder(string pair, int id, string hash = "", int walletNum = -1) //API
         {
@@ -1776,7 +1801,7 @@ namespace P2pb2b
                 return ApiCancelOrderHotbit(pair, id);
             else if (IdexChecker.Checked)
                 return ApiCancelOrderIdex(hash, walletNum);
-            else if(BitmartChecker.Checked)
+            else if (BitmartChecker.Checked)
                 return await ApiCancelOrderBitmart(pair, id);
             return false;
         }
@@ -1802,6 +1827,12 @@ namespace P2pb2b
 
                 AddMessage("Order (" + id + ") of pair " + pair + " cancelled");
                 return true;
+            }
+            catch (ResponseException ex) when (ex.message == "Token expired")
+            {
+                AddMessage("Token expired, relogin");
+                BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
+                return await ApiCancelOrderBitmart(pair, id);
             }
             catch (ResponseException ex)
             {
@@ -1834,7 +1865,7 @@ namespace P2pb2b
 
                 EthECDSASignature sign = Ecsign(hashBytes, _secretKey[walletNum]);
 
-                string queryText = "{ \"orderHash\" : \"" + hash + "\", \"address\" : \"" + address + "\", " + 
+                string queryText = "{ \"orderHash\" : \"" + hash + "\", \"address\" : \"" + address + "\", " +
                                      "\"nonce\" : \"" + nonce.ToString() + "\", \"v\" : " + sign.V[0] + ", " +
                                      "\"r\" : \"0x" + BitConverter.ToString(sign.R).Replace("-", "").ToLower() + "\", " +
                                      "\"s\" : \"0x" + BitConverter.ToString(sign.S).Replace("-", "").ToLower() + "\" }";
@@ -1898,7 +1929,7 @@ namespace P2pb2b
                 WebClient WC = new WebClient();
                 dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + CancelOrderPath + "?" + requestBody));
 
-                if(m.error == null)
+                if (m.error == null)
                     AddMessage("Order (" + id + ") of pair " + pair + " cancelled");//
                 else
                     AddMessage("Failed to cancel order (" + id + ") :" + m.error);//
@@ -1920,7 +1951,7 @@ namespace P2pb2b
                 const string query = "/api/v1/order/cancel";
 
                 var request = (HttpWebRequest)WebRequest.Create(OLD_API_URL + query);
-                var jsonData = 
+                var jsonData =
                     "{\"market\":\"" + pair + "\",\"orderId\":" + id + "," +
                     "\"request\":\"" + query + "\",\"nonce\":" + unixTimestamp + "}";
 
@@ -1942,7 +1973,7 @@ namespace P2pb2b
                 dynamic m = JsonConvert.DeserializeObject(resStream);
                 Thread.Sleep(200);
 
-                if(m.success.Value)
+                if (m.success.Value)
                     AddMessage("Order (" + id + ") of pair " + pair + " cancelled");
                 else
                     AddMessage("Failed to cancel order (" + id + "): " + JsonConvert.SerializeObject(m.message));
@@ -1958,7 +1989,7 @@ namespace P2pb2b
 
         #endregion
 
-    #region BitmartSpecific
+        #region BitmartSpecific
 
         private async Task<string> LogInBitmart(string publicKey, string privateKey, string memo)
         {
@@ -1979,7 +2010,7 @@ namespace P2pb2b
                 AddMessage("Bitmart authorization succeed");
                 return session_token;
             }
-            catch(ResponseException ex)
+            catch (ResponseException ex)
             {
                 AddMessage("Bitmart authorization failed: " + ex.message);
                 return "";
@@ -2013,6 +2044,12 @@ namespace P2pb2b
                     Amount = order.original_amount
                 };
             }
+            catch (ResponseException ex) when (ex.message == "Token expired")
+            {
+                AddMessage("Token expired, relogin");
+                BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
+                return await GetOrderBitmart(id);
+            }
             catch (ResponseException ex)
             {
                 AddMessage("Get order info failed: " + ex.message);
@@ -2023,14 +2060,14 @@ namespace P2pb2b
         #endregion
 
         #region Logic
-        private async void ApiBot(byte pairNum) //API
+        private async Task ApiBot(byte pairNum) //API
         {
             if (stopped[pairNum])
                 return;
 
             try
             {
-                Thread.Sleep((new Random().Next(Convert.ToInt32(_timerMainRandom[pairNum, _timeZone])) + 1)*1000);
+                await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerMainRandom[pairNum, _timeZone])) + 1) * 1000));
                 await ApiGetAllOrders();
 
                 // работа с зазором.
@@ -2047,7 +2084,7 @@ namespace P2pb2b
                             var b = ApiCreateOrder(pairNum, order.Amount,
                                 _upperPrice[pairNum].ToString("0.##########").Replace(',', '.'),
                                 _typeOrder[0]);
-                            AddMessage("Pair = "  + order.Pair + ", price = " + order.Price + ", amount = " + order.Amount);
+                            AddMessage("Pair = " + order.Pair + ", price = " + order.Price + ", amount = " + order.Amount);
                             AddMessage("Status: " + b);
                             return;
                         }
@@ -2085,19 +2122,19 @@ namespace P2pb2b
                     // проверка, является ли amount*ask положительным числом.
                     if (Convert.ToDouble(rAmount.Replace('.', ',')) * price[0] > 0.0000001)
                     {
-                        if(StopPercentChecker.Checked && price[typeNow] < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100)
+                        if (StopPercentChecker.Checked && price[typeNow] < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100)
                         {
                             MessageBox.Show("Цена упала более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
                             stopped[pairNum] = true;
                             return;
                         }
-                        
+
                         Order O = await ApiCreateOrder(pairNum, rAmount, price[typeNow].ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
 
                         if (O != null && (O.ID != -1 || O.OrderHash != ""))
                         {
                             AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ") created");
-                            Thread.Sleep((new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1)) * 1000);
+                            await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1)) * 1000));
                             await ApiGetAllOrders();
                             // существует ли созданный ордер на бирже.
 
@@ -2105,7 +2142,7 @@ namespace P2pb2b
                             {
                                 Order CO = await ApiCreateOrder(pairNum, O.Amount, O.Price, _typeOrder[typeNow + 1], CurWallet);
                                 if (CO != null && CO.ID != -1)
-                                    AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + CO.OrderHash : "id=" + CO.ID) + 
+                                    AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + CO.OrderHash : "id=" + CO.ID) +
                                                ") created (counter to the sell order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
                                 else
                                     AddMessage("Failed to create counter order to (counter to the order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
@@ -2113,7 +2150,7 @@ namespace P2pb2b
                             else //удаляем ордер с id равным orderId
                                 await ApiCancelOrder(_pairNames[pairNum], O.ID, O.OrderHash, O.WalletID);
                         }
-                        Thread.Sleep((new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000);
+                        await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000));
                     }
                 }
             }
@@ -2121,16 +2158,16 @@ namespace P2pb2b
             {
                 AddMessage("ApiBot: " + ex.Message);
                 SendMail("Ошибка: " + ex.Message); // отправляем письмо.
-                Thread.Sleep(10*60*1000); // спит 10 минут.
+                Thread.Sleep(10 * 60 * 1000); // спит 10 минут.
             }
         }
 
-    #endregion
+        #endregion
 
         private async void Form1_Load(object sender, EventArgs e)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            if (!File.Exists("config.ini")) using (File.Create("config.ini"));
+            if (!File.Exists("config.ini")) using (File.Create("config.ini")) ;
             _iniData = IniParser.ReadFile("config.ini");
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.SelectedIndex = 0;
@@ -2157,7 +2194,7 @@ namespace P2pb2b
             await ApiGetAllOrders();
             FillTables();
         }
-        
+
         private void SetRelyPrice(int pairNum)
         {
             try
@@ -2296,12 +2333,8 @@ namespace P2pb2b
                 AddMessage("Change timeZone on #" + _timeZone);
             }
 
-            if (_thread1 == null)
-            {
-                _thread1 = new Thread(() => ApiBot(0));
-                _thread1.Start();
-            }
-            else if (!_thread1.IsAlive) _thread1 = null;
+            if (tasks[0] == null || tasks[0].IsCompleted || tasks[0].IsFaulted)
+                tasks[0] = Task.Run(() => ApiBot(0));
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -2315,12 +2348,8 @@ namespace P2pb2b
                 AddMessage("Change timeZone on #" + _timeZone);
             }
 
-            if (_thread1 == null)
-            {
-                _thread1 = new Thread(() => ApiBot(1));
-                _thread1.Start();
-            }
-            else if (!_thread1.IsAlive) _thread1 = null;
+            if (tasks[1] == null || tasks[1].IsCompleted || tasks[1].IsFaulted)
+                tasks[1] = Task.Run(() => ApiBot(1));
         }
 
         private void Timer3_Tick(object sender, EventArgs e)
@@ -2334,12 +2363,8 @@ namespace P2pb2b
                 AddMessage("Change timeZone on #" + _timeZone);
             }
 
-            if (_thread1 == null)
-            {
-                _thread1 = new Thread(() => ApiBot(2));
-                _thread1.Start();
-            }
-            else if (!_thread1.IsAlive) _thread1 = null;
+            if (tasks[2] == null || tasks[2].IsCompleted || tasks[2].IsFaulted)
+                tasks[2] = Task.Run(() => ApiBot(2));
         }
 
         private void CheckTimeZone()
@@ -2476,6 +2501,19 @@ namespace P2pb2b
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SetMySettings();
+
+            Log(richTextBox1.Text, 1);
+            Log(richTextBox2.Text, 2);
+            Log(richTextBox3.Text, 3);
+        }
+
+        private void Log(string text, int num)
+        {
+            using (FileStream str = File.Create(Environment.CurrentDirectory + "/Log/Log_" + DateTime.Now.Ticks.ToString() + "_" + num + ".txt"))
+            {
+                byte[] data = UTF8.GetBytes(text);
+                str.Write(data, 0, data.Length);
+            }
         }
     }
 }
