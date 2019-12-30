@@ -286,6 +286,11 @@
             this.ChangeToken = new System.Windows.Forms.Button();
             this.BitmartChecker = new System.Windows.Forms.RadioButton();
             this.ChangeBaseToken = new System.Windows.Forms.Button();
+            this.Turbo1 = new System.Windows.Forms.CheckBox();
+            this.Turbo2 = new System.Windows.Forms.CheckBox();
+            this.Turbo3 = new System.Windows.Forms.CheckBox();
+            this.StopGrowPercent = new System.Windows.Forms.NumericUpDown();
+            this.StopGrowPercentChecker = new System.Windows.Forms.CheckBox();
             this.StopPercent2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.Creds.SuspendLayout();
@@ -312,6 +317,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopPercent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StopGrowPercent)).BeginInit();
             this.SuspendLayout();
             // 
             // StopPercent2
@@ -329,6 +335,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.Turbo1);
             this.tabPage1.Controls.Add(this.label71);
             this.tabPage1.Controls.Add(this.label70);
             this.tabPage1.Controls.Add(this.label69);
@@ -781,7 +788,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(348, 485);
+            this.button4.Location = new System.Drawing.Point(140, 485);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(124, 28);
@@ -1528,6 +1535,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.Turbo2);
             this.tabPage2.Controls.Add(this.textBox17);
             this.tabPage2.Controls.Add(this.checkBox2);
             this.tabPage2.Controls.Add(this.button5);
@@ -1568,7 +1576,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(348, 485);
+            this.button5.Location = new System.Drawing.Point(140, 485);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(124, 28);
@@ -2248,6 +2256,7 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage5.Controls.Add(this.Turbo3);
             this.tabPage5.Controls.Add(this.textBox63);
             this.tabPage5.Controls.Add(this.checkBox3);
             this.tabPage5.Controls.Add(this.button8);
@@ -2286,7 +2295,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(345, 481);
+            this.button8.Location = new System.Drawing.Point(137, 481);
             this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(124, 28);
@@ -3067,11 +3076,70 @@
             this.ChangeBaseToken.UseVisualStyleBackColor = true;
             this.ChangeBaseToken.Click += new System.EventHandler(this.ChangeBaseToken_Click);
             // 
+            // Turbo1
+            // 
+            this.Turbo1.AutoSize = true;
+            this.Turbo1.Location = new System.Drawing.Point(271, 488);
+            this.Turbo1.Name = "Turbo1";
+            this.Turbo1.Size = new System.Drawing.Size(68, 21);
+            this.Turbo1.TabIndex = 60;
+            this.Turbo1.Text = "Turbo";
+            this.Turbo1.UseVisualStyleBackColor = true;
+            // 
+            // Turbo2
+            // 
+            this.Turbo2.AutoSize = true;
+            this.Turbo2.Location = new System.Drawing.Point(271, 490);
+            this.Turbo2.Name = "Turbo2";
+            this.Turbo2.Size = new System.Drawing.Size(68, 21);
+            this.Turbo2.TabIndex = 59;
+            this.Turbo2.Text = "Turbo";
+            this.Turbo2.UseVisualStyleBackColor = true;
+            // 
+            // Turbo3
+            // 
+            this.Turbo3.AutoSize = true;
+            this.Turbo3.Location = new System.Drawing.Point(268, 486);
+            this.Turbo3.Name = "Turbo3";
+            this.Turbo3.Size = new System.Drawing.Size(98, 21);
+            this.Turbo3.TabIndex = 69;
+            this.Turbo3.Text = "checkBox4";
+            this.Turbo3.UseVisualStyleBackColor = true;
+            // 
+            // StopGrowPercent
+            // 
+            this.StopGrowPercent.Location = new System.Drawing.Point(904, 719);
+            this.StopGrowPercent.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.StopGrowPercent.Name = "StopGrowPercent";
+            this.StopGrowPercent.Size = new System.Drawing.Size(66, 22);
+            this.StopGrowPercent.TabIndex = 64;
+            this.StopGrowPercent.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // StopGrowPercentChecker
+            // 
+            this.StopGrowPercentChecker.AutoSize = true;
+            this.StopGrowPercentChecker.Location = new System.Drawing.Point(639, 720);
+            this.StopGrowPercentChecker.Name = "StopGrowPercentChecker";
+            this.StopGrowPercentChecker.Size = new System.Drawing.Size(241, 21);
+            this.StopGrowPercentChecker.TabIndex = 63;
+            this.StopGrowPercentChecker.Text = "Останавливать при росте на %:";
+            this.StopGrowPercentChecker.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 753);
+            this.Controls.Add(this.StopGrowPercent);
+            this.Controls.Add(this.StopGrowPercentChecker);
             this.Controls.Add(this.ChangeBaseToken);
             this.Controls.Add(this.BitmartChecker);
             this.Controls.Add(this.ChangeToken);
@@ -3128,6 +3196,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopPercent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StopGrowPercent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3391,6 +3460,11 @@
         private System.Windows.Forms.Button ChangeBaseToken;
         private System.Windows.Forms.Label MemoLabel;
         private System.Windows.Forms.TextBox MemoInput;
+        private System.Windows.Forms.CheckBox Turbo1;
+        private System.Windows.Forms.CheckBox Turbo2;
+        private System.Windows.Forms.CheckBox Turbo3;
+        private System.Windows.Forms.NumericUpDown StopGrowPercent;
+        private System.Windows.Forms.CheckBox StopGrowPercentChecker;
     }
 }
 

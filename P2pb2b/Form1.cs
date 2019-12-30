@@ -749,7 +749,7 @@ namespace P2pb2b
                 label96.Text = label1.Text;
 
             }
-            catch (ResponseException ex) when (ex.message == "Token expired")
+            catch (ResponseException ex) when (ex.message == "Token expired" || ex.message == "Unauthorized")
             {
                 AddMessage("Token expired, relogin");
                 BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
@@ -1555,7 +1555,7 @@ namespace P2pb2b
                 AddMessage("Created " + type + " order(" + response.entrust_id + ") price: " + _price + "; amount = " + _amount);
                 return await GetOrderBitmart(Convert.ToInt32(response.entrust_id));
             }
-            catch (ResponseException ex) when (ex.message == "Token expired")
+            catch (ResponseException ex) when (ex.message == "Token expired" || ex.message == "Unauthorized")
             {
                 AddMessage("Token expired, relogin");
                 BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
@@ -1828,7 +1828,7 @@ namespace P2pb2b
                 AddMessage("Order (" + id + ") of pair " + pair + " cancelled");
                 return true;
             }
-            catch (ResponseException ex) when (ex.message == "Token expired")
+            catch (ResponseException ex) when (ex.message == "Token expired" || ex.message == "Unauthorized")
             {
                 AddMessage("Token expired, relogin");
                 BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
@@ -1836,7 +1836,7 @@ namespace P2pb2b
             }
             catch (ResponseException ex)
             {
-                AddMessage("ApiCancelOrder failed: " + ex.message);
+                AddMessage($"ApiCancelOrder({id}) failed: " + ex.message);
                 return false;
             }
         }
@@ -2044,7 +2044,7 @@ namespace P2pb2b
                     Amount = order.original_amount
                 };
             }
-            catch (ResponseException ex) when (ex.message == "Token expired")
+            catch (ResponseException ex) when (ex.message == "Token expired" || ex.message == "Unauthorized")
             {
                 AddMessage("Token expired, relogin");
                 BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
@@ -2060,7 +2060,7 @@ namespace P2pb2b
         #endregion
 
         #region Logic
-        private async Task ApiBot(byte pairNum) //API
+        private async Task ApiBot(byte pairNum, bool turbo) //API
         {
             if (stopped[pairNum])
                 return;
@@ -2094,65 +2094,87 @@ namespace P2pb2b
 
                 var rCount = new Random().Next(1, Convert.ToInt32(_countOrders[pairNum, _timeZone]) + 1);
 
+                List<Task> tails = new List<Task>();
+
                 for (var i = 1; i <= rCount; i++)
                 {
-                    var typeNow = new Random().Next(2); // Рандомный тип ордера: ask or bid.
-
-                    var min = Convert.ToDouble(_volumeLow[pairNum, _timeZone, typeNow].Replace('.', ','));
-                    var max = Convert.ToDouble(_volumeHigh[pairNum, _timeZone, typeNow].Replace('.', ','));
-
-                    var rAmount = GetRandomNumber(min, max, false).Replace(',', '.');
-                    /*var isRound = new Random().Next(50); // округлять ли объём ордера.
-                    if (isRound < 50 && rAmount.IndexOf(".", StringComparison.Ordinal) > 0)
-                        rAmount = rAmount.Substring(0, rAmount.IndexOf(".", StringComparison.Ordinal));*/
-
-                    double[] price = { _lowPrice[pairNum], _upperPrice[pairNum] };
-                    var minAskByPercent = (price[0] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
-                    var maxAskByPercent = (price[0] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
-
-                    var minBidByPercent = (price[1] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
-                    var maxBidByPercent = (price[1] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
-
-                    // ask понижаем на рандомное число из диапазона, bid повышаем.
-                    if (typeNow == 0)
-                        price[0] = price[0] - Convert.ToDouble(GetRandomNumber(minAskByPercent, maxAskByPercent, true));
-                    else
-                        price[1] = price[1] + Convert.ToDouble(GetRandomNumber(minBidByPercent, maxBidByPercent, true));
-
-                    // проверка, является ли amount*ask положительным числом.
-                    if (Convert.ToDouble(rAmount.Replace('.', ',')) * price[0] > 0.0000001)
+                    Func<Task> logic = async () =>
                     {
-                        if (StopPercentChecker.Checked && price[typeNow] < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100)
+                        var typeNow = new Random().Next(2); // Рандомный тип ордера: ask or bid.
+
+                        var min = Convert.ToDouble(_volumeLow[pairNum, _timeZone, typeNow].Replace('.', ','));
+                        var max = Convert.ToDouble(_volumeHigh[pairNum, _timeZone, typeNow].Replace('.', ','));
+
+                        var rAmount = GetRandomNumber(min, max, false).Replace(',', '.');
+                        /*var isRound = new Random().Next(50); // округлять ли объём ордера.
+                        if (isRound < 50 && rAmount.IndexOf(".", StringComparison.Ordinal) > 0)
+                            rAmount = rAmount.Substring(0, rAmount.IndexOf(".", StringComparison.Ordinal));*/
+
+                        double[] price = { _lowPrice[pairNum], _upperPrice[pairNum] };
+                        var minAskByPercent = (price[0] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
+                        var maxAskByPercent = (price[0] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
+
+                        var minBidByPercent = (price[1] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
+                        var maxBidByPercent = (price[1] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
+
+                        // ask понижаем на рандомное число из диапазона, bid повышаем.
+                        if (typeNow == 0)
+                            price[0] = price[0] - Convert.ToDouble(GetRandomNumber(minAskByPercent, maxAskByPercent, true));
+                        else
+                            price[1] = price[1] + Convert.ToDouble(GetRandomNumber(minBidByPercent, maxBidByPercent, true));
+
+                        // проверка, является ли amount*ask положительным числом.
+                        if (Convert.ToDouble(rAmount.Replace('.', ',')) * price[0] > 0.0000001)
                         {
-                            MessageBox.Show("Цена упала более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
-                            stopped[pairNum] = true;
-                            return;
-                        }
-
-                        Order O = await ApiCreateOrder(pairNum, rAmount, price[typeNow].ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
-
-                        if (O != null && (O.ID != -1 || O.OrderHash != ""))
-                        {
-                            AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ") created");
-                            await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1)) * 1000));
-                            await ApiGetAllOrders();
-                            // существует ли созданный ордер на бирже.
-
-                            if (_orders.First(o => o.Pair == O.Pair && o.Type == O.Type).Equals(O)) //ордер лучший - выставляем встречный ордер
+                            if (StopPercentChecker.Checked && price[typeNow] < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100.0)
                             {
-                                Order CO = await ApiCreateOrder(pairNum, O.Amount, O.Price, _typeOrder[typeNow + 1], CurWallet);
-                                if (CO != null && CO.ID != -1)
-                                    AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + CO.OrderHash : "id=" + CO.ID) +
-                                               ") created (counter to the sell order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
-                                else
-                                    AddMessage("Failed to create counter order to (counter to the order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
+                                stopped[pairNum] = true;
+                                MessageBox.Show("Цена упала более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
+                                return;
                             }
-                            else //удаляем ордер с id равным orderId
-                                await ApiCancelOrder(_pairNames[pairNum], O.ID, O.OrderHash, O.WalletID);
+
+                            if (StopGrowPercentChecker.Checked && price[typeNow] > _relyPrice[pairNum] * (100 + Convert.ToInt32(StopGrowPercent.Value)) / 100.0)
+                            {
+                                stopped[pairNum] = true;
+                                MessageBox.Show("Цена выросла более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
+                                return;
+                            }
+
+                            Order O = await ApiCreateOrder(pairNum, rAmount, price[typeNow].ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
+
+                            if (O != null && (O.ID != -1 || O.OrderHash != ""))
+                            {
+                                AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ") created");
+                                await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1)) * 1000));
+                                await ApiGetAllOrders();
+                                // существует ли созданный ордер на бирже.
+
+                                if (_orders.First(o => o.Pair == O.Pair && o.Type == O.Type).Equals(O)) //ордер лучший - выставляем встречный ордер
+                                {
+                                    Order CO = await ApiCreateOrder(pairNum, O.Amount, O.Price, _typeOrder[typeNow + 1], CurWallet);
+                                    if (CO != null && CO.ID != -1)
+                                        AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + CO.OrderHash : "id=" + CO.ID) +
+                                                   ") created (counter to the sell order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
+                                    else
+                                        AddMessage("Failed to create counter order to (counter to the order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
+                                }
+                                else //удаляем ордер с id равным orderId
+                                    await ApiCancelOrder(_pairNames[pairNum], O.ID, O.OrderHash, O.WalletID);
+                            }
+                            await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000));
                         }
-                        await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000));
+                    };
+
+                    if (turbo)
+                    {
+                        tails.Add(logic());
+                        await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerMainRandom[pairNum, _timeZone])) + 1) * 1000));
                     }
+                    else
+                        await logic();
                 }
+
+                Task.WaitAll(tails.ToArray());
             }
             catch (Exception ex)
             {
@@ -2334,7 +2356,7 @@ namespace P2pb2b
             }
 
             if (tasks[0] == null || tasks[0].IsCompleted || tasks[0].IsFaulted)
-                tasks[0] = Task.Run(() => ApiBot(0));
+                tasks[0] = Task.Run(() => ApiBot(0, Turbo1.Checked));
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -2349,7 +2371,7 @@ namespace P2pb2b
             }
 
             if (tasks[1] == null || tasks[1].IsCompleted || tasks[1].IsFaulted)
-                tasks[1] = Task.Run(() => ApiBot(1));
+                tasks[1] = Task.Run(() => ApiBot(1, Turbo2.Checked));
         }
 
         private void Timer3_Tick(object sender, EventArgs e)
@@ -2364,7 +2386,7 @@ namespace P2pb2b
             }
 
             if (tasks[2] == null || tasks[2].IsCompleted || tasks[2].IsFaulted)
-                tasks[2] = Task.Run(() => ApiBot(2));
+                tasks[2] = Task.Run(() => ApiBot(2, Turbo3.Checked));
         }
 
         private void CheckTimeZone()
