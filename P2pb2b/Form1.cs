@@ -74,6 +74,8 @@ namespace P2pb2b
         private readonly string[,] _gap = new string[3, 2]; // зазор.
         private readonly string[,] _minPercent = new string[3, 2];
         private readonly string[,] _maxPercent = new string[3, 2];
+        private readonly double[,] _minAbs = new double[3, 2];
+        private readonly double[,] _maxAbs = new double[3, 2];
         private readonly double[] _relyPrice = new double[3];
         private readonly double[] _minAmount = new double[3];
         private int precETH;
@@ -279,6 +281,8 @@ namespace P2pb2b
                 _iniData["Settings"]["Gap"] = (checkBox1.Checked ? "1" : "0") + ";" + textBox16.Text;
                 _iniData["Settings"]["MinPercent"] = textBox18.Text + ";" + textBox24.Text;
                 _iniData["Settings"]["MaxPercent"] = textBox19.Text + ";" + textBox23.Text;
+                _iniData["Settings"]["MinAbs"] = textBox89.Text + ";" + textBox91.Text;
+                _iniData["Settings"]["MaxAbs"] = textBox88.Text + ";" + textBox90.Text;
 
                 _timerMain[0, 0] = textBox8.Text;
                 _timerMain[0, 1] = textBox15.Text;
@@ -308,6 +312,11 @@ namespace P2pb2b
                 _maxPercent[0, 0] = textBox19.Text;
                 _maxPercent[0, 1] = textBox23.Text;
 
+                _minAbs[0, 0] = Convert.ToDouble(textBox89.Text.Replace(".", ","));
+                _minAbs[0, 1] = Convert.ToDouble(textBox91.Text.Replace(".", ","));
+                _maxAbs[0, 0] = Convert.ToDouble(textBox88.Text.Replace(".", ","));
+                _maxAbs[0, 1] = Convert.ToDouble(textBox90.Text.Replace(".", ","));
+
                 // BTC
 
                 _iniData["Settings"]["TimerMainBtc"] = textBox30.Text + ";" + textBox37.Text;
@@ -322,6 +331,8 @@ namespace P2pb2b
                 _iniData["Settings"]["GapBtc"] = (checkBox2.Checked ? "1" : "0") + ";" + textBox17.Text;
                 _iniData["Settings"]["MinPercentBtc"] = textBox38.Text + ";" + textBox40.Text;
                 _iniData["Settings"]["MaxPercentBtc"] = textBox25.Text + ";" + textBox39.Text;
+                _iniData["Settings"]["MinAbsBtc"] = textBox93.Text + ";" + textBox95.Text;
+                _iniData["Settings"]["MaxAbsBtc"] = textBox92.Text + ";" + textBox94.Text;
 
                 _timerMain[1, 0] = textBox30.Text;
                 _timerMain[1, 1] = textBox37.Text;
@@ -351,6 +362,11 @@ namespace P2pb2b
                 _maxPercent[1, 0] = textBox25.Text;
                 _maxPercent[1, 1] = textBox39.Text;
 
+                _minAbs[1, 0] = Convert.ToDouble(textBox93.Text.Replace(".", ","));
+                _minAbs[1, 1] = Convert.ToDouble(textBox95.Text.Replace(".", ","));
+                _maxAbs[1, 0] = Convert.ToDouble(textBox92.Text.Replace(".", ","));
+                _maxAbs[1, 1] = Convert.ToDouble(textBox94.Text.Replace(".", ","));
+
                 //USD
 
                 _iniData["Settings"]["TimerMainUsd"] = textBox75.Text + ";" + textBox87.Text;
@@ -365,6 +381,8 @@ namespace P2pb2b
                 _iniData["Settings"]["GapUsd"] = (checkBox3.Checked ? "1" : "0") + ";" + textBox63.Text;
                 _iniData["Settings"]["MinPercentUsd"] = textBox68.Text + ";" + textBox80.Text;
                 _iniData["Settings"]["MaxPercentUsd"] = textBox67.Text + ";" + textBox79.Text;
+                _iniData["Settings"]["MinAbsUsd"] = textBox99.Text + ";" + textBox97.Text;
+                _iniData["Settings"]["MaxAbsUsd"] = textBox98.Text + ";" + textBox96.Text;
 
                 _timerMain[2, 0] = textBox75.Text;
                 _timerMain[2, 1] = textBox87.Text;
@@ -393,6 +411,11 @@ namespace P2pb2b
                 _minPercent[2, 1] = textBox80.Text;
                 _maxPercent[2, 0] = textBox67.Text;
                 _maxPercent[2, 1] = textBox79.Text;
+
+                _minAbs[2, 0] = Convert.ToDouble(textBox99.Text.Replace(".", ","));
+                _minAbs[2, 1] = Convert.ToDouble(textBox97.Text.Replace(".", ","));
+                _maxAbs[2, 0] = Convert.ToDouble(textBox98.Text.Replace(".", ","));
+                _maxAbs[2, 1] = Convert.ToDouble(textBox96.Text.Replace(".", ","));
 
 
                 IniParser.WriteFile("config.ini", _iniData);
@@ -501,6 +524,18 @@ namespace P2pb2b
                     textBox19.Text = items[0];
                     textBox23.Text = items[1];
                 }
+                if (_iniData["Settings"]["MinAbs"] != null)
+                {
+                    var items = _iniData["Settings"]["MinAbs"].Split(';');
+                    textBox89.Text = items[0];
+                    textBox91.Text = items[1];
+                }
+                if (_iniData["Settings"]["MaxAbs"] != null)
+                {
+                    var items = _iniData["Settings"]["MaxAbs"].Split(';');
+                    textBox88.Text = items[0];
+                    textBox90.Text = items[1];
+                }
 
                 // BTC
 
@@ -575,6 +610,18 @@ namespace P2pb2b
                     textBox25.Text = items[0];
                     textBox39.Text = items[1];
                 }
+                if (_iniData["Settings"]["MinAbsBtc"] != null)
+                {
+                    var items = _iniData["Settings"]["MinAbsBtc"].Split(';');
+                    textBox93.Text = items[0];
+                    textBox95.Text = items[1];
+                }
+                if (_iniData["Settings"]["MaxAbsBtc"] != null)
+                {
+                    var items = _iniData["Settings"]["MaxAbsBtc"].Split(';');
+                    textBox92.Text = items[0];
+                    textBox94.Text = items[1];
+                }
 
                 //USD
 
@@ -648,6 +695,18 @@ namespace P2pb2b
                     var items = _iniData["Settings"]["MaxPercentUsd"].Split(';');
                     textBox67.Text = items[0];
                     textBox79.Text = items[1];
+                }
+                if (_iniData["Settings"]["MinAbsUsd"] != null)
+                {
+                    var items = _iniData["Settings"]["MinAbsUsd"].Split(';');
+                    textBox99.Text = items[0];
+                    textBox97.Text = items[1];
+                }
+                if (_iniData["Settings"]["MaxAbsUsd"] != null)
+                {
+                    var items = _iniData["Settings"]["MaxAbsUsd"].Split(';');
+                    textBox98.Text = items[0];
+                    textBox96.Text = items[1];
                 }
             }
             catch (Exception ex)
@@ -2067,7 +2126,16 @@ namespace P2pb2b
 
             try
             {
-                await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerMainRandom[pairNum, _timeZone])) + 1) * 1000));
+                int sleep = (new Random().Next(Convert.ToInt32(_timerMainRandom[pairNum, _timeZone])) + 1) * 1000;
+#if DEBUG
+                AddMessage("Sleeping Random " + sleep + " msec");
+                DateTime startSleep = DateTime.Now;
+#endif
+                await Task.Run(() => Thread.Sleep(sleep));
+#if DEBUG
+                AddMessage("Sleeping Random took " + (DateTime.Now - startSleep).TotalMilliseconds + " msec");
+#endif
+
                 await ApiGetAllOrders();
 
                 // работа с зазором.
@@ -2126,26 +2194,38 @@ namespace P2pb2b
                         // проверка, является ли amount*ask положительным числом.
                         if (Convert.ToDouble(rAmount.Replace('.', ',')) * price[0] > 0.0000001)
                         {
-                            if (StopPercentChecker.Checked && price[typeNow] < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100.0)
+                            double orderPrice = Math.Min(Math.Max(_minAbs[pairNum, _timeZone], price[typeNow]), _maxAbs[pairNum, _timeZone]);
+
+                            if (StopPercentChecker.Checked && orderPrice < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100.0)
                             {
                                 stopped[pairNum] = true;
                                 MessageBox.Show("Цена упала более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
                                 return;
                             }
 
-                            if (StopGrowPercentChecker.Checked && price[typeNow] > _relyPrice[pairNum] * (100 + Convert.ToInt32(StopGrowPercent.Value)) / 100.0)
+                            if (StopGrowPercentChecker.Checked && orderPrice > _relyPrice[pairNum] * (100 + Convert.ToInt32(StopGrowPercent.Value)) / 100.0)
                             {
                                 stopped[pairNum] = true;
                                 MessageBox.Show("Цена выросла более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
                                 return;
                             }
 
-                            Order O = await ApiCreateOrder(pairNum, rAmount, price[typeNow].ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
+                            Order O = await ApiCreateOrder(pairNum, rAmount, orderPrice.ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
 
                             if (O != null && (O.ID != -1 || O.OrderHash != ""))
                             {
                                 AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ") created");
-                                await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1)) * 1000));
+
+                                int sleep1 = new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1) * 1000;
+#if DEBUG
+                                AddMessage("Sleeping Close " + sleep1 + " msec");
+                                DateTime startSleep1 = DateTime.Now;
+#endif
+                                await Task.Run(() => Thread.Sleep(sleep1));
+#if DEBUG
+                                AddMessage("Sleeping Close took " + (DateTime.Now - startSleep1).TotalMilliseconds + " msec");
+#endif
+
                                 await ApiGetAllOrders();
                                 // существует ли созданный ордер на бирже.
 
@@ -2161,14 +2241,32 @@ namespace P2pb2b
                                 else //удаляем ордер с id равным orderId
                                     await ApiCancelOrder(_pairNames[pairNum], O.ID, O.OrderHash, O.WalletID);
                             }
-                            await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000));
+
+                            int sleep2 = (new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000;
+#if DEBUG
+                            AddMessage("Sleeping Between " + sleep2 + " msec");
+                            DateTime startSleep2 = DateTime.Now;
+#endif
+                            await Task.Run(() => Thread.Sleep(sleep2));
+#if DEBUG
+                            AddMessage("Sleeping Between took " + (DateTime.Now - startSleep2).TotalMilliseconds + " msec");
+#endif
                         }
                     };
 
                     if (turbo)
                     {
                         tails.Add(logic());
-                        await Task.Run(() => Thread.Sleep((new Random().Next(Convert.ToInt32(_timerMainRandom[pairNum, _timeZone])) + 1) * 1000));
+
+                        int sleep3 = (Convert.ToInt32(_timerMain[pairNum, _timeZone]) + 1) * 1000;
+#if DEBUG
+                        AddMessage("Sleeping Turbo interval " + sleep3 + " msec");
+                        DateTime startSleep3 = DateTime.Now;
+#endif
+                        await Task.Run(() => Thread.Sleep(sleep3));
+#if DEBUG
+                        AddMessage("Sleeping Turbo interval took " + (DateTime.Now - startSleep3).TotalMilliseconds + " msec");
+#endif
                     }
                     else
                         await logic();
