@@ -76,6 +76,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label97 = new System.Windows.Forms.Label();
+            this.label98 = new System.Windows.Forms.Label();
+            this.textBox88 = new System.Windows.Forms.TextBox();
+            this.textBox89 = new System.Windows.Forms.TextBox();
             this.label52 = new System.Windows.Forms.Label();
             this.textBox51 = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
@@ -101,6 +105,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
+            this.textBox90 = new System.Windows.Forms.TextBox();
+            this.textBox91 = new System.Windows.Forms.TextBox();
             this.label53 = new System.Windows.Forms.Label();
             this.textBox52 = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
@@ -150,6 +158,10 @@
             this.button7 = new System.Windows.Forms.Button();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label101 = new System.Windows.Forms.Label();
+            this.label102 = new System.Windows.Forms.Label();
+            this.textBox92 = new System.Windows.Forms.TextBox();
+            this.textBox93 = new System.Windows.Forms.TextBox();
             this.label54 = new System.Windows.Forms.Label();
             this.textBox53 = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
@@ -175,6 +187,10 @@
             this.label32 = new System.Windows.Forms.Label();
             this.textBox30 = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.textBox94 = new System.Windows.Forms.TextBox();
+            this.textBox95 = new System.Windows.Forms.TextBox();
             this.label55 = new System.Windows.Forms.Label();
             this.textBox54 = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
@@ -218,6 +234,10 @@
             this.button9 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.label107 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.textBox98 = new System.Windows.Forms.TextBox();
+            this.textBox99 = new System.Windows.Forms.TextBox();
             this.label72 = new System.Windows.Forms.Label();
             this.textBox64 = new System.Windows.Forms.TextBox();
             this.label73 = new System.Windows.Forms.Label();
@@ -243,6 +263,10 @@
             this.label83 = new System.Windows.Forms.Label();
             this.textBox75 = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label105 = new System.Windows.Forms.Label();
+            this.label106 = new System.Windows.Forms.Label();
+            this.textBox96 = new System.Windows.Forms.TextBox();
+            this.textBox97 = new System.Windows.Forms.TextBox();
             this.label84 = new System.Windows.Forms.Label();
             this.textBox76 = new System.Windows.Forms.TextBox();
             this.label85 = new System.Windows.Forms.Label();
@@ -291,30 +315,6 @@
             this.ChangeBaseToken = new System.Windows.Forms.Button();
             this.StopGrowPercent = new System.Windows.Forms.NumericUpDown();
             this.StopGrowPercentChecker = new System.Windows.Forms.CheckBox();
-            this.label97 = new System.Windows.Forms.Label();
-            this.label98 = new System.Windows.Forms.Label();
-            this.textBox88 = new System.Windows.Forms.TextBox();
-            this.textBox89 = new System.Windows.Forms.TextBox();
-            this.label99 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
-            this.textBox90 = new System.Windows.Forms.TextBox();
-            this.textBox91 = new System.Windows.Forms.TextBox();
-            this.label101 = new System.Windows.Forms.Label();
-            this.label102 = new System.Windows.Forms.Label();
-            this.textBox92 = new System.Windows.Forms.TextBox();
-            this.textBox93 = new System.Windows.Forms.TextBox();
-            this.label103 = new System.Windows.Forms.Label();
-            this.label104 = new System.Windows.Forms.Label();
-            this.textBox94 = new System.Windows.Forms.TextBox();
-            this.textBox95 = new System.Windows.Forms.TextBox();
-            this.label105 = new System.Windows.Forms.Label();
-            this.label106 = new System.Windows.Forms.Label();
-            this.textBox96 = new System.Windows.Forms.TextBox();
-            this.textBox97 = new System.Windows.Forms.TextBox();
-            this.label107 = new System.Windows.Forms.Label();
-            this.label108 = new System.Windows.Forms.Label();
-            this.textBox98 = new System.Windows.Forms.TextBox();
-            this.textBox99 = new System.Windows.Forms.TextBox();
             this.StopPercent2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.Creds.SuspendLayout();
@@ -549,7 +549,7 @@
             this.Cred2.Location = new System.Drawing.Point(4, 25);
             this.Cred2.Name = "Cred2";
             this.Cred2.Padding = new System.Windows.Forms.Padding(3);
-            this.Cred2.Size = new System.Drawing.Size(462, 206);
+            this.Cred2.Size = new System.Drawing.Size(462, 239);
             this.Cred2.TabIndex = 1;
             this.Cred2.Text = "Credentails 2";
             this.Cred2.UseVisualStyleBackColor = true;
@@ -614,7 +614,7 @@
             this.Cred3.Controls.Add(this.label61);
             this.Cred3.Location = new System.Drawing.Point(4, 25);
             this.Cred3.Name = "Cred3";
-            this.Cred3.Size = new System.Drawing.Size(462, 206);
+            this.Cred3.Size = new System.Drawing.Size(462, 239);
             this.Cred3.TabIndex = 2;
             this.Cred3.Text = "Credentails 3";
             this.Cred3.UseVisualStyleBackColor = true;
@@ -679,7 +679,7 @@
             this.Cred4.Controls.Add(this.label64);
             this.Cred4.Location = new System.Drawing.Point(4, 25);
             this.Cred4.Name = "Cred4";
-            this.Cred4.Size = new System.Drawing.Size(462, 206);
+            this.Cred4.Size = new System.Drawing.Size(462, 239);
             this.Cred4.TabIndex = 3;
             this.Cred4.Text = "Credentails 4";
             this.Cred4.UseVisualStyleBackColor = true;
@@ -744,7 +744,7 @@
             this.Cred5.Controls.Add(this.label67);
             this.Cred5.Location = new System.Drawing.Point(4, 25);
             this.Cred5.Name = "Cred5";
-            this.Cred5.Size = new System.Drawing.Size(462, 206);
+            this.Cred5.Size = new System.Drawing.Size(462, 239);
             this.Cred5.TabIndex = 4;
             this.Cred5.Text = "Credentails 5";
             this.Cred5.UseVisualStyleBackColor = true;
@@ -891,6 +891,44 @@
             this.tabPage3.Size = new System.Drawing.Size(461, 202);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "9-23";
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Location = new System.Drawing.Point(332, 53);
+            this.label97.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(68, 17);
+            this.label97.TabIndex = 65;
+            this.label97.Text = "Max price";
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.Location = new System.Drawing.Point(189, 54);
+            this.label98.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(65, 17);
+            this.label98.TabIndex = 64;
+            this.label98.Text = "Min price";
+            // 
+            // textBox88
+            // 
+            this.textBox88.Location = new System.Drawing.Point(335, 74);
+            this.textBox88.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox88.Name = "textBox88";
+            this.textBox88.Size = new System.Drawing.Size(85, 22);
+            this.textBox88.TabIndex = 63;
+            this.textBox88.Text = "5.001";
+            // 
+            // textBox89
+            // 
+            this.textBox89.Location = new System.Drawing.Point(193, 74);
+            this.textBox89.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox89.Name = "textBox89";
+            this.textBox89.Size = new System.Drawing.Size(85, 22);
+            this.textBox89.TabIndex = 62;
+            this.textBox89.Text = "1.01";
             // 
             // label52
             // 
@@ -1158,6 +1196,44 @@
             this.tabPage4.Size = new System.Drawing.Size(461, 202);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "23-9";
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Location = new System.Drawing.Point(332, 53);
+            this.label99.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(68, 17);
+            this.label99.TabIndex = 72;
+            this.label99.Text = "Max price";
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(189, 54);
+            this.label100.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(65, 17);
+            this.label100.TabIndex = 71;
+            this.label100.Text = "Min price";
+            // 
+            // textBox90
+            // 
+            this.textBox90.Location = new System.Drawing.Point(335, 74);
+            this.textBox90.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox90.Name = "textBox90";
+            this.textBox90.Size = new System.Drawing.Size(85, 22);
+            this.textBox90.TabIndex = 70;
+            this.textBox90.Text = "5.001";
+            // 
+            // textBox91
+            // 
+            this.textBox91.Location = new System.Drawing.Point(193, 74);
+            this.textBox91.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox91.Name = "textBox91";
+            this.textBox91.Size = new System.Drawing.Size(85, 22);
+            this.textBox91.TabIndex = 69;
+            this.textBox91.Text = "1.01";
             // 
             // label53
             // 
@@ -1698,6 +1774,44 @@
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "9-23";
             // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(332, 53);
+            this.label101.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(68, 17);
+            this.label101.TabIndex = 76;
+            this.label101.Text = "Max price";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(189, 54);
+            this.label102.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(65, 17);
+            this.label102.TabIndex = 75;
+            this.label102.Text = "Min price";
+            // 
+            // textBox92
+            // 
+            this.textBox92.Location = new System.Drawing.Point(335, 74);
+            this.textBox92.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox92.Name = "textBox92";
+            this.textBox92.Size = new System.Drawing.Size(85, 22);
+            this.textBox92.TabIndex = 74;
+            this.textBox92.Text = "5.001";
+            // 
+            // textBox93
+            // 
+            this.textBox93.Location = new System.Drawing.Point(193, 74);
+            this.textBox93.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox93.Name = "textBox93";
+            this.textBox93.Size = new System.Drawing.Size(85, 22);
+            this.textBox93.TabIndex = 73;
+            this.textBox93.Text = "1.01";
+            // 
             // label54
             // 
             this.label54.AutoSize = true;
@@ -1964,6 +2078,44 @@
             this.tabPage7.Size = new System.Drawing.Size(461, 201);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "23-9";
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(332, 53);
+            this.label103.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(68, 17);
+            this.label103.TabIndex = 76;
+            this.label103.Text = "Max price";
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(189, 54);
+            this.label104.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(65, 17);
+            this.label104.TabIndex = 75;
+            this.label104.Text = "Min price";
+            // 
+            // textBox94
+            // 
+            this.textBox94.Location = new System.Drawing.Point(335, 74);
+            this.textBox94.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox94.Name = "textBox94";
+            this.textBox94.Size = new System.Drawing.Size(85, 22);
+            this.textBox94.TabIndex = 74;
+            this.textBox94.Text = "5.001";
+            // 
+            // textBox95
+            // 
+            this.textBox95.Location = new System.Drawing.Point(193, 74);
+            this.textBox95.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox95.Name = "textBox95";
+            this.textBox95.Size = new System.Drawing.Size(85, 22);
+            this.textBox95.TabIndex = 73;
+            this.textBox95.Text = "1.01";
             // 
             // label55
             // 
@@ -2435,6 +2587,44 @@
             this.tabPage8.TabIndex = 0;
             this.tabPage8.Text = "9-23";
             // 
+            // label107
+            // 
+            this.label107.AutoSize = true;
+            this.label107.Location = new System.Drawing.Point(331, 53);
+            this.label107.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(68, 17);
+            this.label107.TabIndex = 76;
+            this.label107.Text = "Max price";
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(188, 54);
+            this.label108.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(65, 17);
+            this.label108.TabIndex = 75;
+            this.label108.Text = "Min price";
+            // 
+            // textBox98
+            // 
+            this.textBox98.Location = new System.Drawing.Point(334, 74);
+            this.textBox98.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox98.Name = "textBox98";
+            this.textBox98.Size = new System.Drawing.Size(85, 22);
+            this.textBox98.TabIndex = 74;
+            this.textBox98.Text = "5.001";
+            // 
+            // textBox99
+            // 
+            this.textBox99.Location = new System.Drawing.Point(192, 74);
+            this.textBox99.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox99.Name = "textBox99";
+            this.textBox99.Size = new System.Drawing.Size(85, 22);
+            this.textBox99.TabIndex = 73;
+            this.textBox99.Text = "1.01";
+            // 
             // label72
             // 
             this.label72.AutoSize = true;
@@ -2701,6 +2891,44 @@
             this.tabPage9.Size = new System.Drawing.Size(461, 197);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "23-9";
+            // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Location = new System.Drawing.Point(332, 53);
+            this.label105.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(68, 17);
+            this.label105.TabIndex = 76;
+            this.label105.Text = "Max price";
+            // 
+            // label106
+            // 
+            this.label106.AutoSize = true;
+            this.label106.Location = new System.Drawing.Point(189, 54);
+            this.label106.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(65, 17);
+            this.label106.TabIndex = 75;
+            this.label106.Text = "Min price";
+            // 
+            // textBox96
+            // 
+            this.textBox96.Location = new System.Drawing.Point(335, 74);
+            this.textBox96.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox96.Name = "textBox96";
+            this.textBox96.Size = new System.Drawing.Size(85, 22);
+            this.textBox96.TabIndex = 74;
+            this.textBox96.Text = "5.001";
+            // 
+            // textBox97
+            // 
+            this.textBox97.Location = new System.Drawing.Point(193, 74);
+            this.textBox97.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox97.Name = "textBox97";
+            this.textBox97.Size = new System.Drawing.Size(85, 22);
+            this.textBox97.TabIndex = 73;
+            this.textBox97.Text = "1.01";
             // 
             // label84
             // 
@@ -3180,234 +3408,6 @@
             this.StopGrowPercentChecker.TabIndex = 63;
             this.StopGrowPercentChecker.Text = "Останавливать при росте на %:";
             this.StopGrowPercentChecker.UseVisualStyleBackColor = true;
-            // 
-            // label97
-            // 
-            this.label97.AutoSize = true;
-            this.label97.Location = new System.Drawing.Point(332, 53);
-            this.label97.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(68, 17);
-            this.label97.TabIndex = 65;
-            this.label97.Text = "Max price";
-            // 
-            // label98
-            // 
-            this.label98.AutoSize = true;
-            this.label98.Location = new System.Drawing.Point(189, 54);
-            this.label98.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(65, 17);
-            this.label98.TabIndex = 64;
-            this.label98.Text = "Min price";
-            // 
-            // textBox88
-            // 
-            this.textBox88.Location = new System.Drawing.Point(335, 74);
-            this.textBox88.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox88.Name = "textBox88";
-            this.textBox88.Size = new System.Drawing.Size(85, 22);
-            this.textBox88.TabIndex = 63;
-            this.textBox88.Text = "5.001";
-            // 
-            // textBox89
-            // 
-            this.textBox89.Location = new System.Drawing.Point(193, 74);
-            this.textBox89.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox89.Name = "textBox89";
-            this.textBox89.Size = new System.Drawing.Size(85, 22);
-            this.textBox89.TabIndex = 62;
-            this.textBox89.Text = "1.01";
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(332, 53);
-            this.label99.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(68, 17);
-            this.label99.TabIndex = 72;
-            this.label99.Text = "Max price";
-            // 
-            // label100
-            // 
-            this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(189, 54);
-            this.label100.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(65, 17);
-            this.label100.TabIndex = 71;
-            this.label100.Text = "Min price";
-            // 
-            // textBox90
-            // 
-            this.textBox90.Location = new System.Drawing.Point(335, 74);
-            this.textBox90.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox90.Name = "textBox90";
-            this.textBox90.Size = new System.Drawing.Size(85, 22);
-            this.textBox90.TabIndex = 70;
-            this.textBox90.Text = "5.001";
-            // 
-            // textBox91
-            // 
-            this.textBox91.Location = new System.Drawing.Point(193, 74);
-            this.textBox91.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox91.Name = "textBox91";
-            this.textBox91.Size = new System.Drawing.Size(85, 22);
-            this.textBox91.TabIndex = 69;
-            this.textBox91.Text = "1.01";
-            // 
-            // label101
-            // 
-            this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(332, 53);
-            this.label101.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(68, 17);
-            this.label101.TabIndex = 76;
-            this.label101.Text = "Max price";
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Location = new System.Drawing.Point(189, 54);
-            this.label102.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(65, 17);
-            this.label102.TabIndex = 75;
-            this.label102.Text = "Min price";
-            // 
-            // textBox92
-            // 
-            this.textBox92.Location = new System.Drawing.Point(335, 74);
-            this.textBox92.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox92.Name = "textBox92";
-            this.textBox92.Size = new System.Drawing.Size(85, 22);
-            this.textBox92.TabIndex = 74;
-            this.textBox92.Text = "5.001";
-            // 
-            // textBox93
-            // 
-            this.textBox93.Location = new System.Drawing.Point(193, 74);
-            this.textBox93.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox93.Name = "textBox93";
-            this.textBox93.Size = new System.Drawing.Size(85, 22);
-            this.textBox93.TabIndex = 73;
-            this.textBox93.Text = "1.01";
-            // 
-            // label103
-            // 
-            this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(332, 53);
-            this.label103.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(68, 17);
-            this.label103.TabIndex = 76;
-            this.label103.Text = "Max price";
-            // 
-            // label104
-            // 
-            this.label104.AutoSize = true;
-            this.label104.Location = new System.Drawing.Point(189, 54);
-            this.label104.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(65, 17);
-            this.label104.TabIndex = 75;
-            this.label104.Text = "Min price";
-            // 
-            // textBox94
-            // 
-            this.textBox94.Location = new System.Drawing.Point(335, 74);
-            this.textBox94.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox94.Name = "textBox94";
-            this.textBox94.Size = new System.Drawing.Size(85, 22);
-            this.textBox94.TabIndex = 74;
-            this.textBox94.Text = "5.001";
-            // 
-            // textBox95
-            // 
-            this.textBox95.Location = new System.Drawing.Point(193, 74);
-            this.textBox95.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox95.Name = "textBox95";
-            this.textBox95.Size = new System.Drawing.Size(85, 22);
-            this.textBox95.TabIndex = 73;
-            this.textBox95.Text = "1.01";
-            // 
-            // label105
-            // 
-            this.label105.AutoSize = true;
-            this.label105.Location = new System.Drawing.Point(332, 53);
-            this.label105.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(68, 17);
-            this.label105.TabIndex = 76;
-            this.label105.Text = "Max price";
-            // 
-            // label106
-            // 
-            this.label106.AutoSize = true;
-            this.label106.Location = new System.Drawing.Point(189, 54);
-            this.label106.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(65, 17);
-            this.label106.TabIndex = 75;
-            this.label106.Text = "Min price";
-            // 
-            // textBox96
-            // 
-            this.textBox96.Location = new System.Drawing.Point(335, 74);
-            this.textBox96.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox96.Name = "textBox96";
-            this.textBox96.Size = new System.Drawing.Size(85, 22);
-            this.textBox96.TabIndex = 74;
-            this.textBox96.Text = "5.001";
-            // 
-            // textBox97
-            // 
-            this.textBox97.Location = new System.Drawing.Point(193, 74);
-            this.textBox97.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox97.Name = "textBox97";
-            this.textBox97.Size = new System.Drawing.Size(85, 22);
-            this.textBox97.TabIndex = 73;
-            this.textBox97.Text = "1.01";
-            // 
-            // label107
-            // 
-            this.label107.AutoSize = true;
-            this.label107.Location = new System.Drawing.Point(331, 53);
-            this.label107.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label107.Name = "label107";
-            this.label107.Size = new System.Drawing.Size(68, 17);
-            this.label107.TabIndex = 76;
-            this.label107.Text = "Max price";
-            // 
-            // label108
-            // 
-            this.label108.AutoSize = true;
-            this.label108.Location = new System.Drawing.Point(188, 54);
-            this.label108.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label108.Name = "label108";
-            this.label108.Size = new System.Drawing.Size(65, 17);
-            this.label108.TabIndex = 75;
-            this.label108.Text = "Min price";
-            // 
-            // textBox98
-            // 
-            this.textBox98.Location = new System.Drawing.Point(334, 74);
-            this.textBox98.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox98.Name = "textBox98";
-            this.textBox98.Size = new System.Drawing.Size(85, 22);
-            this.textBox98.TabIndex = 74;
-            this.textBox98.Text = "5.001";
-            // 
-            // textBox99
-            // 
-            this.textBox99.Location = new System.Drawing.Point(192, 74);
-            this.textBox99.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox99.Name = "textBox99";
-            this.textBox99.Size = new System.Drawing.Size(85, 22);
-            this.textBox99.TabIndex = 73;
-            this.textBox99.Text = "1.01";
             // 
             // Form1
             // 

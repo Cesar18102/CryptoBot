@@ -176,7 +176,7 @@ namespace P2pb2b
 
         private class Order
         {
-            public int ID;
+            public long ID;
             public string Pair;
             public string Type;
             public string Price;
@@ -810,6 +810,9 @@ namespace P2pb2b
             }
             catch (ResponseException ex) when (ex.message == "Token expired" || ex.message == "Unauthorized")
             {
+                if (!BitmartChecker.Checked)
+                    return;
+
                 AddMessage("Token expired, relogin");
                 BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
                 await ApiGetBalancesBitmart();
@@ -1852,7 +1855,7 @@ namespace P2pb2b
 
         #region CancelOrder
 
-        private async Task<bool> ApiCancelOrder(string pair, int id, string hash = "", int walletNum = -1) //API
+        private async Task<bool> ApiCancelOrder(string pair, long id, string hash = "", int walletNum = -1) //API
         {
             if (P2P2B2BChecker.Checked)
                 return ApiCancelOrderP2P2B2B(pair, id);
@@ -1865,7 +1868,7 @@ namespace P2pb2b
             return false;
         }
 
-        private async Task<bool> ApiCancelOrderBitmart(string pair, int id)
+        private async Task<bool> ApiCancelOrderBitmart(string pair, long id)
         {
             try
             {
@@ -1975,7 +1978,7 @@ namespace P2pb2b
             }
         }
 
-        private bool ApiCancelOrderHotbit(string pair, int id)
+        private bool ApiCancelOrderHotbit(string pair, long id)
         {
             try
             {
@@ -2002,7 +2005,7 @@ namespace P2pb2b
             }
         }
 
-        private bool ApiCancelOrderP2P2B2B(string pair, int id) //API
+        private bool ApiCancelOrderP2P2B2B(string pair, long id) //API
         {
             try
             {
@@ -2168,34 +2171,54 @@ namespace P2pb2b
                 {
                     Func<Task> logic = async () =>
                     {
-                        var typeNow = new Random().Next(2); // Рандомный тип ордера: ask or bid.
+                        int typeNow = new Random().Next(2); // Рандомный тип ордера: ask or bid.
 
-                        var min = Convert.ToDouble(_volumeLow[pairNum, _timeZone, typeNow].Replace('.', ','));
-                        var max = Convert.ToDouble(_volumeHigh[pairNum, _timeZone, typeNow].Replace('.', ','));
+                        double min = Convert.ToDouble(_volumeLow[pairNum, _timeZone, typeNow].Replace('.', ','));
+                        double max = Convert.ToDouble(_volumeHigh[pairNum, _timeZone, typeNow].Replace('.', ','));
 
-                        var rAmount = GetRandomNumber(min, max, false).Replace(',', '.');
-                        /*var isRound = new Random().Next(50); // округлять ли объём ордера.
-                        if (isRound < 50 && rAmount.IndexOf(".", StringComparison.Ordinal) > 0)
-                            rAmount = rAmount.Substring(0, rAmount.IndexOf(".", StringComparison.Ordinal));*/
+                        string rAmount = GetRandomNumber(min, max, false).Replace(',', '.'); //fuck you man
 
                         double[] price = { _lowPrice[pairNum], _upperPrice[pairNum] };
-                        var minAskByPercent = (price[0] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
+
+                        double minPercent = Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
+                        double maxPercent = Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
+
+                        double randPercent = Convert.ToDouble(GetRandomNumber(minPercent, maxPercent, true));
+
+                        double orderPrice = price[typeNow] * (1 + (typeNow == 0 ? -1 : 1) * randPercent / 100);
+
+                        if((_maxAbs[pairNum, _timeZone] > 0 && orderPrice > _maxAbs[pairNum, _timeZone]) || 
+                           (_minAbs[pairNum, _timeZone] > 0 && orderPrice < _minAbs[pairNum, _timeZone]))
+                        {
+                            AddMessage("Цена (" + orderPrice + ") находилась вне указанного диапазона - пропуск");
+                            return;
+                        }
+
+                        if((typeNow == 0 && orderPrice >= price[0]) || 
+                           (typeNow == 1 && orderPrice <= price[1]))
+                        {
+                            AddMessage("Цена (" + orderPrice + ") предсказуемо не лучшая - пропуск");
+                            return;
+                        }
+
+                        /*var minAskByPercent = (price[0] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
                         var maxAskByPercent = (price[0] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
 
                         var minBidByPercent = (price[1] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
                         var maxBidByPercent = (price[1] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
 
+                        double orderPrice = typeNow == 0 ? (_maxAbs[pairNum, _timeZone] > 0 ? _maxAbs[pairNum, _timeZone] : price[0]) - Convert.ToDouble(GetRandomNumber(minAskByPercent, maxAskByPercent, true)) :
+                                                           (_minAbs[pairNum, _timeZone] > 0 ? _minAbs[pairNum, _timeZone] : price[1]) + Convert.ToDouble(GetRandomNumber(minBidByPercent, maxBidByPercent, true));*/
+
                         // ask понижаем на рандомное число из диапазона, bid повышаем.
-                        if (typeNow == 0)
-                            price[0] = price[0] - Convert.ToDouble(GetRandomNumber(minAskByPercent, maxAskByPercent, true));
-                        else
-                            price[1] = price[1] + Convert.ToDouble(GetRandomNumber(minBidByPercent, maxBidByPercent, true));
+                        //if (typeNow == 0)
+                        //    price[0] = price[0] - Convert.ToDouble(GetRandomNumber(minAskByPercent, maxAskByPercent, true));
+                        //else
+                        //    price[1] = price[1] + Convert.ToDouble(GetRandomNumber(minBidByPercent, maxBidByPercent, true));
 
                         // проверка, является ли amount*ask положительным числом.
-                        if (Convert.ToDouble(rAmount.Replace('.', ',')) * price[0] > 0.0000001)
+                        if (Convert.ToDouble(rAmount.Replace('.', ',')) * orderPrice > 0.0000001)
                         {
-                            double orderPrice = Math.Min(Math.Max(_minAbs[pairNum, _timeZone], price[typeNow]), _maxAbs[pairNum, _timeZone]);
-
                             if (StopPercentChecker.Checked && orderPrice < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100.0)
                             {
                                 stopped[pairNum] = true;

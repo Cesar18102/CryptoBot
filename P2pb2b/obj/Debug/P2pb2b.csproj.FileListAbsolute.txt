@@ -26,7 +26,6 @@ C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.csprojAssemblyReference.cache
 C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.Form1.resources
 C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.Properties.Resources.resources
 C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.csproj.GenerateResource.cache
-C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.csproj.CoreCompileInputs.cache
 C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.csproj.CopyComplete
 C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.exe
 C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.pdb
@@ -51,7 +50,6 @@ C:\Users\Олег\Desktop\P2pb2b\bin\Debug\Nethereum.RPC.dll
 C:\Users\Олег\Desktop\P2pb2b\bin\Debug\Nethereum.Signer.dll
 C:\Users\Олег\Desktop\P2pb2b\bin\Debug\Nethereum.Util.dll
 C:\Users\Олег\Desktop\P2pb2b\bin\Debug\Nethereum.Web3.dll
-C:\Users\Олег\Desktop\P2pb2b\bin\Debug\System.Memory.dll
 C:\Users\Олег\Desktop\P2pb2b\bin\Debug\Common.Logging.Core.pdb
 C:\Users\Олег\Desktop\P2pb2b\bin\Debug\Common.Logging.Core.xml
 C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.TokenChangeForm.resources
@@ -137,3 +135,6 @@ D:\!!!OLEG\!!!WORK\GitHub\CryptoBot\P2pb2b\obj\Debug\P2pb2b.csproj.GenerateResou
 D:\!!!OLEG\!!!WORK\GitHub\CryptoBot\P2pb2b\obj\Debug\P2pb2b.csproj.CopyComplete
 D:\!!!OLEG\!!!WORK\GitHub\CryptoBot\P2pb2b\obj\Debug\P2pb2b.exe
 D:\!!!OLEG\!!!WORK\GitHub\CryptoBot\P2pb2b\obj\Debug\P2pb2b.pdb
+C:\Users\Олег\Desktop\P2pb2b\bin\Debug\System.ValueTuple.dll
+C:\Users\Олег\Desktop\P2pb2b\bin\Debug\System.ValueTuple.xml
+C:\Users\Олег\Desktop\P2pb2b\obj\Debug\P2pb2b.exe.config
