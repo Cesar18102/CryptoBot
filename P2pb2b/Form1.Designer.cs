@@ -1638,6 +1638,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(945, 111);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.loggerArea_TextChanged);
             // 
             // button1
             // 
@@ -2443,6 +2444,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(945, 111);
             this.richTextBox2.TabIndex = 28;
             this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.loggerArea_TextChanged);
             // 
             // button6
             // 
@@ -3256,6 +3258,7 @@
             this.richTextBox3.Size = new System.Drawing.Size(945, 125);
             this.richTextBox3.TabIndex = 61;
             this.richTextBox3.Text = "";
+            this.richTextBox3.TextChanged += new System.EventHandler(this.loggerArea_TextChanged);
             // 
             // button10
             // 

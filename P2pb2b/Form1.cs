@@ -198,6 +198,7 @@ namespace P2pb2b
                 string am2 = String.Format("{0:e}", Convert.ToDouble(O.Amount.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
 
                 return Pair == O.Pair && Type == O.Type && pr1 == pr2 && am1 == am2;
+                //(ID != default && ID == O.ID) || (OrderHash != default && OrderHash == O.OrderHash);
             }
         }
 
@@ -2182,22 +2183,25 @@ namespace P2pb2b
 
                         double minPercent = Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
                         double maxPercent = Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
-
                         double randPercent = Convert.ToDouble(GetRandomNumber(minPercent, maxPercent, true));
 
-                        double orderPrice = price[typeNow] * (1 + (typeNow == 0 ? -1 : 1) * randPercent / 100);
+                        double minPrice = _minAbs[pairNum, _timeZone];
+                        double maxPrice = _maxAbs[pairNum, _timeZone];
 
-                        if((_maxAbs[pairNum, _timeZone] > 0 && orderPrice > _maxAbs[pairNum, _timeZone]) || 
-                           (_minAbs[pairNum, _timeZone] > 0 && orderPrice < _minAbs[pairNum, _timeZone]))
+                        double orderPrice = typeNow == 0 ? (maxPrice > 0 ? maxPrice : price[0]) * (1 - randPercent / 100) :
+                                                           (minPrice > 0 ? minPrice : price[1]) * (1 + randPercent / 100);
+
+                        if((maxPrice > 0 && orderPrice > maxPrice) || 
+                           (minPrice > 0 && orderPrice < minPrice))
                         {
-                            AddMessage("Цена (" + orderPrice + ") находилась вне указанного диапазона - пропуск");
+                            AddMessage("Цена (" + orderPrice + ") находилась вне указанного диапазона - пропуск (вероятно, неверно настроены min/max %)");
                             return;
                         }
 
                         if((typeNow == 0 && orderPrice >= price[0]) || 
                            (typeNow == 1 && orderPrice <= price[1]))
                         {
-                            AddMessage("Цена (" + orderPrice + ") предсказуемо не лучшая - пропуск");
+                            AddMessage("Цена (" + orderPrice + ") предсказуемо не лучшая - пропуск (лучшие ордера: " + price[0] + " и " + price[1] + ")");
                             return;
                         }
 
@@ -2658,5 +2662,8 @@ namespace P2pb2b
                 str.Write(data, 0, data.Length);
             }
         }
+
+        private void loggerArea_TextChanged(object sender, EventArgs e) =>
+            (sender as RichTextBox).ScrollToCaret();
     }
 }
