@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Net.Mail;
 using System.Threading;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ using P2pb2b.Server.Access;
 using P2pb2b.Server.Input;
 using P2pb2b.Server.Output;
 using P2pb2b.ResponseParser;
+using P2pb2b.DataObjects;
 
 namespace P2pb2b
 {
@@ -38,6 +40,8 @@ namespace P2pb2b
         private const string NEW_API_URL = "https://api.p2pb2b.io";
 
         private static readonly IServerCommunicator BITMART_SERVER = new ServerCommunicator(BITMART_API_URL);
+        private static readonly IServerCommunicator P2PB2B_SERVER = new ServerCommunicator(NEW_API_URL);
+        private static readonly IServerCommunicator HOTBIT_SERVER = new ServerCommunicator(HOTBIT_API_URL);
 
         private static readonly IResponseParser JSON_RESPONSE_PARSER = new JsonResponseParser();
 
@@ -78,6 +82,7 @@ namespace P2pb2b
         private readonly double[,] _maxAbs = new double[3, 2];
         private readonly double[] _relyPrice = new double[3];
         private readonly double[] _minAmount = new double[3];
+        private CurrencyPrecision[] HOTBIT_PRECISIONS { get; set; }
         private int precETH;
         private int precToken;
 
@@ -164,6 +169,10 @@ namespace P2pb2b
         {
             InitializeComponent();
 
+            string hotbitPrecisionsFilePath = Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "Data", "HotbitPrecisions.json");
+            using (StreamReader str = new StreamReader(hotbitPrecisionsFilePath))
+                HOTBIT_PRECISIONS = JsonConvert.DeserializeObject<CurrencyPrecision[]>(str.ReadToEnd());
+
             IdexChecker.CheckedChanged += ExchangeChecker_CheckedChanged;
             BitmartChecker.CheckedChanged += BitmartChecker_CheckedChanged;
 
@@ -174,7 +183,16 @@ namespace P2pb2b
             Balances = new Label[] { label1, label68, label69, label70, label71 };
         }
 
-        private class Order
+        public enum Exchange
+        {
+            P2PB2B,
+            Hotbit,
+            Idex,
+            Bitmart,
+            Unknown
+        };
+
+        public class Order
         {
             public long ID;
             public string Pair;
@@ -183,6 +201,18 @@ namespace P2pb2b
             public string Amount;
             public string OrderHash;
             public int WalletID = -1;
+            public Exchange Exchange = Exchange.Unknown;
+
+            public int PairNumber { get; private set; }
+            public int OrderTypeNumber { get; private set; }
+
+            public Order(long id, Exchange exchange, int pairNum, int type)
+            {
+                ID = id;
+                Exchange = exchange;
+                PairNumber = pairNum;
+                OrderTypeNumber = type;
+            }
 
             public override bool Equals(object obj)
             {
@@ -191,6 +221,15 @@ namespace P2pb2b
 
                 Order O = obj as Order;
 
+                if (Exchange == Exchange.Unknown || Exchange != O.Exchange)
+                    return false;
+
+                if (ID != default)
+                    return ID == O.ID;
+
+                if (OrderHash != default)
+                    return OrderHash == O.OrderHash;
+
                 string pr1 = String.Format("{0:e}", Convert.ToDouble(Price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
                 string pr2 = String.Format("{0:e}", Convert.ToDouble(O.Price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
 
@@ -198,7 +237,6 @@ namespace P2pb2b
                 string am2 = String.Format("{0:e}", Convert.ToDouble(O.Amount.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
 
                 return Pair == O.Pair && Type == O.Type && pr1 == pr2 && am1 == am2;
-                //(ID != default && ID == O.ID) || (OrderHash != default && OrderHash == O.OrderHash);
             }
         }
 
@@ -861,15 +899,14 @@ namespace P2pb2b
                     try
                     {
                         string h;
-                        using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                        using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                             h = sr.ReadToEnd();
                         AddMessage("ApiGetBalances: " + h);
                         Balances[i].Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + _balances[3].ToString("0.########") + @" " + MainName;
                     }
-                    catch
+                    catch(Exception e)
                     {
-                        MessageBox.Show("No Internet connection");
-                        this.Close();
+                        AddMessage("ApiGetBalances(NIC): " + e.Message);
                     }
                 }
                 catch (Exception ex)
@@ -933,7 +970,7 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetBalances: " + h);
 
@@ -947,10 +984,9 @@ namespace P2pb2b
                     label2.Text = label1.Text;
                     label96.Text = label1.Text;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetBalances(NIC): " + e.Message);
                 }
             }
             catch (Exception ex)
@@ -975,8 +1011,8 @@ namespace P2pb2b
             {
                 const string GetBalancePath = "/api/v1/balance.query";
 
-                string preRequestText = "api_key=" + _apiKey + "&assets=[\"ETH\",\"BTC\",\"" + MainName + "\"]&secret_key=" + _secretKey;
-                string requestBody = "api_key=" + _apiKey + "&assets=[\"ETH\",\"BTC\",\"" + MainName + "\"]&sign=" + ToMD5(preRequestText).ToUpper();
+                string preRequestText = "api_key=" + _apiKey[0] + "&assets=[\"ETH\",\"BTC\",\"" + MainName + "\"]&secret_key=" + _secretKey[0];
+                string requestBody = "api_key=" + _apiKey[0] + "&assets=[\"ETH\",\"BTC\",\"" + MainName + "\"]&sign=" + ToMD5(preRequestText).ToUpper();
 
                 WebClient WC = new WebClient();
                 dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + GetBalancePath + "?" + requestBody));
@@ -1003,7 +1039,7 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetBalances: " + h);
 
@@ -1013,10 +1049,9 @@ namespace P2pb2b
                     label1.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + _balances[3].ToString("0.########") + @" " + MainName;
                     label2.Text = _balances[0].ToString("0.########") + @" ETH" + Environment.NewLine + _balances[1].ToString("0.########") + @" BTC" + Environment.NewLine + _balances[3].ToString("0.########") + @" " + MainName;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetBalances(NIC): " + e.Message);
                 }
             }
             catch (Exception ex)
@@ -1068,15 +1103,15 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetMinAmount: " + h);
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetMinAmount(NIC): " + e.Message);
                 }
+
                 _minAmount[0] = 0;
                 _minAmount[1] = 0;
             }
@@ -1123,9 +1158,9 @@ namespace P2pb2b
         private async Task ApiGetAllOrders()
         {
             if (P2P2B2BChecker.Checked)
-                ApiGetAllOrdersP2P2B2B();
+                await ApiGetAllOrdersP2P2B2B();
             else if (HotbitChecker.Checked)
-                ApiGetAllOrdersHotbit();
+                await ApiGetAllOrdersHotbit();
             else if (IdexChecker.Checked)
                 ApiGetAllOrdersIdex();
             else if (BitmartChecker.Checked)
@@ -1153,7 +1188,7 @@ namespace P2pb2b
                     foreach (var sell in m.sells)
                     {
                         double price = Convert.ToDouble(sell.price, CultureInfo.InvariantCulture);
-                        _orders.Add(new Order
+                        _orders.Add(new Order(default, Exchange.Bitmart, i, 0)
                         {
                             Pair = _pairNames[i],
                             Type = "sell",
@@ -1169,7 +1204,7 @@ namespace P2pb2b
                     foreach (var buy in m.buys)
                     {
                         double price = Convert.ToDouble(buy.price, CultureInfo.InvariantCulture);
-                        _orders.Add(new Order
+                        _orders.Add(new Order(default, Exchange.Bitmart, i, 1)
                         {
                             Pair = _pairNames[i],
                             Type = "buy",
@@ -1203,138 +1238,61 @@ namespace P2pb2b
 
                 const string GetOrdersPath = "/returnOrderBook";
 
-                for (int i = 0; i < _pairNames.Length - 2; i++)
-                {
-                    string[] pair = _pairNames[i].Split('_');
-                    string requestText = "{ \"market\" : \"" + pair[1] + "_" + pair[0] + "\", \"count\" : 100 }";
-                    byte[] data = UTF8.GetBytes(requestText);
-
-                    HttpWebRequest request = WebRequest.Create(IDEX_API_URL + GetOrdersPath) as HttpWebRequest;
-                    request.Method = WebRequestMethods.Http.Post;
-                    request.ContentType = "application/json";
-                    request.ContentLength = data.Length;
-
-                    request.GetRequestStream().Write(data, 0, data.Length);
-
-                    dynamic m;
-                    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                    using (StreamReader str = new StreamReader(response.GetResponseStream()))
-                        m = JsonConvert.DeserializeObject(str.ReadToEnd());
-
-                    if (m.error != null)
-                        continue;
-
-                    foreach (var ask in m.asks)
-                    {
-                        double price = Convert.ToDouble(ask.price, CultureInfo.InvariantCulture);
-                        _orders.Add(new Order
-                        {
-                            Pair = _pairNames[i],
-                            Type = "sell",
-                            Price = price.ToString(),
-                            Amount = ask.amount
-                        });
-
-
-                        if (_lowPrice[i] > price)
-                            _lowPrice[i] = price;
-                    }
-
-                    foreach (var ask in m.bids)
-                    {
-                        double price = Convert.ToDouble(ask.price, CultureInfo.InvariantCulture);
-                        _orders.Add(new Order
-                        {
-                            Pair = _pairNames[i],
-                            Type = "buy",
-                            Price = price.ToString(),
-                            Amount = ask.amount
-                        });
-
-                        if (_upperPrice[i] < price)
-                            _upperPrice[i] = price;
-                    }
-                }
-            }
-            catch (WebException ex)
-            {
-                try
-                {
-                    string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
-                        h = sr.ReadToEnd();
-                    AddMessage("ApiGetAllOrders: " + h);
-                }
-                catch
-                {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                AddMessage("ApiGetAllOrders: " + ex.Message);
-            }
-        }
-
-        private void ApiGetAllOrdersHotbit() //API
-        {
-            try
-            {
-                _orders.Clear();
                 for (int i = 0; i < _pairNames.Length; i++)
                 {
-                    _lowPrice[i] = Double.MaxValue;
-                    _upperPrice[i] = 0;
-                }
-
-                const string GetOrdersPath = "/api/v1/order.depth";
-
-                for (int i = 0; i < _pairNames.Length - 1; i++)
-                {
-                    string requestText = "market=" + _pairNames[i].Replace("_", "/") + "&limit=100&interval=0.0000000001";
-                    HttpWebRequest request = WebRequest.Create(HOTBIT_API_URL + GetOrdersPath + "?" + requestText) as HttpWebRequest;
-                    request.Method = WebRequestMethods.Http.Get;
-                    request.ContentType = "application/x-www-form-urlencoded";
-
-                    dynamic m;
-                    using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                    using (StreamReader str = new StreamReader(response.GetResponseStream()))
-                        m = JsonConvert.DeserializeObject(str.ReadToEnd());
-
-                    if (m.error != null)
-                        continue;
-
-                    foreach (var ask in m.result.asks)
+                    try
                     {
-                        double price = Convert.ToDouble(ask[0], CultureInfo.InvariantCulture);
-                        _orders.Add(new Order
+                        string[] pair = _pairNames[i].Split('_');
+                        string requestText = "{ \"market\" : \"" + pair[1] + "_" + pair[0] + "\", \"count\" : 100 }";
+                        byte[] data = UTF8.GetBytes(requestText);
+
+                        HttpWebRequest request = WebRequest.Create(IDEX_API_URL + GetOrdersPath) as HttpWebRequest;
+                        request.Method = WebRequestMethods.Http.Post;
+                        request.ContentType = "application/json";
+                        request.ContentLength = data.Length;
+
+                        request.GetRequestStream().Write(data, 0, data.Length);
+
+                        dynamic m;
+                        using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+                        using (StreamReader str = new StreamReader(response.GetResponseStream()))
+                            m = JsonConvert.DeserializeObject(str.ReadToEnd());
+
+                        if (m.error != null)
+                            continue;
+
+                        foreach (var ask in m.asks)
                         {
-                            Pair = _pairNames[i],
-                            Type = "sell",
-                            Price = price.ToString(),
-                            Amount = ask[1]
-                        });
+                            double price = Convert.ToDouble(ask.price, CultureInfo.InvariantCulture);
+                            _orders.Add(new Order(default, Exchange.Idex, i, 0)
+                            {
+                                Pair = _pairNames[i],
+                                Type = "sell",
+                                Price = price.ToString(),
+                                Amount = ask.amount
+                            });
 
 
-                        if (_lowPrice[i] > price)
-                            _lowPrice[i] = price;
-                    }
+                            if (_lowPrice[i] > price)
+                                _lowPrice[i] = price;
+                        }
 
-                    foreach (var ask in m.result.bids)
-                    {
-                        double price = Convert.ToDouble(ask[0], CultureInfo.InvariantCulture);
-                        _orders.Add(new Order
+                        foreach (var ask in m.bids)
                         {
-                            Pair = _pairNames[i],
-                            Type = "buy",
-                            Price = price.ToString(),
-                            Amount = ask[1]
-                        });
+                            double price = Convert.ToDouble(ask.price, CultureInfo.InvariantCulture);
+                            _orders.Add(new Order(default, Exchange.Idex, i, 1)
+                            {
+                                Pair = _pairNames[i],
+                                Type = "buy",
+                                Price = price.ToString(),
+                                Amount = ask.amount
+                            });
 
-                        if (_upperPrice[i] < price)
-                            _upperPrice[i] = price;
+                            if (_upperPrice[i] < price)
+                                _upperPrice[i] = price;
+                        }
                     }
+                    catch (Exception e) { }
                 }
             }
             catch (WebException ex)
@@ -1342,14 +1300,13 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetAllOrders: " + h);
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetAllOrders(NIC): " + e.Message);
                 }
             }
             catch (Exception ex)
@@ -1358,7 +1315,7 @@ namespace P2pb2b
             }
         }
 
-        private void ApiGetAllOrdersP2P2B2B() //API
+        private async Task ApiGetAllOrdersHotbit() //API
         {
             try
             {
@@ -1371,41 +1328,61 @@ namespace P2pb2b
 
                 for (int i = 0; i < _pairNames.Length; i++)
                 {
-                    var query = "/api/v1/public/depth/result?market=" + _pairNames[i] + "&limit=100";
-                    var request = (HttpWebRequest)WebRequest.Create(NEW_API_URL + query);
-                    request.Method = WebRequestMethods.Http.Get;
-                    request.ContentType = "application/x-www-form-urlencoded";
-
-                    var response = (HttpWebResponse)request.GetResponse();
-                    var resStream = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                    dynamic m = JsonConvert.DeserializeObject(resStream);
-                    Thread.Sleep(1000);
-
-                    foreach (var ask in m.result.asks)
+                    try
                     {
-                        _orders.Add(new Order
-                        {
-                            Pair = _pairNames[i],
-                            Type = "sell",
-                            Price = ask[0],
-                            Amount = ask[1]
-                        });
-                        if (_lowPrice[i] > Convert.ToDouble(ask[0]))
-                            _lowPrice[i] = Convert.ToDouble(ask[0]);
-                    }
+                        string getSellEndpoint = "/api/v1/order.book?market=" + _pairNames[i].Replace("_", "/") + "&side=1&offset=0&limit=100";
+                        IServerResponse getSellOrdersResponse = await HOTBIT_SERVER.SendQuery(new Query(QueryMethod.GET, getSellEndpoint));
+                        dynamic sellOrderList = JsonConvert.DeserializeObject(getSellOrdersResponse.Data);
 
-                    foreach (var ask in m.result.bids)
-                    {
-                        _orders.Add(new Order
+                        if (sellOrderList.error == null)
                         {
-                            Pair = _pairNames[i],
-                            Type = "buy",
-                            Price = ask[0],
-                            Amount = ask[1]
-                        });
-                        if (_upperPrice[i] < Convert.ToDouble(ask[0]))
-                            _upperPrice[i] = Convert.ToDouble(ask[0]);
+                            foreach (var order in sellOrderList.result.orders)
+                            {
+                                double price = Convert.ToDouble(order.price, CultureInfo.InvariantCulture);
+                                _orders.Add(new Order(Convert.ToInt64(order.id), Exchange.Hotbit, i, 0)
+                                {
+                                    Pair = _pairNames[i],
+                                    Type = "sell",
+                                    Price = price.ToString(),
+                                    Amount = order.amount
+                                });
+
+                                if (_lowPrice[i] > price)
+                                    _lowPrice[i] = price;
+                            }
+                        }
+                        else
+                        {
+                            AddMessage("Failed to fetch sell orders list at Hotbit due to " + sellOrderList.error.message.ToString());
+                        }
+
+                        string getBuyEndpoint = "/api/v1/order.book?market=" + _pairNames[i].Replace("_", "/") + "&side=2&offset=0&limit=100";
+                        IServerResponse getBuyOrdersResponse = await HOTBIT_SERVER.SendQuery(new Query(QueryMethod.GET, getBuyEndpoint));
+                        dynamic buyOrderList = JsonConvert.DeserializeObject(getBuyOrdersResponse.Data);
+
+                        if (buyOrderList.error == null)
+                        {
+                            foreach (var order in buyOrderList.result.orders)
+                            {
+                                double price = Convert.ToDouble(order.price, CultureInfo.InvariantCulture);
+                                _orders.Add(new Order(Convert.ToInt64(order.id), Exchange.Hotbit, i, 1)
+                                {
+                                    Pair = _pairNames[i],
+                                    Type = "buy",
+                                    Price = price.ToString(),
+                                    Amount = order.amount
+                                });
+
+                                if (_upperPrice[i] < price)
+                                    _upperPrice[i] = price;
+                            }
+                        }
+                        else
+                        {
+                            AddMessage("Failed to fetch sell orders list at Hotbit due to " + buyOrderList.error.message.ToString());
+                        }
                     }
+                    catch(Exception e) { }
                 }
             }
             catch (WebException ex)
@@ -1413,14 +1390,97 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetAllOrders: " + h);
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetAllOrders(NIC): " + e.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                AddMessage("ApiGetAllOrders: " + ex.Message);
+            }
+        }
+
+        private async Task ApiGetAllOrdersP2P2B2B() //API
+        {
+            try
+            {
+                _orders.Clear();
+                for (int i = 0; i < _pairNames.Length; i++)
+                {
+                    _lowPrice[i] = Double.MaxValue;
+                    _upperPrice[i] = 0;
+                }
+
+                for (int i = 0; i < _pairNames.Length; i++)
+                {
+                    string getSellEndpoint = "/api/v1/public/book?market=" + _pairNames[i] + "&side=sell&limit=100";
+                    IServerResponse getSellResponse = await P2PB2B_SERVER.SendQuery(new Query(QueryMethod.GET, getSellEndpoint));
+                    dynamic sellOrderList = JsonConvert.DeserializeObject(getSellResponse.Data);
+
+                    if (Convert.ToBoolean(sellOrderList.success))
+                    {
+                        foreach (var order in sellOrderList.result.orders)
+                        {
+                            _orders.Add(new Order(Convert.ToInt64(order.id), Exchange.P2PB2B, i, 0)
+                            {
+                                Pair = _pairNames[i],
+                                Type = "sell",
+                                Price = order.price,
+                                Amount = order.amount
+                            });
+
+                            if (_lowPrice[i] > Convert.ToDouble(order.price))
+                                _lowPrice[i] = Convert.ToDouble(order.price);
+                        }
+                    }
+                    else
+                    {
+                        AddMessage("Failed to fetch sell orders list at P2PB2B due to " + sellOrderList.message.ToString());
+                    }
+
+                    string getBuyEndpoint = "/api/v1/public/book?market=" + _pairNames[i] + "&side=buy&limit=100";
+                    IServerResponse getBuyResponse = await P2PB2B_SERVER.SendQuery(new Query(QueryMethod.GET, getBuyEndpoint));
+                    dynamic buyOrderList = JsonConvert.DeserializeObject(getBuyResponse.Data);
+
+                    if (Convert.ToBoolean(buyOrderList.success))
+                    {
+                        foreach (var order in buyOrderList.result.orders)
+                        {
+                            _orders.Add(new Order(Convert.ToInt64(order.id), Exchange.P2PB2B, i, 1)
+                            {
+                                Pair = _pairNames[i],
+                                Type = "buy",
+                                Price = order.price,
+                                Amount = order.amount
+                            });
+                            if (_upperPrice[i] < Convert.ToDouble(order.price))
+                                _upperPrice[i] = Convert.ToDouble(order.price);
+                        }
+                    }
+                    else
+                    {
+                        AddMessage("Failed to fetch buy orders list at P2PB2B due to " + buyOrderList.message.ToString());
+                    }
+
+                }
+            }
+            catch (WebException ex)
+            {
+                try
+                {
+                    string h;
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
+                        h = sr.ReadToEnd();
+                    AddMessage("ApiGetAllOrders: " + h);
+                }
+                catch (Exception e)
+                {
+                    AddMessage("ApiGetAllOrders(NIC): " + e.Message);
                 }
             }
             catch (Exception ex)
@@ -1459,14 +1519,13 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetTokenInfo: " + h);
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetTokenInfo(NIC): " + e.Message);
                 }
             }
             catch (Exception ex)
@@ -1499,15 +1558,14 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetContractAddress: " + h);
                     return null;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetContractAddress(NIC): " + e.Message);
                     return null;
                 }
             }
@@ -1548,15 +1606,14 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiGetNextNonce: " + h);
                     return null;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetNextNonce(NIC): " + e.Message);
                     return null;
                 }
             }
@@ -1615,8 +1672,8 @@ namespace P2pb2b
 
                 IQuery createOrderQuery = new Query(QueryMethod.POST, createOrderEndpoint, JsonConvert.SerializeObject(data), headers: headers);
                 dynamic response = JSON_RESPONSE_PARSER.Parse<ResponseException>(await BITMART_SERVER.SendQuery(createOrderQuery));
-                AddMessage("Created " + type + " order(" + response.entrust_id + ") price: " + _price + "; amount = " + _amount);
-                return await GetOrderBitmart(Convert.ToInt32(response.entrust_id));
+                AddMessage("Created " + type + "; id=" + response.entrust_id + "; price: " + _price + "; amount = " + _amount);
+                return await GetOrderBitmart(Convert.ToInt32(response.entrust_id), pairNum, _typeOrder.ToList().IndexOf(type));
             }
             catch (ResponseException ex) when (ex.message == "Token expired" || ex.message == "Unauthorized")
             {
@@ -1716,7 +1773,15 @@ namespace P2pb2b
                     throw new Exception(m.error);
 
                 AddMessage("Order (hash=" + m.orderHash + ") created (price=" + _price + ") on wallet #" + (walletNum + 1));
-                return new Order { OrderHash = m.orderHash, Pair = _pairNames[pairNum], Amount = _amount, Price = _price, Type = type, WalletID = walletNum };
+                return new Order(default, Exchange.Idex, pairNum, _typeOrder.ToList().IndexOf(type))
+                {
+                    OrderHash = m.orderHash,
+                    Pair = _pairNames[pairNum],
+                    Amount = _amount,
+                    Price = _price,
+                    Type = type,
+                    WalletID = walletNum
+                };
             }
             catch (WebException ex)
             {
@@ -1724,15 +1789,14 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiCreateOrder: " + h);
                     return null;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiGetNextNonce(NIC): " + e.Message);
                     return null;
                 }
             }
@@ -1750,39 +1814,50 @@ namespace P2pb2b
                 if (_minAmount[pairNum] == 0)
                     await ApiGetMinAmount();
 
-                string price = String.Format("{0:e}", Convert.ToDouble(_price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
+                //string price = String.Format("{0:e}", Convert.ToDouble(_price.Replace(",", "."), CultureInfo.InvariantCulture)).Replace(",", ".");
+                string pair = _pairNames[pairNum].Replace("_", "");
+                string price = String.Format("{0:e}", Math.Round(
+                    Convert.ToDouble(_price.Replace(",", "."), CultureInfo.InvariantCulture), 
+                    HOTBIT_PRECISIONS.Single(pr => pr.PairName.ToUpper() == pair).RelyPrecision
+                )).Replace(",", ".");
+
                 string amount = (Math.Ceiling(Convert.ToDouble(_amount.Replace(".", ",")) / _minAmount[pairNum]) * _minAmount[pairNum]).ToString().Replace(",", ".");
 
                 const string CreateOrderPath = "/api/v1/order.put_limit";
-                string requestTextPrefix = "amount=" + amount + "&api_key=" + _apiKey + "&isfee=1&market=" + _pairNames[pairNum].Replace("_", "/") +
+                string requestTextPrefix = "amount=" + amount + "&api_key=" + _apiKey[0] + "&isfee=1&market=" + _pairNames[pairNum].Replace("_", "/") +
                                         "&price=" + price + "&side=" + (type == "sell" ? 1 : 2);
-                string preRequestText = requestTextPrefix + "&secret_key=" + _secretKey;
+                string preRequestText = requestTextPrefix + "&secret_key=" + _secretKey[0];
                 string requestBody = requestTextPrefix + "&sign=" + ToMD5(preRequestText).ToUpper();
 
                 WebClient WC = new WebClient();
                 dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + CreateOrderPath + "?" + requestBody));
-
+                
                 Thread.Sleep(200);
                 if (m.error != null)
-                    throw new Exception(m.error);
+                    throw new Exception(m.error.ToString());
 
-                AddMessage("Created " + type + "(" + price + "): amount = " + amount + "| " + (m.error == null ? "True" : "False"));//
-                return new Order { ID = m.result.id, Pair = _pairNames[pairNum], Amount = amount, Price = price, Type = type };
+                AddMessage("Created " + type + " id=" + m.result.id.ToString() + "; price = " + price + "; amount = " + amount);//
+                return new Order(Convert.ToInt64(m.result.id), Exchange.Hotbit, pairNum, _typeOrder.ToList().IndexOf(type))
+                {
+                    Pair = _pairNames[pairNum],
+                    Amount = amount,
+                    Price = price,
+                    Type = type
+                };
             }
             catch (WebException ex)
             {
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiCreateOrder: " + h);
                     return null;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiCreateOrder(NIC): " + e.Message);
                     return null;
                 }
             }
@@ -1821,27 +1896,33 @@ namespace P2pb2b
                 var response = (HttpWebResponse)request.GetResponse();
                 var resStream = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 dynamic m = JsonConvert.DeserializeObject(resStream);
-                Thread.Sleep(200);
-                AddMessage("Created " + type + "(" + price + "): amount = " + amount + "| " + m.success.Value);
+
                 if (!m.success.Value)
                     throw new Exception(JsonConvert.SerializeObject(m.message));
 
-                return new Order { ID = m.result.orderId, Pair = pair, Amount = m.result.amount, Price = m.result.price, Type = type };
+                AddMessage("Created " + type + " id=" + m.result.orderId.ToString() + "; price = " + m.result.price.ToString() + "; amount = " + m.result.amount.ToString());
+
+                return new Order(Convert.ToInt64(m.result.orderId), Exchange.P2PB2B, _pairNames.ToList().IndexOf(pair), _typeOrder.ToList().IndexOf(type))
+                {
+                    Pair = pair,
+                    Amount = m.result.amount,
+                    Price = m.result.price,
+                    Type = type
+                };
             }
             catch (WebException ex)
             {
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiCreateOrder: " + h);
                     return null;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiCreateOrder(NIC): " + e.Message);
                     return null;
                 }
             }
@@ -1861,7 +1942,7 @@ namespace P2pb2b
             if (P2P2B2BChecker.Checked)
                 return ApiCancelOrderP2P2B2B(pair, id);
             else if (HotbitChecker.Checked)
-                return ApiCancelOrderHotbit(pair, id);
+                return await ApiCancelOrderHotbit(pair, id);
             else if (IdexChecker.Checked)
                 return ApiCancelOrderIdex(hash, walletNum);
             else if (BitmartChecker.Checked)
@@ -1960,15 +2041,14 @@ namespace P2pb2b
                 try
                 {
                     string h;
-                    using (var sr = new StreamReader(ex.Response.GetResponseStream()))
+                    using (var sr = new StreamReader(ex.Response?.GetResponseStream()))
                         h = sr.ReadToEnd();
                     AddMessage("ApiCancelOrder: " + h);
                     return false;
                 }
-                catch
+                catch (Exception e)
                 {
-                    MessageBox.Show("No Internet connection");
-                    this.Close();
+                    AddMessage("ApiCancelOrder(NIC): " + e.Message);
                     return false;
                 }
             }
@@ -1979,23 +2059,23 @@ namespace P2pb2b
             }
         }
 
-        private bool ApiCancelOrderHotbit(string pair, long id)
+        private async Task<bool> ApiCancelOrderHotbit(string pair, long id)
         {
             try
             {
                 const string CancelOrderPath = "/api/v1/order.cancel";
 
-                string requestTextPrefix = "api_key=" + _apiKey + "&market=" + pair.Replace("_", "/") + "&order_id=" + id;
-                string preRequestText = requestTextPrefix + "&secret_key=" + _secretKey;
+                string requestTextPrefix = "api_key=" + _apiKey[0] + "&market=" + pair.Replace("_", "/") + "&order_id=" + id;
+                string preRequestText = requestTextPrefix + "&secret_key=" + _secretKey[0];
                 string requestBody = requestTextPrefix + "&sign=" + ToMD5(preRequestText).ToUpper();
 
-                WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + CancelOrderPath + "?" + requestBody));
+                IServerResponse response = await HOTBIT_SERVER.SendQuery(new Query(QueryMethod.POST, CancelOrderPath, requestBody));
+                dynamic m = JsonConvert.DeserializeObject(response.Data);
 
                 if (m.error == null)
                     AddMessage("Order (" + id + ") of pair " + pair + " cancelled");//
                 else
-                    AddMessage("Failed to cancel order (" + id + ") :" + m.error);//
+                    AddMessage("Failed to cancel order (" + id + ") :" + m.error.message.ToString());//
 
                 return m.error == null;//
             }
@@ -2080,7 +2160,7 @@ namespace P2pb2b
             }
         }
 
-        private async Task<Order> GetOrderBitmart(int id)
+        private async Task<Order> GetOrderBitmart(int id, int pairNum, int typeNum)
         {
             try
             {
@@ -2098,9 +2178,8 @@ namespace P2pb2b
                 dynamic order = JSON_RESPONSE_PARSER.Parse<ResponseException>(response);
                 AddMessage("Get order success");
 
-                return new Order()
+                return new Order(Convert.ToInt64(order.entrust_id), Exchange.Bitmart, pairNum, typeNum)
                 {
-                    ID = order.entrust_id,
                     Pair = order.symbol,
                     Type = order.side,
                     Price = order.price,
@@ -2111,7 +2190,7 @@ namespace P2pb2b
             {
                 AddMessage("Token expired, relogin");
                 BITMART_SESSION_TOKEN = await LogInBitmart(_apiKey[0], _secretKey[0], BITMART_MEMO);
-                return await GetOrderBitmart(id);
+                return await GetOrderBitmart(id, pairNum, typeNum);
             }
             catch (ResponseException ex)
             {
@@ -2166,11 +2245,21 @@ namespace P2pb2b
 
                 var rCount = new Random().Next(1, Convert.ToInt32(_countOrders[pairNum, _timeZone]) + 1);
 
-                List<Task> tails = new List<Task>();
+                List<Task<Order>> tails = new List<Task<Order>>();
+                int missed = 0;
+
+                if (turbo)
+                    AddMessage("Init trading started: orders count = " + rCount);
 
                 for (var i = 1; i <= rCount; i++)
                 {
-                    Func<Task> logic = async () =>
+                    if (stopped[pairNum])
+                    {
+                        AddMessage("Trading missed due to stop");
+                        continue;
+                    }
+
+                    Func<bool, Task<Order>> logic = async (isTurbo) =>
                     {
                         int typeNow = new Random().Next(2); // Рандомный тип ордера: ask or bid.
 
@@ -2191,28 +2280,20 @@ namespace P2pb2b
                         double orderPrice = typeNow == 0 ? (maxPrice > 0 ? maxPrice : price[0]) * (1 - randPercent / 100) :
                                                            (minPrice > 0 ? minPrice : price[1]) * (1 + randPercent / 100);
 
-                        if((maxPrice > 0 && orderPrice > maxPrice) || 
-                           (minPrice > 0 && orderPrice < minPrice))
+                        if((maxPrice > 0 && orderPrice > maxPrice) || (minPrice > 0 && orderPrice < minPrice))
                         {
+                            missed++;
                             AddMessage("Цена (" + orderPrice + ") находилась вне указанного диапазона - пропуск (вероятно, неверно настроены min/max %)");
-                            return;
+                            return null;
                         }
 
-                        if((typeNow == 0 && orderPrice >= price[0]) || 
-                           (typeNow == 1 && orderPrice <= price[1]))
+                        if (!isTurbo && ((typeNow == 0 && orderPrice >= price[0]) || (typeNow == 1 && orderPrice <= price[1])))
                         {
+                            missed++;
                             AddMessage("Цена (" + orderPrice + ") предсказуемо не лучшая - пропуск (лучшие ордера: " + price[0] + " и " + price[1] + ")");
-                            return;
+                            return null;
                         }
 
-                        /*var minAskByPercent = (price[0] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
-                        var maxAskByPercent = (price[0] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
-
-                        var minBidByPercent = (price[1] / 100) * Convert.ToDouble(_minPercent[pairNum, _timeZone].Replace('.', ','));
-                        var maxBidByPercent = (price[1] / 100) * Convert.ToDouble(_maxPercent[pairNum, _timeZone].Replace('.', ','));
-
-                        double orderPrice = typeNow == 0 ? (_maxAbs[pairNum, _timeZone] > 0 ? _maxAbs[pairNum, _timeZone] : price[0]) - Convert.ToDouble(GetRandomNumber(minAskByPercent, maxAskByPercent, true)) :
-                                                           (_minAbs[pairNum, _timeZone] > 0 ? _minAbs[pairNum, _timeZone] : price[1]) + Convert.ToDouble(GetRandomNumber(minBidByPercent, maxBidByPercent, true));*/
 
                         // ask понижаем на рандомное число из диапазона, bid повышаем.
                         //if (typeNow == 0)
@@ -2225,87 +2306,115 @@ namespace P2pb2b
                         {
                             if (StopPercentChecker.Checked && orderPrice < _relyPrice[pairNum] * (100 - Convert.ToInt32(StopPercent.Value)) / 100.0)
                             {
+                                missed++;
                                 stopped[pairNum] = true;
                                 MessageBox.Show("Цена упала более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
-                                return;
+                                return null;
                             }
 
                             if (StopGrowPercentChecker.Checked && orderPrice > _relyPrice[pairNum] * (100 + Convert.ToInt32(StopGrowPercent.Value)) / 100.0)
                             {
+                                missed++;
                                 stopped[pairNum] = true;
                                 MessageBox.Show("Цена выросла более, чем на " + StopPercent.Value.ToString() + "%. Торги остановлены");
-                                return;
+                                return null;
                             }
 
                             Order O = await ApiCreateOrder(pairNum, rAmount, orderPrice.ToString("0.##########").Replace(',', '.'), _typeOrder[typeNow], CurWallet);
 
-                            if (O != null && (O.ID != -1 || O.OrderHash != ""))
+                            if (!turbo)
                             {
-                                AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ") created");
+                                await TryCounterTrade(O);
 
-                                int sleep1 = new Random().Next(Convert.ToInt32(_timerWaitMin[pairNum, _timeZone]), Convert.ToInt32(_timerWait[pairNum, _timeZone]) + 1) * 1000;
+                                int sleep2 = (new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000;
 #if DEBUG
-                                AddMessage("Sleeping Close " + sleep1 + " msec");
-                                DateTime startSleep1 = DateTime.Now;
+                                AddMessage("Sleeping Between " + sleep2 + " msec");
+                                DateTime startSleep2 = DateTime.Now;
 #endif
-                                await Task.Run(() => Thread.Sleep(sleep1));
+                                await Task.Run(() => Thread.Sleep(sleep2));
 #if DEBUG
-                                AddMessage("Sleeping Close took " + (DateTime.Now - startSleep1).TotalMilliseconds + " msec");
+                                AddMessage("Sleeping Between took " + (DateTime.Now - startSleep2).TotalMilliseconds + " msec");
 #endif
-
-                                await ApiGetAllOrders();
-                                // существует ли созданный ордер на бирже.
-
-                                if (_orders.First(o => o.Pair == O.Pair && o.Type == O.Type).Equals(O)) //ордер лучший - выставляем встречный ордер
-                                {
-                                    Order CO = await ApiCreateOrder(pairNum, O.Amount, O.Price, _typeOrder[typeNow + 1], CurWallet);
-                                    if (CO != null && CO.ID != -1)
-                                        AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + CO.OrderHash : "id=" + CO.ID) +
-                                                   ") created (counter to the sell order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
-                                    else
-                                        AddMessage("Failed to create counter order to (counter to the order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
-                                }
-                                else //удаляем ордер с id равным orderId
-                                    await ApiCancelOrder(_pairNames[pairNum], O.ID, O.OrderHash, O.WalletID);
                             }
-
-                            int sleep2 = (new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000;
-#if DEBUG
-                            AddMessage("Sleeping Between " + sleep2 + " msec");
-                            DateTime startSleep2 = DateTime.Now;
-#endif
-                            await Task.Run(() => Thread.Sleep(sleep2));
-#if DEBUG
-                            AddMessage("Sleeping Between took " + (DateTime.Now - startSleep2).TotalMilliseconds + " msec");
-#endif
+                            return turbo ? O : null;
+                        }
+                        else
+                        {
+                            missed++;
+                            AddMessage("Creating order missed");
+                            return null;
                         }
                     };
 
                     if (turbo)
                     {
-                        tails.Add(logic());
+                        tails.Add(logic(true));
 
-                        int sleep3 = (Convert.ToInt32(_timerMain[pairNum, _timeZone]) + 1) * 1000;
+                        int sleep2 = (new Random().Next(Convert.ToInt32(_timerOrders[pairNum, _timeZone])) + 1) * 1000;
 #if DEBUG
-                        AddMessage("Sleeping Turbo interval " + sleep3 + " msec");
-                        DateTime startSleep3 = DateTime.Now;
+                        AddMessage("Sleeping Between " + sleep2 + " msec");
+                        DateTime startSleep2 = DateTime.Now;
 #endif
-                        await Task.Run(() => Thread.Sleep(sleep3));
+                        await Task.Run(() => Thread.Sleep(sleep2));
 #if DEBUG
-                        AddMessage("Sleeping Turbo interval took " + (DateTime.Now - startSleep3).TotalMilliseconds + " msec");
+                        AddMessage("Sleeping Between took " + (DateTime.Now - startSleep2).TotalMilliseconds + " msec");
 #endif
                     }
                     else
-                        await logic();
+                        await logic(false);
                 }
 
-                Task.WaitAll(tails.ToArray());
+                if (turbo)
+                {
+                    AddMessage("Init trading finished. Created " + (rCount - missed) + " orders.");
+                    AddMessage("Counter trading started.");
+
+                    foreach (Task<Order> tail in tails)
+                        await TryCounterTrade(await tail);
+
+                    tails.Clear();
+
+                    AddMessage("Counter trading finished.");
+                }
             }
             catch (Exception ex)
             {
                 AddMessage("ApiBot: " + ex.Message);
                 SendMail("Ошибка: " + ex.Message); // отправляем письмо.
                 Thread.Sleep(10 * 60 * 1000); // спит 10 минут.
+            }
+        }
+
+        public async Task TryCounterTrade(Order O)
+        {
+            if (O != null && (O.ID != -1 || O.OrderHash != ""))
+            {
+                AddMessage("Counter trading to order (" + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ") started");
+                
+                int sleep1 = new Random().Next(Convert.ToInt32(_timerWaitMin[O.PairNumber, _timeZone]), Convert.ToInt32(_timerWait[O.PairNumber, _timeZone]) + 1) * 1000;
+#if DEBUG
+                AddMessage("Sleeping Close " + sleep1 + " msec");
+                DateTime startSleep1 = DateTime.Now;
+#endif
+                await Task.Run(() => Thread.Sleep(sleep1));
+#if DEBUG
+                AddMessage("Sleeping Close took " + (DateTime.Now - startSleep1).TotalMilliseconds + " msec");
+#endif
+
+                await ApiGetAllOrders();
+                // существует ли созданный ордер на бирже.
+
+                if (_orders.First(o => o.Pair == O.Pair && o.Type == O.Type).Equals(O)) //ордер лучший - выставляем встречный ордер
+                {
+                    Order CO = await ApiCreateOrder(O.PairNumber, O.Amount, O.Price, _typeOrder[O.OrderTypeNumber + 1], CurWallet);
+                    if (CO != null && CO.ID != -1)
+                        AddMessage("Order (" + (IdexChecker.Checked ? "hash=" + CO.OrderHash : "id=" + CO.ID) +
+                                   ") created (counter to the sell order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
+                    else
+                        AddMessage("Failed to create counter order to (counter to the order with " + (IdexChecker.Checked ? "hash=" + O.OrderHash : "id=" + O.ID) + ")");
+                }
+                else //удаляем ордер с id равным orderId
+                    await ApiCancelOrder(_pairNames[O.PairNumber], O.ID, O.OrderHash, O.WalletID);
             }
         }
 

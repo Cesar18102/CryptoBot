@@ -1,0 +1,7805 @@
+[
+    {
+      "name": "QASHBTC",
+      "stock": "QASH",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "EOSBTC",
+      "stock": "EOS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "QASHETH",
+      "stock": "QASH",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "EOSETH",
+      "stock": "EOS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TCASHETH",
+      "stock": "TCASH",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "EOSUSDT",
+      "stock": "EOS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 4
+    },
+    {
+      "name": "BTCUSDT",
+      "stock": "BTC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 6,
+      "min_amount": "0.000001",
+      "money_prec": 2
+    },
+    {
+      "name": "ETHBTC",
+      "stock": "ETH",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "ETHUSDT",
+      "stock": "ETH",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 5,
+      "min_amount": "0.00001",
+      "money_prec": 2
+    },
+    {
+      "name": "EKOBTC",
+      "stock": "EKO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "QUNBTC",
+      "stock": "QUN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "EKOETH",
+      "stock": "EKO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "QUNETH",
+      "stock": "QUN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "SPHTXETH",
+      "stock": "SPHTX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "SPHTXBTC",
+      "stock": "SPHTX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "TNBETH",
+      "stock": "TNB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TNBBTC",
+      "stock": "TNB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "THETAETH",
+      "stock": "THETA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "WICCETH",
+      "stock": "WICC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "THETABTC",
+      "stock": "THETA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "WICCBTC",
+      "stock": "WICC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "TRXBTC",
+      "stock": "TRX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "TRXETH",
+      "stock": "TRX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ELFBTC",
+      "stock": "ELF",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ELFETH",
+      "stock": "ELF",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ICXBTC",
+      "stock": "ICX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ICXETH",
+      "stock": "ICX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 7,
+      "min_amount": "0.001",
+      "money_prec": 7
+    },
+    {
+      "name": "GVTBTC",
+      "stock": "GVT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 7,
+      "min_amount": "0.001",
+      "money_prec": 7
+    },
+    {
+      "name": "GVTETH",
+      "stock": "GVT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 6,
+      "min_amount": "0.001",
+      "money_prec": 6
+    },
+    {
+      "name": "OMGBTC",
+      "stock": "OMG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "OMGETH",
+      "stock": "OMG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 7,
+      "min_amount": "0.001",
+      "money_prec": 7
+    },
+    {
+      "name": "ENGBTC",
+      "stock": "ENG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ENGETH",
+      "stock": "ENG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ACATBTC",
+      "stock": "ACAT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ACATETH",
+      "stock": "ACAT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "HANDETH",
+      "stock": "HAND",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "BOXBTC",
+      "stock": "BOX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BOXETH",
+      "stock": "BOX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "ATNBTC",
+      "stock": "ATN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ATNETH",
+      "stock": "ATN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "BOOLBTC",
+      "stock": "BOOL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 10
+    },
+    {
+      "name": "BOOLETH",
+      "stock": "BOOL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.00001",
+      "money_prec": 10
+    },
+    {
+      "name": "HOTBTC",
+      "stock": "HOT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 0,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "HOTETH",
+      "stock": "HOT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "TOMOBTC",
+      "stock": "TOMO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 8
+    },
+    {
+      "name": "TOMOETH",
+      "stock": "TOMO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 8
+    },
+    {
+      "name": "EOSDACBTC",
+      "stock": "EOSDAC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "EOSDACETH",
+      "stock": "EOSDAC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "ONTBTC",
+      "stock": "ONT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 7
+    },
+    {
+      "name": "ONTETH",
+      "stock": "ONT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "ZILBTC",
+      "stock": "ZIL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 1,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "ZILETH",
+      "stock": "ZIL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "LOOMBTC",
+      "stock": "LOOM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "LOOMETH",
+      "stock": "LOOM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 3,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "ZRXBTC",
+      "stock": "ZRX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ZRXETH",
+      "stock": "ZRX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 3,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "SKMBTC",
+      "stock": "SKM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 1,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "SKMETH",
+      "stock": "SKM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "NPXSETH",
+      "stock": "NPXS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SSBTC",
+      "stock": "SS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "SSETH",
+      "stock": "SS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "NEXOBTC",
+      "stock": "NEXO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "NEXOETH",
+      "stock": "NEXO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "NPXSBTC",
+      "stock": "NPXS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IOSTBTC",
+      "stock": "IOST",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IOSTETH",
+      "stock": "IOST",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ZCOBTC",
+      "stock": "ZCO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "ZCOETH",
+      "stock": "ZCO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "SOCBTC",
+      "stock": "SOC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "SOCETH",
+      "stock": "SOC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "HTBBTC",
+      "stock": "HTB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "HTBETH",
+      "stock": "HTB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "HTBUSDT",
+      "stock": "HTB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "YCCETH",
+      "stock": "YCC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "FOTAETH",
+      "stock": "FOTA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ALIETH",
+      "stock": "ALI",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SNTRETH",
+      "stock": "SNTR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "BQTBTC",
+      "stock": "BQT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "BQTETH",
+      "stock": "BQT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GENEBTC",
+      "stock": "GENE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SEELEBTC",
+      "stock": "SEELE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SEELEETH",
+      "stock": "SEELE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "EXRNETH",
+      "stock": "EXRN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "UBTBTC",
+      "stock": "UBT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "UBTETH",
+      "stock": "UBT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PAIBTC",
+      "stock": "PAI",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "EDRBTC",
+      "stock": "EDR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "BBOBTC",
+      "stock": "BBO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "PAIETH",
+      "stock": "PAI",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "EDRETH",
+      "stock": "EDR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BBOETH",
+      "stock": "BBO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "QKCBTC",
+      "stock": "QKC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "QKCETH",
+      "stock": "QKC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ABXBTC",
+      "stock": "ABX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PCLBTC",
+      "stock": "PCL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ABXETH",
+      "stock": "ABX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "PCLETH",
+      "stock": "PCL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "COUETH",
+      "stock": "COU",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "TBXETH",
+      "stock": "TBX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "MVPBTC",
+      "stock": "MVP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MVPETH",
+      "stock": "MVP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TMTBTC",
+      "stock": "TMT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TMTETH",
+      "stock": "TMT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "XMXBTC",
+      "stock": "XMX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "XMXETH",
+      "stock": "XMX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "0xBTCBTC",
+      "stock": "0xBTC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "0xBTCETH",
+      "stock": "0xBTC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "BZNTBTC",
+      "stock": "BZNT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "BZNTETH",
+      "stock": "BZNT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TOTOBTC",
+      "stock": "TOTO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "TOTOETH",
+      "stock": "TOTO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "REMBTC",
+      "stock": "REM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 0,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "REMETH",
+      "stock": "REM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "GENBTC",
+      "stock": "GEN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "GENETH",
+      "stock": "GEN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MCTBTC",
+      "stock": "MCT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MCTETH",
+      "stock": "MCT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "RHOCBTC",
+      "stock": "RHOC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "SOULBTC",
+      "stock": "SOUL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "RHOCETH",
+      "stock": "RHOC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "SOULETH",
+      "stock": "SOUL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "CWVBTC",
+      "stock": "CWV",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "GUSSBTC",
+      "stock": "GUSS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "GUSSETH",
+      "stock": "GUSS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ORSBTC",
+      "stock": "ORS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ORSETH",
+      "stock": "ORS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "FOXTETH",
+      "stock": "FOXT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "EXPOBTC",
+      "stock": "EXPO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "EXPOETH",
+      "stock": "EXPO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "RISKETH",
+      "stock": "RISK",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "YEEDBTC",
+      "stock": "YEED",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "YEEDETH",
+      "stock": "YEED",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "UPPBTC",
+      "stock": "UPP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "UPPETH",
+      "stock": "UPP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "OLTBTC",
+      "stock": "OLT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "OLTETH",
+      "stock": "OLT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "VITEBTC",
+      "stock": "VITE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "VITEETH",
+      "stock": "VITE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "DAGBTC",
+      "stock": "DAG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "DAGETH",
+      "stock": "DAG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "BOBBTC",
+      "stock": "BOB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "BOBETH",
+      "stock": "BOB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BNBBTC",
+      "stock": "BNB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "BNBETH",
+      "stock": "BNB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 8
+    },
+    {
+      "name": "FSBTETH",
+      "stock": "FSBT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "RTEBTC",
+      "stock": "RTE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "RTEETH",
+      "stock": "RTE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "RATINGBTC",
+      "stock": "RATING",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "RATINGETH",
+      "stock": "RATING",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "WEBETH",
+      "stock": "WEB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ADIBTC",
+      "stock": "ADI",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ADIETH",
+      "stock": "ADI",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "METBTC",
+      "stock": "MET",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "METETH",
+      "stock": "MET",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "EGTBTC",
+      "stock": "EGT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "EGTETH",
+      "stock": "EGT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IONCBTC",
+      "stock": "IONC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IONCETH",
+      "stock": "IONC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "CARDBTC",
+      "stock": "CARD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CARDETH",
+      "stock": "CARD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "LCSBTC",
+      "stock": "LCS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ZXCBTC",
+      "stock": "ZXC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ZXCETH",
+      "stock": "ZXC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "GOTBTC",
+      "stock": "GOT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "GOTETH",
+      "stock": "GOT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "MFTBTC",
+      "stock": "MFT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MFTETH",
+      "stock": "MFT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "FSNBTC",
+      "stock": "FSN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "FSNETH",
+      "stock": "FSN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "SEADBTC",
+      "stock": "SEAD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SEADETH",
+      "stock": "SEAD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "HQXBTC",
+      "stock": "HQX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "OWNETH",
+      "stock": "OWN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BUETH",
+      "stock": "BU",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ESSBTC",
+      "stock": "ESS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ESSETH",
+      "stock": "ESS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "BUBTC",
+      "stock": "BU",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "EVEBTC",
+      "stock": "EVE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "EVEETH",
+      "stock": "EVE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ZBBTC",
+      "stock": "ZB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ZBETH",
+      "stock": "ZB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GARDBTC",
+      "stock": "GARD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "GARDETH",
+      "stock": "GARD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "ELYETH",
+      "stock": "ELY",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "INCXBTC",
+      "stock": "INCX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "INCXETH",
+      "stock": "INCX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "VIKKYETH",
+      "stock": "VIKKY",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "BITXETH",
+      "stock": "BITX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "TICETH",
+      "stock": "TIC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "DKYCETH",
+      "stock": "DKYC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "DKYCBTC",
+      "stock": "DKYC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "EUBCETH",
+      "stock": "EUBC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "XEMBTC",
+      "stock": "XEM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "XEMETH",
+      "stock": "XEM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "XEMUSDT",
+      "stock": "XEM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "NPXSXEMBTC",
+      "stock": "NPXSXEM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "NPXSXEMETH",
+      "stock": "NPXSXEM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "HMQBTC",
+      "stock": "HMQ",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IGETH",
+      "stock": "IG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "IABETH",
+      "stock": "IAB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ABYSSETH",
+      "stock": "ABYSS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ETZBTC",
+      "stock": "ETZ",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ETZETH",
+      "stock": "ETZ",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "WABBTC",
+      "stock": "WAB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "ALTBTC",
+      "stock": "ALT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "KWATTETH",
+      "stock": "KWATT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "HMTETH",
+      "stock": "HMT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "PKGETH",
+      "stock": "PKG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FTXTETH",
+      "stock": "FTXT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "ZPAYETH",
+      "stock": "ZPAY",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "TGAMEETH",
+      "stock": "TGAME",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "CNPETH",
+      "stock": "CNP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SCCETH",
+      "stock": "SCC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "NOVABTC",
+      "stock": "NOVA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 0,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "NOVAETH",
+      "stock": "NOVA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "DELTAETH",
+      "stock": "DELTA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "LOTOBTC",
+      "stock": "LOTO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "LOTOETH",
+      "stock": "LOTO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "KXCETH",
+      "stock": "KXC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "IQETH",
+      "stock": "IQ",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ACTPBTC",
+      "stock": "ACTP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "HOTTOETH",
+      "stock": "HOTTO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "BNCETH",
+      "stock": "BNC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "CYMTETH",
+      "stock": "CYMT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "HAVYETH",
+      "stock": "HAVY",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "PATETH",
+      "stock": "PAT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "PATBTC",
+      "stock": "PAT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "UBEXBTC",
+      "stock": "UBEX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "UBEXETH",
+      "stock": "UBEX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BCHBTC",
+      "stock": "BCH",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "BCHETH",
+      "stock": "BCH",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "BCHUSDT",
+      "stock": "BCH",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "BTCBETH",
+      "stock": "BTCB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "HSNETH",
+      "stock": "HSN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "SWLETH",
+      "stock": "SWL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "UCNBTC",
+      "stock": "UCN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "UCNETH",
+      "stock": "UCN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CARATBTC",
+      "stock": "CARAT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "CARATETH",
+      "stock": "CARAT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "EDNBTC",
+      "stock": "EDN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "EDNETH",
+      "stock": "EDN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "HMXETH",
+      "stock": "HMX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "CTRTETH",
+      "stock": "CTRT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "QCHETH",
+      "stock": "QCH",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ONGBTC",
+      "stock": "ONG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ONGETH",
+      "stock": "ONG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MMDAUSDT",
+      "stock": "MMDA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 0,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "NRPETH",
+      "stock": "NRP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "MEDIBITBTC",
+      "stock": "MEDIBIT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "MEDIBITETH",
+      "stock": "MEDIBIT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "USDCBTC",
+      "stock": "USDC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "USDCETH",
+      "stock": "USDC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PAXBTC",
+      "stock": "PAX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GUSDBTC",
+      "stock": "GUSD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 1,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "PAXETH",
+      "stock": "PAX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GUSDETH",
+      "stock": "GUSD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 1,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "WEBNETH",
+      "stock": "WEBN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "CCPETH",
+      "stock": "CCP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "CCPUSDT",
+      "stock": "CCP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "TOLETH",
+      "stock": "TOL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ENTSETH",
+      "stock": "ENTS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "METABTC",
+      "stock": "META",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "METAETH",
+      "stock": "META",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "DATPETH",
+      "stock": "DATP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "CMCTETH",
+      "stock": "CMCT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "ZNTETH",
+      "stock": "ZNT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "NDXETH",
+      "stock": "NDX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "EVNBTC",
+      "stock": "EVN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "EVNETH",
+      "stock": "EVN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "FBNETH",
+      "stock": "FBN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "TUSDBTC",
+      "stock": "TUSD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TUSDETH",
+      "stock": "TUSD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TUSDUSDT",
+      "stock": "TUSD",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "USDCUSDT",
+      "stock": "USDC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PAXUSDT",
+      "stock": "PAX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GUSDUSDT",
+      "stock": "GUSD",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 1,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MASBTC",
+      "stock": "MAS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MASETH",
+      "stock": "MAS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "WTNETH",
+      "stock": "WTN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "LQDBTC",
+      "stock": "LQD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "LQDETH",
+      "stock": "LQD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SCRETH",
+      "stock": "SCR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "QNTBTC",
+      "stock": "QNT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "QNTETH",
+      "stock": "QNT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BDTBTC",
+      "stock": "BDT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "BDTETH",
+      "stock": "BDT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "CSOULETH",
+      "stock": "CSOUL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "FEXETH",
+      "stock": "FEX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "PTNBTC",
+      "stock": "PTN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "PTNETH",
+      "stock": "PTN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "CMITBTC",
+      "stock": "CMIT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "FTMBTC",
+      "stock": "FTM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "FTMETH",
+      "stock": "FTM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "XTMETH",
+      "stock": "XTM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "HQTETH",
+      "stock": "HQT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "BANCAETH",
+      "stock": "BANCA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "MICROETH",
+      "stock": "MICRO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "JICETH",
+      "stock": "JIC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "LTCBTC",
+      "stock": "LTC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.0001",
+      "money_prec": 8
+    },
+    {
+      "name": "ETCBTC",
+      "stock": "ETC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "XRPBTC",
+      "stock": "XRP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "LTCETH",
+      "stock": "LTC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.0001",
+      "money_prec": 8
+    },
+    {
+      "name": "ETCETH",
+      "stock": "ETC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "XRPETH",
+      "stock": "XRP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "GXIBTC",
+      "stock": "GXI",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "INVEETH",
+      "stock": "INVE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "INVEUSDT",
+      "stock": "INVE",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "QUINETH",
+      "stock": "QUIN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "CPXBTC",
+      "stock": "CPX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CPXETH",
+      "stock": "CPX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "POLYBTC",
+      "stock": "POLY",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "POLYETH",
+      "stock": "POLY",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "CHXBTC",
+      "stock": "CHX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "CHXETH",
+      "stock": "CHX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "PLGETH",
+      "stock": "PLG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "NOSBTC",
+      "stock": "NOS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "NOSETH",
+      "stock": "NOS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "BOLDBTC",
+      "stock": "BOLD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "BOLDETH",
+      "stock": "BOLD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "GMCIETH",
+      "stock": "GMCI",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "POCCBTC",
+      "stock": "POCC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "DCNTBTC",
+      "stock": "DCNT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "BSVBTC",
+      "stock": "BSV",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "BSVETH",
+      "stock": "BSV",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "BSVUSDT",
+      "stock": "BSV",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "QCHHTB",
+      "stock": "QCH",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 2
+    },
+    {
+      "name": "ETZHTB",
+      "stock": "ETZ",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 2
+    },
+    {
+      "name": "OWNHTB",
+      "stock": "OWN",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 6
+    },
+    {
+      "name": "BOBHTB",
+      "stock": "BOB",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 4
+    },
+    {
+      "name": "SCC18ETH",
+      "stock": "SCC18",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "EQUADBTC",
+      "stock": "EQUAD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "EQUADETH",
+      "stock": "EQUAD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "TVNTBTC",
+      "stock": "TVNT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "RBLXBTC",
+      "stock": "RBLX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "GENTETH",
+      "stock": "GENT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "10000",
+      "money_prec": 10
+    },
+    {
+      "name": "BCHIPETH",
+      "stock": "BCHIP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "CWVUSDT",
+      "stock": "CWV",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FREEETH",
+      "stock": "FREE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "10000",
+      "money_prec": 10
+    },
+    {
+      "name": "HERBETH",
+      "stock": "HERB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "DICEBTC",
+      "stock": "DICE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "DICEUSDT",
+      "stock": "DICE",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 6
+    },
+    {
+      "name": "FXPETH",
+      "stock": "FXP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "HYNBTC",
+      "stock": "HYN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "HYNETH",
+      "stock": "HYN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "AEBTC",
+      "stock": "AE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "AEETH",
+      "stock": "AE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "AEUSDT",
+      "stock": "AE",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "KATBTC",
+      "stock": "KAT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "KATETH",
+      "stock": "KAT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "REOHTB",
+      "stock": "REO",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "REOETH",
+      "stock": "REO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "DACCUSDT",
+      "stock": "DACC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "100",
+      "money_prec": 8
+    },
+    {
+      "name": "AERGOBTC",
+      "stock": "AERGO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "AERGOETH",
+      "stock": "AERGO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "GLADETH",
+      "stock": "GLAD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "COVABTC",
+      "stock": "COVA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "COVAETH",
+      "stock": "COVA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "LAMBBTC",
+      "stock": "LAMB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "LAMBETH",
+      "stock": "LAMB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "HLLBTC",
+      "stock": "HLL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "SWAGETH",
+      "stock": "SWAG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 8
+    },
+    {
+      "name": "DMLETH",
+      "stock": "DML",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "MRPHBTC",
+      "stock": "MRPH",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 1,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MRPHETH",
+      "stock": "MRPH",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 1,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "BEAMBTC",
+      "stock": "BEAM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BEAMETH",
+      "stock": "BEAM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BEAMUSDT",
+      "stock": "BEAM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "GAICETH",
+      "stock": "GAIC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "BIRBTC",
+      "stock": "BIR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BIRETH",
+      "stock": "BIR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BIRUSDT",
+      "stock": "BIR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "ETIBTC",
+      "stock": "ETI",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "LAMBUSDT",
+      "stock": "LAMB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 6
+    },
+    {
+      "name": "LAMBHTB",
+      "stock": "LAMB",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 2
+    },
+    {
+      "name": "AQXETH",
+      "stock": "AQX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 6,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "HTBUSD",
+      "stock": "HTB",
+      "fee_prec": 2,
+      "money": "USD",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "BTCUSD",
+      "stock": "BTC",
+      "fee_prec": 4,
+      "money": "USD",
+      "stock_prec": 6,
+      "min_amount": "0.000001",
+      "money_prec": 2
+    },
+    {
+      "name": "ETHUSD",
+      "stock": "ETH",
+      "fee_prec": 4,
+      "money": "USD",
+      "stock_prec": 6,
+      "min_amount": "0.000001",
+      "money_prec": 2
+    },
+    {
+      "name": "USDTUSD",
+      "stock": "USDT",
+      "fee_prec": 4,
+      "money": "USD",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 4
+    },
+    {
+      "name": "SPTETH",
+      "stock": "SPT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "LTOBTC",
+      "stock": "LTO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "LTOETH",
+      "stock": "LTO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "LTOUSDT",
+      "stock": "LTO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "GRINBTC",
+      "stock": "GRIN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GRINETH",
+      "stock": "GRIN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GRINUSDT",
+      "stock": "GRIN",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "TATETH",
+      "stock": "TAT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 8
+    },
+    {
+      "name": "BBGCUSDT",
+      "stock": "BBGC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "CPTBTC",
+      "stock": "CPT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "CPTETH",
+      "stock": "CPT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "CPTUSDT",
+      "stock": "CPT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 6
+    },
+    {
+      "name": "COTETH",
+      "stock": "COT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "AXEBTC",
+      "stock": "AXE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "AXEETH",
+      "stock": "AXE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "AXEUSDT",
+      "stock": "AXE",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "MCTPETH",
+      "stock": "MCTP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "MCTPUSDT",
+      "stock": "MCTP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 6
+    },
+    {
+      "name": "JHBETH",
+      "stock": "JHB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "OSCBTC",
+      "stock": "OSC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "OSCUSDT",
+      "stock": "OSC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "XPCBTC",
+      "stock": "XPC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "XPCUSDT",
+      "stock": "XPC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 8
+    },
+    {
+      "name": "SWMBTC",
+      "stock": "SWM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SWMETH",
+      "stock": "SWM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SWMUSDT",
+      "stock": "SWM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "SWMHTB",
+      "stock": "SWM",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 2
+    },
+    {
+      "name": "ETGPBTC",
+      "stock": "ETGP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "RELETH",
+      "stock": "REL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "BOLTTETH",
+      "stock": "BOLTT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ROCK2ETH",
+      "stock": "ROCK2",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "RBTUSD",
+      "stock": "RB",
+      "fee_prec": 4,
+      "money": "TUSD",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "RBETH",
+      "stock": "RB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "ARAWETH",
+      "stock": "ARAW",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "ANKRBTC",
+      "stock": "ANKR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "ANKRETH",
+      "stock": "ANKR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "BLACKETH",
+      "stock": "BLACK",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "BLACKUSDT",
+      "stock": "BLACK",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "TRATETH",
+      "stock": "TRAT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 0,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "BHDBTC",
+      "stock": "BHD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BHDETH",
+      "stock": "BHD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BUDBTC",
+      "stock": "BUD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "BUDETH",
+      "stock": "BUD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "ATOMBTC",
+      "stock": "ATOM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ATOMETH",
+      "stock": "ATOM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "WAVESBTC",
+      "stock": "WAVES",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "WAVESETH",
+      "stock": "WAVES",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ATOMUSDT",
+      "stock": "ATOM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "YTNBETH",
+      "stock": "YTNB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "CELRBTC",
+      "stock": "CELR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CELRETH",
+      "stock": "CELR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CELRUSDT",
+      "stock": "CELR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "BTTBTC",
+      "stock": "BTT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 6,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "BTTETH",
+      "stock": "BTT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 6,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "BTTUSDT",
+      "stock": "BTT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 6,
+      "min_amount": "100",
+      "money_prec": 6
+    },
+    {
+      "name": "FETBTC",
+      "stock": "FET",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "FETETH",
+      "stock": "FET",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "FETUSDT",
+      "stock": "FET",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "TOPBTC",
+      "stock": "TOP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TOPETH",
+      "stock": "TOP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TOPUSDT",
+      "stock": "TOP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "BOLTBTC",
+      "stock": "BOLT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BOLTETH",
+      "stock": "BOLT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BOLTUSDT",
+      "stock": "BOLT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "MNXBTC",
+      "stock": "MNX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "ZEONUSDT",
+      "stock": "ZEON",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 8
+    },
+    {
+      "name": "JMTUSDT",
+      "stock": "JMT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 6
+    },
+    {
+      "name": "WHENBTC",
+      "stock": "WHEN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TRTLBTC",
+      "stock": "TRTL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "TRTLETH",
+      "stock": "TRTL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "TRTLUSDT",
+      "stock": "TRTL",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "100",
+      "money_prec": 8
+    },
+    {
+      "name": "SRKBTC",
+      "stock": "SRK",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "DEROBTC",
+      "stock": "DERO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "DEROUSDT",
+      "stock": "DERO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "DCPBTC",
+      "stock": "DCP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "DCPETH",
+      "stock": "DCP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "DCPUSDT",
+      "stock": "DCP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "LCUSDT",
+      "stock": "LC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "LCHTB",
+      "stock": "LC",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 4
+    },
+    {
+      "name": "LCBTC",
+      "stock": "LC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "LCETH",
+      "stock": "LC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "VIDTBTC",
+      "stock": "VIDT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BLOCBTC",
+      "stock": "BLOC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BLOCETH",
+      "stock": "BLOC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BLOCUSDT",
+      "stock": "BLOC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "VOLLARBTC",
+      "stock": "VOLLAR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "VOLLARETH",
+      "stock": "VOLLAR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "VOLLARUSDT",
+      "stock": "VOLLAR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "UGASBTC",
+      "stock": "UGAS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "UGASETH",
+      "stock": "UGAS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "UGASUSDT",
+      "stock": "UGAS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "FDSBTC",
+      "stock": "FDS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FDSETH",
+      "stock": "FDS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FDSUSDT",
+      "stock": "FDS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "LFCBTC",
+      "stock": "LFC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "LFCETH",
+      "stock": "LFC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "LITBTC",
+      "stock": "LIT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "LITETH",
+      "stock": "LIT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "NEWBTC",
+      "stock": "NEW",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "NEWETH",
+      "stock": "NEW",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "NEWUSDT",
+      "stock": "NEW",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 6
+    },
+    {
+      "name": "TTBTC",
+      "stock": "TT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TTETH",
+      "stock": "TT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TTUSDT",
+      "stock": "TT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "QCXBTC",
+      "stock": "QCX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "QCXUSDT",
+      "stock": "QCX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "LSTUSDT",
+      "stock": "LST",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 8
+    },
+    {
+      "name": "DOGEBTC",
+      "stock": "DOGE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "DOGEETH",
+      "stock": "DOGE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "BHDUSDT",
+      "stock": "BHD",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 4
+    },
+    {
+      "name": "SRHETH",
+      "stock": "SRH",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CNNSBTC",
+      "stock": "CNNS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CNNSETH",
+      "stock": "CNNS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "CNNSUSDT",
+      "stock": "CNNS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "XCASHUSDT",
+      "stock": "XCASH",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 6,
+      "min_amount": "1000",
+      "money_prec": 8
+    },
+    {
+      "name": "XCASHHTB",
+      "stock": "XCASH",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 6,
+      "min_amount": "1000",
+      "money_prec": 6
+    },
+    {
+      "name": "FORBTC",
+      "stock": "FOR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FORETH",
+      "stock": "FOR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FORUSDT",
+      "stock": "FOR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "HNBUSDT",
+      "stock": "HNB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "LUDBTC",
+      "stock": "LUD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "LUDETH",
+      "stock": "LUD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "DUOBTC",
+      "stock": "DUO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "DUOETH",
+      "stock": "DUO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "VJCBTC",
+      "stock": "VJC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "IOGUSDT",
+      "stock": "IOG",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "IOGHTB",
+      "stock": "IOG",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 4
+    },
+    {
+      "name": "NIMBTC",
+      "stock": "NIM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "NIMETH",
+      "stock": "NIM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "NIMUSDT",
+      "stock": "NIM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "10",
+      "money_prec": 6
+    },
+    {
+      "name": "MATICBTC",
+      "stock": "MATIC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MATICETH",
+      "stock": "MATIC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "DREPBTC",
+      "stock": "DREP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "DREPETH",
+      "stock": "DREP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "APCETH",
+      "stock": "APC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "100",
+      "money_prec": 10
+    },
+    {
+      "name": "ECPBTC",
+      "stock": "ECP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IXBTC",
+      "stock": "IX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ARPABTC",
+      "stock": "ARPA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IXETH",
+      "stock": "IX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ARPAETH",
+      "stock": "ARPA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BSTUSDT",
+      "stock": "BST",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "YTNBUSDT",
+      "stock": "YTNB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "GODBTC",
+      "stock": "GOD",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GODETH",
+      "stock": "GOD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GODUSDT",
+      "stock": "GOD",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 4
+    },
+    {
+      "name": "MIXBTC",
+      "stock": "MIX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MIXETH",
+      "stock": "MIX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MIXUSDT",
+      "stock": "MIX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "OCEANBTC",
+      "stock": "OCEAN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "OCEANETH",
+      "stock": "OCEAN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IRISBTC",
+      "stock": "IRIS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IRISETH",
+      "stock": "IRIS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IRISUSDT",
+      "stock": "IRIS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "LUNABTC",
+      "stock": "LUNA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "LUNAETH",
+      "stock": "LUNA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "QOBUSDT",
+      "stock": "QOB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "HDSETH",
+      "stock": "HDS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MGCETH",
+      "stock": "MGC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SSNETH",
+      "stock": "SSN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1000",
+      "money_prec": 10
+    },
+    {
+      "name": "TRYBTC",
+      "stock": "TRY",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TRYETH",
+      "stock": "TRY",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "XLABBTC",
+      "stock": "XLAB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "XLABETH",
+      "stock": "XLAB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "XLABUSDT",
+      "stock": "XLAB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "FOINBTC",
+      "stock": "FOIN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.00001",
+      "money_prec": 8
+    },
+    {
+      "name": "PTABTC",
+      "stock": "PTA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "PTAUSDT",
+      "stock": "PTA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "RSRBTC",
+      "stock": "RSR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "RSRETH",
+      "stock": "RSR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ETTUSDT",
+      "stock": "ETT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "XLMBTC",
+      "stock": "XLM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "XLMETH",
+      "stock": "XLM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "XLMUSDT",
+      "stock": "XLM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "EMTETH",
+      "stock": "EMT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "EMTBTC",
+      "stock": "EMT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IRISATOM",
+      "stock": "IRIS",
+      "fee_prec": 4,
+      "money": "ATOM",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "ZEONBTC",
+      "stock": "ZEON",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 10
+    },
+    {
+      "name": "QTBTC",
+      "stock": "QT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "QTETH",
+      "stock": "QT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "QTUSDT",
+      "stock": "QT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "TERABTC",
+      "stock": "TERA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TERAETH",
+      "stock": "TERA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TERAUSDT",
+      "stock": "TERA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "CHRBTC",
+      "stock": "CHR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CHRETH",
+      "stock": "CHR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "OGOBTC",
+      "stock": "OGO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "OGOETH",
+      "stock": "OGO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "QDAOUSDT",
+      "stock": "QDAO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "ATOMHTB",
+      "stock": "ATOM",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 2
+    },
+    {
+      "name": "GRINHTB",
+      "stock": "GRIN",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 2
+    },
+    {
+      "name": "BEAMHTB",
+      "stock": "BEAM",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 2
+    },
+    {
+      "name": "VOLLARHTB",
+      "stock": "VOLLAR",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 2
+    },
+    {
+      "name": "NEXOHTB",
+      "stock": "NEXO",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 4
+    },
+    {
+      "name": "DOTUSDT",
+      "stock": "DOT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 4
+    },
+    {
+      "name": "DOTHTB",
+      "stock": "DOT",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 2
+    },
+    {
+      "name": "DOTBTC",
+      "stock": "DOT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 6
+    },
+    {
+      "name": "DOTETH",
+      "stock": "DOT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 6
+    },
+    {
+      "name": "AXAUSDT",
+      "stock": "AXA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "OMGATOM",
+      "stock": "OMG",
+      "fee_prec": 4,
+      "money": "ATOM",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 6
+    },
+    {
+      "name": "LOOMATOM",
+      "stock": "LOOM",
+      "fee_prec": 4,
+      "money": "ATOM",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "OLTATOM",
+      "stock": "OLT",
+      "fee_prec": 4,
+      "money": "ATOM",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "GARDATOM",
+      "stock": "GARD",
+      "fee_prec": 4,
+      "money": "ATOM",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "USDQUSDT",
+      "stock": "USDQ",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "TORUSDT",
+      "stock": "TOR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "LCEOS",
+      "stock": "LC",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "BLACKEOS",
+      "stock": "BLACK",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "EOSDACEOS",
+      "stock": "EOSDAC",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "DICEEOS",
+      "stock": "DICE",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "10",
+      "money_prec": 8
+    },
+    {
+      "name": "HTNBTC",
+      "stock": "HTN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "HTNETH",
+      "stock": "HTN",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FXBTC",
+      "stock": "FX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "FXETH",
+      "stock": "FX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "EMTEOS",
+      "stock": "EMT",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "PCXBTC",
+      "stock": "PCX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 7
+    },
+    {
+      "name": "PCXETH",
+      "stock": "PCX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 7
+    },
+    {
+      "name": "PCXUSDT",
+      "stock": "PCX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 4
+    },
+    {
+      "name": "PCXHTB",
+      "stock": "PCX",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 2
+    },
+    {
+      "name": "JARBTC",
+      "stock": "JAR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "JARETH",
+      "stock": "JAR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FMLETH",
+      "stock": "FML",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ALGOBTC",
+      "stock": "ALGO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "ALGOETH",
+      "stock": "ALGO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "ALGOUSDT",
+      "stock": "ALGO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "QDAOBTC",
+      "stock": "QDAO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "QDAOETH",
+      "stock": "QDAO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "USDQBTC",
+      "stock": "USDQ",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "USDQETH",
+      "stock": "USDQ",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "LTCUSDT",
+      "stock": "LTC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.0001",
+      "money_prec": 2
+    },
+    {
+      "name": "MODEXBTC",
+      "stock": "MODEX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MODEXETH",
+      "stock": "MODEX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MIGETH",
+      "stock": "MIG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SEROBTC",
+      "stock": "SERO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SEROETH",
+      "stock": "SERO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "VGOUSDT",
+      "stock": "VGO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "PROMBTC",
+      "stock": "PROM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "PROMETH",
+      "stock": "PROM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SEROUSDT",
+      "stock": "SERO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "SCVETH",
+      "stock": "SCV",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "HTBTUSD",
+      "stock": "HTB",
+      "fee_prec": 4,
+      "money": "TUSD",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "BTCUSDQ",
+      "stock": "BTC",
+      "fee_prec": 4,
+      "money": "USDQ",
+      "stock_prec": 6,
+      "min_amount": "0.000001",
+      "money_prec": 2
+    },
+    {
+      "name": "ETHUSDQ",
+      "stock": "ETH",
+      "fee_prec": 4,
+      "money": "USDQ",
+      "stock_prec": 5,
+      "min_amount": "0.00001",
+      "money_prec": 2
+    },
+    {
+      "name": "HTBUSDQ",
+      "stock": "HTB",
+      "fee_prec": 4,
+      "money": "USDQ",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "LSCUSDT",
+      "stock": "LSC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "XRPUSDT",
+      "stock": "XRP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "VIDYUSDT",
+      "stock": "VIDY",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "BOMBETH",
+      "stock": "BOMB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "VETBTC",
+      "stock": "VET",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "VETETH",
+      "stock": "VET",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "VTHOBTC",
+      "stock": "VTHO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "VTHOETH",
+      "stock": "VTHO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "GMATETH",
+      "stock": "GMAT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ORBSETH",
+      "stock": "ORBS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BXAETH",
+      "stock": "BXA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "LNKOETH",
+      "stock": "LNKO",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "LNKOUSDT",
+      "stock": "LNKO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "VNXLUBTC",
+      "stock": "VNXLU",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "URACETH",
+      "stock": "URAC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SNTVTBTC",
+      "stock": "SNTVT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SNTVTETH",
+      "stock": "SNTVT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "VSYSBTC",
+      "stock": "VSYS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "VSYSETH",
+      "stock": "VSYS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "VSYSUSDT",
+      "stock": "VSYS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "WNLBTC",
+      "stock": "WNL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "WNLHTB",
+      "stock": "WNL",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 4
+    },
+    {
+      "name": "IMGBTC",
+      "stock": "IMG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "IMGETH",
+      "stock": "IMG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "IMGUSDT",
+      "stock": "IMG",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GRFTBTC",
+      "stock": "GRFT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MEETONEEOS",
+      "stock": "MEETONE",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "PTIEOS",
+      "stock": "PTI",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "TPTEOS",
+      "stock": "TPT",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "PEOSEOS",
+      "stock": "PEOS",
+      "fee_prec": 4,
+      "money": "EOS",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "DEEPBTC",
+      "stock": "DEEP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "DEEPETH",
+      "stock": "DEEP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "DEEPUSDT",
+      "stock": "DEEP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "DUSKBTC",
+      "stock": "DUSK",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "NEXOUSDT",
+      "stock": "NEXO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "FSNUSDT",
+      "stock": "FSN",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "QNTUSDT",
+      "stock": "QNT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 6
+    },
+    {
+      "name": "RSRUSDT",
+      "stock": "RSR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "NOIABTC",
+      "stock": "NOIA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "NOIAUSDT",
+      "stock": "NOIA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "GARDUSDT",
+      "stock": "GARD",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "SOULUSDT",
+      "stock": "SOUL",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "TOMOUSDT",
+      "stock": "TOMO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "EGTUSDT",
+      "stock": "EGT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "SENTBTC",
+      "stock": "SENT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SENTETH",
+      "stock": "SENT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "SENTUSDT",
+      "stock": "SENT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "SAPUSDT",
+      "stock": "SAP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "RRBUSDT",
+      "stock": "RRB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "KSMBTC",
+      "stock": "KSM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "KSMUSDT",
+      "stock": "KSM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 4
+    },
+    {
+      "name": "IOTXBTC",
+      "stock": "IOTX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IOTXETH",
+      "stock": "IOTX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "IOTXUSDT",
+      "stock": "IOTX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "DASHBTC",
+      "stock": "DASH",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "DASHETH",
+      "stock": "DASH",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "DASHUSDT",
+      "stock": "DASH",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 4
+    },
+    {
+      "name": "XZCBTC",
+      "stock": "XZC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "XZCETH",
+      "stock": "XZC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "XZCUSDT",
+      "stock": "XZC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 6
+    },
+    {
+      "name": "XEMUSDQ",
+      "stock": "XEM",
+      "fee_prec": 4,
+      "money": "USDQ",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "PPCBTC",
+      "stock": "PPC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 6,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "PPCUSDT",
+      "stock": "PPC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 6,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "BSHA3BTC",
+      "stock": "BSHA3",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BSHA3ETH",
+      "stock": "BSHA3",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "BSHA3USDT",
+      "stock": "BSHA3",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ZUCUSDT",
+      "stock": "ZUC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 4
+    },
+    {
+      "name": "AZBTC",
+      "stock": "AZ",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ZOROUSDT",
+      "stock": "ZORO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "BTMBTC",
+      "stock": "BTM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "BTMETH",
+      "stock": "BTM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "BTMUSDT",
+      "stock": "BTM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "ZELBTC",
+      "stock": "ZEL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ZELETH",
+      "stock": "ZEL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ZELUSDT",
+      "stock": "ZEL",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "STROBTC",
+      "stock": "STRO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TFUELBTC",
+      "stock": "TFUEL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "TFUELETH",
+      "stock": "TFUEL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "TFUELUSDT",
+      "stock": "TFUEL",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "NIOPUSDT",
+      "stock": "NIOP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "COCOSBTC",
+      "stock": "COCOS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "COCOSETH",
+      "stock": "COCOS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "COCOSUSDT",
+      "stock": "COCOS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "CPUBTC",
+      "stock": "CPU",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "TSHPBTC",
+      "stock": "TSHP",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 10
+    },
+    {
+      "name": "TSHPETH",
+      "stock": "TSHP",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TSHPUSDT",
+      "stock": "TSHP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "RIFBTC",
+      "stock": "RIF",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "RIFETH",
+      "stock": "RIF",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "RIFUSDT",
+      "stock": "RIF",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PERLBTC",
+      "stock": "PERL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PERLETH",
+      "stock": "PERL",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PERLUSDT",
+      "stock": "PERL",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "CCXBTC",
+      "stock": "CCX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 6,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "STPCUSDT",
+      "stock": "STPC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "DGXBTC",
+      "stock": "DGX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 8
+    },
+    {
+      "name": "DGXUSDT",
+      "stock": "DGX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 6
+    },
+    {
+      "name": "CHZBTC",
+      "stock": "CHZ",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "CHZETH",
+      "stock": "CHZ",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "CHZUSDT",
+      "stock": "CHZ",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "QQQETH",
+      "stock": "QQQ",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "QQQUSDT",
+      "stock": "QQQ",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "PIVXBTC",
+      "stock": "PIVX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PIVXETH",
+      "stock": "PIVX",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PIVXUSDT",
+      "stock": "PIVX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "GOMBTC",
+      "stock": "GOM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GOMETH",
+      "stock": "GOM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "GOMUSDT",
+      "stock": "GOM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "GRAMUSDT",
+      "stock": "GRAM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "GRAMHTB",
+      "stock": "GRAM",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 4
+    },
+    {
+      "name": "ZCLBTC",
+      "stock": "ZCL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "KMSBHD",
+      "stock": "KMS",
+      "fee_prec": 4,
+      "money": "BHD",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "INFTBTC",
+      "stock": "INFT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 6,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "INFTUSDT",
+      "stock": "INFT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 6,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "EOSCUSDT",
+      "stock": "EOSC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TUBERUSDT",
+      "stock": "TUBER",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "TUBERHTB",
+      "stock": "TUBER",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 4
+    },
+    {
+      "name": "PZMBTC",
+      "stock": "PZM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PZMETH",
+      "stock": "PZM",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PZMUSDT",
+      "stock": "PZM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ERGBTC",
+      "stock": "ERG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "NNDUSDT",
+      "stock": "NND",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "TFBETH",
+      "stock": "TFB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "TFBUSDT",
+      "stock": "TFB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "TEPUSDT",
+      "stock": "TEP",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "PGNBTC",
+      "stock": "PGN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "PGNUSDT",
+      "stock": "PGN",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "DCRBTC",
+      "stock": "DCR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "BITMBTC",
+      "stock": "BITM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "DCRETH",
+      "stock": "DCR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "CFBUSDT",
+      "stock": "CFB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "MITxBTC",
+      "stock": "MITx",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 10
+    },
+    {
+      "name": "MITxETH",
+      "stock": "MITx",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MITxUSDT",
+      "stock": "MITx",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "KEYBTC",
+      "stock": "KEY",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "KEYETH",
+      "stock": "KEY",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "KEYUSDT",
+      "stock": "KEY",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "EIDOSUSDT",
+      "stock": "EIDOS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "VJCUSDT",
+      "stock": "VJC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ETCUSDT",
+      "stock": "ETC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ADAUSDT",
+      "stock": "ADA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "TRXUSDT",
+      "stock": "TRX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ONTUSDT",
+      "stock": "ONT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "CKBUSDT",
+      "stock": "CKB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 6,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "MWCBTC",
+      "stock": "MWC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "USDXUSDT",
+      "stock": "USDX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 4
+    },
+    {
+      "name": "XDETH",
+      "stock": "XD",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "NUUSDT",
+      "stock": "NU",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "NUHTB",
+      "stock": "NU",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "VKTETH",
+      "stock": "VKT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "XDBETH",
+      "stock": "XDB",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "EXEBTC",
+      "stock": "EXE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "EXEUSDT",
+      "stock": "EXE",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "DRGBBTC",
+      "stock": "DRGB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "XDCEBTC",
+      "stock": "XDCE",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "XDCEETH",
+      "stock": "XDCE",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "XDCEUSDT",
+      "stock": "XDCE",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "UVUBTC",
+      "stock": "UVU",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "GETETH",
+      "stock": "GET",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "IONCUSDT",
+      "stock": "IONC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "OXTBTC",
+      "stock": "OXT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "OXTETH",
+      "stock": "OXT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "OXTUSDT",
+      "stock": "OXT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "KDAUSDT",
+      "stock": "KDA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "FILUSDX",
+      "stock": "FIL",
+      "fee_prec": 4,
+      "money": "USDX",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 8
+    },
+    {
+      "name": "FILHTB",
+      "stock": "FIL",
+      "fee_prec": 4,
+      "money": "HTB",
+      "stock_prec": 8,
+      "min_amount": "0.0001",
+      "money_prec": 4
+    },
+    {
+      "name": "SWYFTTBTC",
+      "stock": "SWYFTT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "SWYFTTETH",
+      "stock": "SWYFTT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MLGCBTC",
+      "stock": "MLGC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "FICUSDT",
+      "stock": "FIC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 6,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "ELACBTC",
+      "stock": "ELAC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ELACETH",
+      "stock": "ELAC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ELACUSDT",
+      "stock": "ELAC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "KDABTC",
+      "stock": "KDA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "PLFBTC",
+      "stock": "PLF",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "PLFETH",
+      "stock": "PLF",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "PLFUSDT",
+      "stock": "PLF",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "GNYBTC",
+      "stock": "GNY",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "GNYUSDT",
+      "stock": "GNY",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "ORBYTBTC",
+      "stock": "ORBYT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MDUUSDT",
+      "stock": "MDU",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "OGNUSDT",
+      "stock": "OGN",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "YASUSDT",
+      "stock": "YAS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "EMRALSUSDT",
+      "stock": "EMRALS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "USDAUSDT",
+      "stock": "USDA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "FXCBTC",
+      "stock": "FXC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "FXCETH",
+      "stock": "FXC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "CNBBTC",
+      "stock": "CNB",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "CNBUSDT",
+      "stock": "CNB",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "DCCYUSDT",
+      "stock": "DCCY",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "MNTK2201USDT",
+      "stock": "MNTK2201",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 4
+    },
+    {
+      "name": "PEGFCT",
+      "stock": "PEG",
+      "fee_prec": 4,
+      "money": "FCT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "FCTBTC",
+      "stock": "FCT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "FCTETH",
+      "stock": "FCT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "FCTUSDT",
+      "stock": "FCT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 6
+    },
+    {
+      "name": "PEGBTC",
+      "stock": "PEG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "PEGETH",
+      "stock": "PEG",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "PEGUSDT",
+      "stock": "PEG",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "LARUSDT",
+      "stock": "LAR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "ELAMABTC",
+      "stock": "ELAMA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "ELAMAETH",
+      "stock": "ELAMA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ELAMAUSDT",
+      "stock": "ELAMA",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ABBCBTC",
+      "stock": "ABBC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ABBCETH",
+      "stock": "ABBC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "ABBCUSDT",
+      "stock": "ABBC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "XTZUSDT",
+      "stock": "XTZ",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "HNSBTC",
+      "stock": "HNS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "HNSUSDT",
+      "stock": "HNS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "XTZBTC",
+      "stock": "XTZ",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "VIDTUSDT",
+      "stock": "VIDT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "RVNUSDT",
+      "stock": "RVN",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "GRSUSDT",
+      "stock": "GRS",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ZECUSDT",
+      "stock": "ZEC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.0001",
+      "money_prec": 4
+    },
+    {
+      "name": "YECUSDT",
+      "stock": "YEC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "MBLBTC",
+      "stock": "MBL",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "MBLUSDT",
+      "stock": "MBL",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "GRSBTC",
+      "stock": "GRS",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "ANTBTC",
+      "stock": "ANT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "ANTETH",
+      "stock": "ANT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "APMBTC",
+      "stock": "APM",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "APMUSDT",
+      "stock": "APM",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "EDGBTC",
+      "stock": "EDG",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "EDGUSDT",
+      "stock": "EDG",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 6
+    },
+    {
+      "name": "HMRBTC",
+      "stock": "HMR",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "HMRETH",
+      "stock": "HMR",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "HMRUSDT",
+      "stock": "HMR",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "DYNMTBTC",
+      "stock": "DYNMT",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "DYNMTETH",
+      "stock": "DYNMT",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "DYNMTUSDT",
+      "stock": "DYNMT",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "MWCETH",
+      "stock": "MWC",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "MWCUSDT",
+      "stock": "MWC",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "ONGUSDT",
+      "stock": "ONG",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 2,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "VETUSDT",
+      "stock": "VET",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "VTHOUSDT",
+      "stock": "VTHO",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "BTSHBTC",
+      "stock": "BTSH",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.001",
+      "money_prec": 8
+    },
+    {
+      "name": "IPXBTC",
+      "stock": "IPX",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "IPXUSDT",
+      "stock": "IPX",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.1",
+      "money_prec": 6
+    },
+    {
+      "name": "BXCBTC",
+      "stock": "BXC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.1",
+      "money_prec": 8
+    },
+    {
+      "name": "INOBTC",
+      "stock": "INO",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 4,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "AUVUSDT",
+      "stock": "AUV",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 6
+    },
+    {
+      "name": "DAPSETH",
+      "stock": "DAPS",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 4,
+      "min_amount": "10000",
+      "money_prec": 10
+    },
+    {
+      "name": "TOSCBTC",
+      "stock": "TOSC",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "NANBTC",
+      "stock": "NAN",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "0.01",
+      "money_prec": 8
+    },
+    {
+      "name": "DATABTC",
+      "stock": "DATA",
+      "fee_prec": 4,
+      "money": "BTC",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 10
+    },
+    {
+      "name": "DATAETH",
+      "stock": "DATA",
+      "fee_prec": 4,
+      "money": "ETH",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    },
+    {
+      "name": "SUTERUSDT",
+      "stock": "SUTER",
+      "fee_prec": 4,
+      "money": "USDT",
+      "stock_prec": 8,
+      "min_amount": "1",
+      "money_prec": 8
+    }
+  ]

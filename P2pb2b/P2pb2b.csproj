@@ -116,6 +116,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataObjects\CurrencyPrecision.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +157,9 @@
     <EmbeddedResource Include="TokenChangeForm.resx">
       <DependentUpon>TokenChangeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Data\HotbitPrecisions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
