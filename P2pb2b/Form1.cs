@@ -34,11 +34,14 @@ namespace P2pb2b
     {
         private const string HOTBIT_API_URL = "https://api.hotbit.io";
         private const string IDEX_API_URL = "https://api.idex.market";
+
+        //private const string BITMART_AUTH_API_URL = "https://api-cloud.bitmart.com/v1/";
         private const string BITMART_API_URL = "https://openapi.bitmart.com/v2/";
 
         private const string OLD_API_URL = "https://p2pb2b.io";
         private const string NEW_API_URL = "https://api.p2pb2b.io";
 
+        //private static readonly IServerCommunicator BITMART_AUTH_SERVER = new ServerCommunicator(BITMART_AUTH_API_URL);
         private static readonly IServerCommunicator BITMART_SERVER = new ServerCommunicator(BITMART_API_URL);
         private static readonly IServerCommunicator P2PB2B_SERVER = new ServerCommunicator(NEW_API_URL);
         private static readonly IServerCommunicator HOTBIT_SERVER = new ServerCommunicator(HOTBIT_API_URL);
@@ -803,7 +806,7 @@ namespace P2pb2b
             if (P2P2B2BChecker.Checked)
                 ApiGetBalancesP2P2B2B();
             else if (HotbitChecker.Checked)
-                ApiGetBalancesHotbit();
+                await ApiGetBalancesHotbit();
             else if (IdexChecker.Checked)
                 ApiGetBalancesIdex();
             else if (BitmartChecker.Checked)
@@ -1005,7 +1008,7 @@ namespace P2pb2b
             }
         }
 
-        private void ApiGetBalancesHotbit() //API
+        private async Task ApiGetBalancesHotbit() //API
         {
             try
             {
@@ -1014,8 +1017,8 @@ namespace P2pb2b
                 string preRequestText = "api_key=" + _apiKey[0] + "&assets=[\"ETH\",\"BTC\",\"" + MainName + "\"]&secret_key=" + _secretKey[0];
                 string requestBody = "api_key=" + _apiKey[0] + "&assets=[\"ETH\",\"BTC\",\"" + MainName + "\"]&sign=" + ToMD5(preRequestText).ToUpper();
 
-                WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + GetBalancePath + "?" + requestBody));
+                IServerResponse response = await HOTBIT_SERVER.SendQuery(new Query(QueryMethod.POST, GetBalancePath, requestBody));
+                dynamic m = JsonConvert.DeserializeObject(response.Data);
 
                 AddMessage("ApiGetBalances: " + (m.error == null ? "success" : "failure"));
                 foreach (var pair in m.result)
@@ -1074,21 +1077,21 @@ namespace P2pb2b
             if (P2P2B2BChecker.Checked)
                 ApiGetMinAmountP2P2B2B();
             else if (HotbitChecker.Checked)
-                ApiGetMinAmountHotbit();
+                await ApiGetMinAmountHotbit();
             else if (IdexChecker.Checked)
                 ApiGetMinAmountIdex();
             else if (BitmartChecker.Checked)
                 await ApiGetMinAmountBitmart();
         }
 
-        private void ApiGetMinAmountHotbit()
+        private async Task ApiGetMinAmountHotbit()
         {
             try
             {
-                const string GetBalancePath = "/api/v1/market.list";
+                const string GetMinAmountPath = "/api/v1/market.list";
 
-                WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + GetBalancePath));
+                IServerResponse response = await HOTBIT_SERVER.SendQuery(new Query(QueryMethod.GET, GetMinAmountPath));
+                dynamic m = JsonConvert.DeserializeObject(response.Data);
 
                 if (m.error != null)
                     AddMessage("ApiGetMinAmount: Failed: " + m.error);
@@ -1379,7 +1382,7 @@ namespace P2pb2b
                         }
                         else
                         {
-                            AddMessage("Failed to fetch sell orders list at Hotbit due to " + buyOrderList.error.message.ToString());
+                            AddMessage("Failed to fetch buy orders list at Hotbit due to " + buyOrderList.error.message.ToString());
                         }
                     }
                     catch(Exception e) { }
@@ -1673,7 +1676,7 @@ namespace P2pb2b
                 IQuery createOrderQuery = new Query(QueryMethod.POST, createOrderEndpoint, JsonConvert.SerializeObject(data), headers: headers);
                 dynamic response = JSON_RESPONSE_PARSER.Parse<ResponseException>(await BITMART_SERVER.SendQuery(createOrderQuery));
                 AddMessage("Created " + type + "; id=" + response.entrust_id + "; price: " + _price + "; amount = " + _amount);
-                return await GetOrderBitmart(Convert.ToInt32(response.entrust_id), pairNum, _typeOrder.ToList().IndexOf(type));
+                return await GetOrderBitmart(Convert.ToInt64(response.entrust_id), pairNum, _typeOrder.ToList().IndexOf(type));
             }
             catch (ResponseException ex) when (ex.message == "Token expired" || ex.message == "Unauthorized")
             {
@@ -1829,10 +1832,9 @@ namespace P2pb2b
                 string preRequestText = requestTextPrefix + "&secret_key=" + _secretKey[0];
                 string requestBody = requestTextPrefix + "&sign=" + ToMD5(preRequestText).ToUpper();
 
-                WebClient WC = new WebClient();
-                dynamic m = JsonConvert.DeserializeObject(WC.DownloadString(HOTBIT_API_URL + CreateOrderPath + "?" + requestBody));
+                IServerResponse response = await HOTBIT_SERVER.SendQuery(new Query(QueryMethod.POST, CreateOrderPath, requestBody));
+                dynamic m = JsonConvert.DeserializeObject(response.Data);
                 
-                Thread.Sleep(200);
                 if (m.error != null)
                     throw new Exception(m.error.ToString());
 
@@ -2160,7 +2162,7 @@ namespace P2pb2b
             }
         }
 
-        private async Task<Order> GetOrderBitmart(int id, int pairNum, int typeNum)
+        private async Task<Order> GetOrderBitmart(long id, int pairNum, int typeNum)
         {
             try
             {

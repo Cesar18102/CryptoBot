@@ -144,7 +144,7 @@ namespace P2pb2b.Server.Access
             return await GetResponse(request, query.NeededHeaders, query.NeededCookies, cont);
         }
 
-        protected async Task<(string, Dictionary<string, string>, CookieContainer)> GetResponse(HttpWebRequest request, IList<string> neededHeadersNames, 
+        protected async Task<(string, Dictionary<string, string>, CookieContainer)> GetResponse(HttpWebRequest request, IList<string> neededHeadersNames,
                                                                                                 IList<string> neededCookies, CookieContainer container)
         {
             using (HttpWebResponse response = await request.GetResponseAsync() as HttpWebResponse)
